@@ -1,0 +1,26 @@
+<!-- <h3 class="category-title">Carpas</h3> -->
+
+<div class="product-item" ng-if="catalogo.carpa">
+	<span class="product-name">Carpa</span>
+	<div class="product-controls">
+		<input type="number" class="product-input" name="carpa" ng-model="presupuesto.carpa.cuantity" required>
+		<span class="product-price">$ {{presupuesto.carpa.cuantity * 20}} </span>
+		<span class="product-remove icon icon-minus" ng-click="removeFromPresupuesto('carpa')"></span>
+	</div>
+</div>
+<div class="product-item" ng-if="catalogo.carpaSencilla">
+	<span class="product-name">Carpa Sencilla</span>
+	<div class="product-controls">
+		<input type="number" class="product-input" name="carpaSencilla" ng-model="presupuesto.carpaSencilla.cuantity" required>
+		<span class="product-price">$ 20.00 </span>
+		<span class="product-remove icon icon-minus" ng-click="removeFromPresupuesto('carpaSencilla')"></span>
+	</div>
+</div>
+<div class="product-item" ng-if="catalogo.carpaArabe">
+	<span class="product-name">Carpa Arabe</span>
+	<div class="product-controls">
+		<input type="number" class="product-input" name="carpaArabe" ng-model="presupuesto.carpaArabe.cuantity" required>
+		<span class="product-price">$ 20.00 </span>
+		<span class="product-remove icon icon-minus" ng-click="removeFromPresupuesto('carpaArabe')"></span>
+	</div>
+</div>

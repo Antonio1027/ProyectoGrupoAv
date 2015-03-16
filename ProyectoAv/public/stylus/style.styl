@@ -1,0 +1,155 @@
+// @import "nib"
+@import "normalize.styl"
+@import "fonts.styl"
+
+azul-oscuro = #37474F
+azul-gris = #485961
+gris-borde = #DDDDDD
+
+gris-fondo = #F8F8F8
+gris-fondo-oscuro = #F0F0F0
+gris-scroll = #CBCBCB
+
+rojo-mac = #FD645B
+verde-mac = #25A938
+amarillo-mac = #FDBA17
+
+
+body
+	font-size 16px
+	font-family 'Roboto', sans-serif
+ul
+	padding 0
+li
+	list-style none
+a
+	text-decoration none
+	
+.icon
+	border-radius 50%
+	padding 0.1em
+	color white
+	&-plus
+		background verde-mac
+	&-minus
+		background rojo-mac
+
+.header
+	background azul-oscuro
+	height 3.5em
+	color white
+	line-height 3.5em
+	position fixed
+	top 0
+	right 0
+	left 0
+	box-shadow 0 1px 2px black
+	&.alpha
+		background rgba(55, 71, 79, 0.84)
+	.image
+		margin 3px 0.5em
+		float left
+		width 3.1em
+		height 3.1em
+	.title
+		float left
+		margin 0
+		color white
+	.btn-menu
+		float left
+		display none
+.menu
+	&-list
+		float right
+		font-size 0
+		height 2.5em
+	&-item
+		font-size 1rem
+		display inline-block
+		transition 0.3s background
+		&:hover
+			background azul-gris
+	&-link
+		padding 0 0.5em
+		color white
+		display block
+		
+.container-main
+	margin-top 3.5em
+	&-title
+		border-bottom 1px solid gris-borde
+		h1
+			font-weight 100
+			margin 0
+			padding  0.5em 1em
+.container-main-content
+	background gris-fondo
+.leftcol
+	background gris-fondo-oscuro
+	display inline-block
+	max-width 25em
+	min-width 20%
+	height 100%
+	overflow-y auto
+	vertical-align top
+	&::-webkit-scrollbar
+			width 4px
+	&::-webkit-scrollbar-thumb
+		width 7px
+		background gris-scroll
+		border-radius 5px
+.rightcol
+	vertical-align top
+	display inline-block
+	min-width 79%
+	max-width 45em
+.category
+	padding 0.5em 1em
+	border-bottom 1px solid gris-borde
+	border-right 1px solid gris-borde
+	border-left 1px solid gris-borde
+	&:last-child
+		border-bottom 0
+	&-title
+		margin 0
+		font-weight 100
+		font-size 1.5em
+		text-transform uppercase
+	&-item
+		text-align right
+		margin-bottom 0.2em
+		&-btn
+			margin-left 0.5em
+			cursor pointer
+.products-list
+	padding 1em
+	.title
+		margin 0 0 1em 0
+.product
+	margin-left 1em
+	.category-title
+		text-transform capitalize
+		margin-top 0.5em
+	&-item
+		overflow hidden
+		padding 0.2em 1em
+		border-radius 0.5em
+		&:hover
+			background gris-fondo-oscuro
+	&-controls
+		float right
+	&-name
+		font-style italic
+	&-input
+		width 4em		
+		text-align center
+	&-price
+		margin-left 1em
+		width 5em
+		display inline-block
+	&-remove
+		cursor pointer
+.wrap
+	min-width 40em
+	max-width 70em
+	margin 0 auto
