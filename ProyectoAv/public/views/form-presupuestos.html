@@ -1,24 +1,86 @@
-<section class="container-main">		
-	<div class="container-main-title">
-		<div class="wrap">
-			<h1 class="title">Cards</h1>
+<section class="container-main">
+	<form name="form" ng-submit="form.$valid && sendpresupuesto()">
+		<div class="container-title">
+			<div class="wrap-content">
+				<h1 class="title">Nuevo presupuesto</h1>
+			</div>
 		</div>
-	</div>
-	<div class="container-main-content wrap">
-		<div class="leftcol">
-			<categories></categories>
-		</div>
-		<div class="rightcol">
-			<div class="products-list">
-				<h2 class="title">Lista de productos</h2>
-				<div class="product">
-					<form name="form" ng-submit="form.$valid && sendpresupuesto()">
-						<carpas></carpas>
-						<input type="submit">
-					</form>
 
+		<div class="container-content wrap-content">
+			<div class="data-personal">
+				<div class="subtitle">Datos del evento</div>
+
+				<div class="input-group">
+					<span>Nombre</span>
+					<input type="text" ng-model="datageneral.nombre" required>
+				</div>
+				<div class="input-group">
+					<span>Fecha de evento</span>
+					<input type="date" ng-model="datageneral.fecha">
+				</div>
+				<div class="input-group">
+					<span>Dom. del evento</span>
+					<input type="text" ng-model="datageneral.domicilioEvento">
+				</div>
+				<div class="input-group">
+					<span>Dom. particular</span>
+					<input type="text" ng-model="datageneral.domicilioParticular">
+				</div>
+				<div class="input-group">
+					<span>Telefono</span>
+					<input type="text" ng-model="datageneral.telefono">
+				</div>
+				<div class="input-group">
+					<span>E-Mail</span>
+					<input type="email" ng-model="datageneral.email">
+				</div>
+				<div class="input-group">
+					<span>Surtir</span>
+					<input type="text" ng-model="datageneral.surtir">
+				</div>
+				<div class="input-group">
+					<span>Recoger</span>
+					<input type="text" ng-model="datageneral.recoger">
+				</div>
+				<div class="input-group">
+					<span>Tipo de evento</span>
+					<input type="text" ng-model="datageneral.tipoEvento">
+				</div>
+				<div class="input-group">
+					<span>Numero de personas</span>
+					<input type="number" ng-model="datageneral.personas">
+				</div>
+				<div class="input-group">
+					<span>Color</span>
+					<input type="number" ng-model="datageneral.color">
+				</div>
+				<div class="input-group">
+					<span>Contacto</span>
+					<input type="number" ng-model="datageneral.contacto">
+				</div>
+
+			</div>
+		</div>
+
+		<div class="container-content wrap-content">
+			<div class="leftcol">
+				<categories></categories>
+			</div>
+			<div class="rightcol">
+				<div class="products-list">
+					<div class="subtitle">Lista de productos</div>
+					<div class="product">
+						
+							<products></products>
+
+							<div class="text-center" ng-show="form.$valid">
+								<button type="submit" class="icon icon-save icon-floppy-disk"></button>
+							</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
+
+	<div ng-bind-html="noti"></div>
 </section>

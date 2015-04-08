@@ -1,11 +1,9 @@
 (function(){
 	angular.module('filters', [])
-	.filter('normalizeTitle', ['$filter', function ($filter) {
-		return function (name) {
-			if (typeof (name)==="string") {
-				return name.replace(/([A-Z])/g, function($1){
-					return $1.replace($1, ' ' + $1);
-				});
+	.filter('capitalize', ['$filter', function ($filter) {
+		return function (data) {
+			if (typeof (data)==="string") {
+				return data.charAt(0).toUpperCase() + data.slice(1);
 			}
 		};
 	}]);

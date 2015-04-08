@@ -1,4 +1,5 @@
-// @import "nib"
+@import "nib"
+@import "animate.styl"
 @import "normalize.styl"
 @import "fonts.styl"
 
@@ -13,143 +14,243 @@ gris-scroll = #CBCBCB
 rojo-mac = #FD645B
 verde-mac = #25A938
 amarillo-mac = #FDBA17
-
-
 body
 	font-size 16px
 	font-family 'Roboto', sans-serif
+	background white
 ul
 	padding 0
 li
 	list-style none
 a
 	text-decoration none
+// OOCSS
+.btn
+	background verde-mac
+	border 0
+	color white
+	border-radius 10px
+	padding 0.5em
+	box-shadow 0 0 2px azul-oscuro
 	
-.icon
-	border-radius 50%
-	padding 0.1em
-	color white
-	&-plus
-		background verde-mac
-	&-minus
-		background rojo-mac
-
-.header
-	background azul-oscuro
-	height 3.5em
-	color white
-	line-height 3.5em
-	position fixed
-	top 0
-	right 0
-	left 0
-	box-shadow 0 1px 2px black
-	&.alpha
-		background rgba(55, 71, 79, 0.84)
-	.image
-		margin 3px 0.5em
-		float left
-		width 3.1em
-		height 3.1em
-	.title
-		float left
-		margin 0
-		color white
-	.btn-menu
-		float left
-		display none
-.menu
-	&-list
-		float right
-		font-size 0
-		height 2.5em
-	&-item
-		font-size 1rem
-		display inline-block
-		transition 0.3s background
-		&:hover
-			background azul-gris
-	&-link
-		padding 0 0.5em
-		color white
-		display block
-		
 .container-main
 	margin-top 3.5em
-	&-title
-		border-bottom 1px solid gris-borde
-		h1
-			font-weight 100
-			margin 0
-			padding  0.5em 1em
-.container-main-content
-	background gris-fondo
-.leftcol
-	background gris-fondo-oscuro
-	display inline-block
-	max-width 25em
-	min-width 20%
-	height 100%
-	overflow-y auto
-	vertical-align top
-	&::-webkit-scrollbar
-			width 4px
-	&::-webkit-scrollbar-thumb
-		width 7px
-		background gris-scroll
-		border-radius 5px
-.rightcol
-	vertical-align top
-	display inline-block
-	min-width 79%
-	max-width 45em
-.category
-	padding 0.5em 1em
+	
+.container-title
 	border-bottom 1px solid gris-borde
+	padding 0.7em
+	margin-bottom 1em
+	
+.container-content
+	border 1px solid gris-borde
+	background gris-fondo
+	border-radius 10px
+	padding 1em
+	margin-bottom 1em !important
+	overflow hidden
+	
+	
+.data-personal
+	.input-group
+		background azul-gris
+		padding-left 0.5em
+		display inline-block
+		color white
+		font-weight 100
+		border-radius 7px
+		overflow hidden
+		height 1.4em
+		line-height 1.4em
+		&:nth-child(odd)
+			float right
+		span
+			display inline-block
+			width 10em
+			text-align center
+		input
+			width 13em
+			border-left 0
+			border-radius 0 7px 7px 0
+			text-align center
+			color black
+			transition 0.5s background
+			
+input
+	border 1px solid azul-gris
+	border-radius 7px
+	&.ng-invalid
+		background rojo-mac
+		color white
+				// border 1px solid rojo-mac
+					
+.header
+	background azul-oscuro
+	color white
+	position fixed
+	top 0 
+	left 0
+	right 0
+	height 3.5em
+	line-height 3.5em
+	transition background 1s 
+	&.alpha
+		background rgba(azul-oscuro, 0.76)
+	.btn-menu
+		display none
+	.image
+		margin 0
+		margin 3px 0.5em
+		width 2.1em
+		height 3.1em
+		float left
+	.title
+		float left
+		color white
+	.menu 
+		float right
+		&-item
+			display inline-block
+			transition 0.3s background
+			&:hover
+				background azul-gris
+		&-link
+			color white
+			padding 1.2em 0.5em
+.icon
+	background azul-gris
+	border 0
+	border-radius 50%
+	color white
+	padding 0.2em
+	
+.leftcol
+	padding 0.5em
+	width 20%
 	border-right 1px solid gris-borde
 	border-left 1px solid gris-borde
-	&:last-child
-		border-bottom 0
-	&-title
-		margin 0
-		font-weight 100
-		font-size 1.5em
-		text-transform uppercase
-	&-item
-		text-align right
-		margin-bottom 0.2em
-		&-btn
+	float left
+	background gris-fondo-oscuro
+	border-radius 10px
+	.category
+		border-bottom 1px solid gris-borde
+		&-list
+			margin 0.5em 0
+			overflow hidden
+		&-item
+			text-align right
+			margin 0.3em 0
+			&-btn
+				background verde-mac
+				margin-left 0.5em
+				cursor pointer
+		&-title
+			text-transform capitalize
+			margin 0.4em 0
+			cursor pointer
+		&:last-child
+			border-bottom none
+			
+.notification
+	padding 1em
+	background rgba(azul-gris, 0.9)
+	cursor pointer
+	color white
+	position fixed
+	bottom 3em
+	right 1em
+	border-radius 5px
+	font-weight 100
+	font-size 0.875em
+	
+.products-list
+	.product
+		overflow hidden
+		margin-left 2em
+		&-input
+			width 5em
+			text-align center
+		&-price
+			margin-left 0.5em
+			width 5em
+			display inline-block
+		&-item
+			height 2em
+			line-height 2em
+		&-name
+			text-transform capitalize
+			font-style italic
+		&-controls
+			float right
+		&-remove
 			margin-left 0.5em
 			cursor pointer
-.products-list
+			background rojo-mac
+	
+.rightcol 
 	padding 1em
-	.title
-		margin 0 0 1em 0
-.product
-	margin-left 1em
-	.category-title
-		text-transform capitalize
-		margin-top 0.5em
-	&-item
-		overflow hidden
-		padding 0.2em 1em
-		border-radius 0.5em
-		&:hover
-			background gris-fondo-oscuro
-	&-controls
-		float right
-	&-name
-		font-style italic
-	&-input
-		width 4em		
-		text-align center
-	&-price
-		margin-left 1em
-		width 5em
+	width 73%
+	float left
+
+.search-controls
+	text-align center
+	margin-bottom 1em
+	.search-input
 		display inline-block
-	&-remove
-		cursor pointer
-.wrap
-	min-width 40em
-	max-width 70em
+		position relative
+		.icon
+			color azul-gris
+			background transparent
+			position absolute
+			top 1px
+			left 5px
+		input
+			border-radius 5px
+			border 1px solid azul-gris
+			padding-left 2em
+	
+.subtitle
+	font-size 1.5em
+	font-weight 100
+	margin 0
+	padding 0 0.5em
+	
+.table
+	margin 1em 0
+	width 100%
+	tr
+		border-bottom 1px solid gris-borde
+		&:nth-child(odd)
+			background gris-fondo-oscuro
+		&:first-child
+			background gris-fondo-oscuro
+		&.cuantity
+			background transparent
+			border 0
+			td
+				font-weight bold
+				font-style normal
+	th
+		padding 0.5em 0
+	td
+		padding 0.3em 0
+		text-align center
+		font-style italic
+		
+.text-right
+	text-align right !important
+.text-center
+	text-align center !important
+	
+.title
+	font-size 2em
+	font-weight 100
+	margin 0
+	padding 0 0.5em
+	text-transform uppercase
+	
+.wrap-content
+	min-width 52rem
+	max-width 70rem
 	margin 0 auto
+// Animations
+	

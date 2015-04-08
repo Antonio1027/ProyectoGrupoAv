@@ -1,0 +1,84 @@
+[
+	{
+		"category": "carpas",
+		"listproducts":[
+			{
+				"name": "sencila",
+				"group": "carpas",
+				"type": [
+					{
+						"id": 1,
+						"desc": "12 x 15"
+					},
+					{
+						"id": 2,
+						"desc": "14 x 15"
+					},
+					{
+						"id": 3,
+						"desc": "15 x 15"
+					},
+					{
+						"id": 4,
+						"desc": "16 x 15"
+					}
+				]
+			},
+			{
+				"name": "arabe",
+				"group": "carpas",
+				"type": [
+					{
+						"id": 1,
+						"desc": "12 x 15"
+					},
+					{
+						"id": 2,
+						"desc": "14 x 15"
+					},
+					{
+						"id": 3,
+						"desc": "15 x 15"
+					},
+					{
+						"id": 4,
+						"desc": "16 x 15"
+					}
+				]
+			}
+		]
+	},
+	{
+		"category": "sillones",
+		"listproducts":[
+			{
+				"name": "cubos",
+				"group": "sillones",
+				"type": {
+					"1": "Rojo",
+					"2": "Negro",
+					"3": "Azules"
+				}
+			},
+			{
+				"name": "cilindros",
+				"group": "sillones",
+				"type": {
+					"1": "Rojo",
+					"2": "Negro",
+					"3": "Azules"
+				}
+			},
+			{
+				"name": "triangulares",
+				"group": "sillones",
+				"type": {
+					"1": "Rojo",
+					"2": "Negro",
+					"3": "Azules"
+				}
+			}
+		]
+	}
+	
+]

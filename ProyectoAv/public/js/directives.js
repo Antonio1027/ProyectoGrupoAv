@@ -6,10 +6,10 @@
 			templateUrl: 'partials/categories.html'
 		};
 	}])
-	.directive('carpas', [function () {
+	.directive('products', [function () {
 		return {
 			restrict: 'E',
-			templateUrl: 'partials/carpas.html'
+			templateUrl: 'partials/products.html'
 		};
 	}])
 })();

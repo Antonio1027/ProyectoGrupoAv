@@ -1,10 +1,12 @@
 (function(){
 	app = angular.module('AV', [
+		'ngAnimate',
 		'ngRoute',
 		'ngSanitize',
 		'filters',
 		'directives',
-		'controllers',		
+		'services',
+		'controllers'
 		]);
 
 	app.config(['$routeProvider',function ($routeProvider) {
@@ -13,8 +15,29 @@
 			templateUrl: 'views/form-presupuestos.html',
 			controller: 'PresupuestosCtrl'
 		})
+		.when('/ordenservicio', {
+			templateUrl: 'views/ordenservicio.html',
+			controller: 'PresupuestosCtrl'
+		})
+		.when('/ordenes', {
+			templateUrl: 'views/list-ordenes.html',
+			controller: 'PresupuestosCtrl'
+		})
+		.when('/presupuestos', {
+			templateUrl: 'views/list-presupuestos.html',
+			controller: 'PresupuestosCtrl'
+		})
 		.otherwise({ 
 			redirectTo: '/' 
 		})
 	}]);
+
+	$win = $(window);
+	$win.scroll(function(){
+		if( $win.scrollTop() == 0)
+			$('.header').removeClass('alpha');
+		else
+			$('.header').addClass('alpha');
+	});
+	
 })()
