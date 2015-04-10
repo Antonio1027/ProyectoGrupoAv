@@ -12,7 +12,7 @@
 	app.config(['$routeProvider',function ($routeProvider) {
 		$routeProvider
 		.when('/', {
-			templateUrl: 'views/form-presupuestos.html',
+			templateUrl: 'views/new-presupuestos.html',
 			controller: 'PresupuestosCtrl'
 		})
 		.when('/ordenservicio', {
@@ -25,6 +25,10 @@
 		})
 		.when('/presupuestos', {
 			templateUrl: 'views/list-presupuestos.html',
+			controller: 'PresupuestosCtrl'
+		})
+		.when('/administrar-productos', {
+			templateUrl: 'views/admin-products.html',
 			controller: 'PresupuestosCtrl'
 		})
 		.otherwise({ 

@@ -1,0 +1,74 @@
+<section class="container-main">
+		<div class="container-title">
+			<div class="wrap-content">
+				<h1 class="title">Administrar productos</h1>
+			</div>
+		</div>
+
+		<div class="container-content wrap-content">
+			<ul class="tree-products">
+				<li class="category" ng-repeat="product in products">
+					<div class="category-item">
+						{{product.category}}
+						<a href="#" class="icon icon-plus"></a>
+						<a href="#" class="icon icon-minus"></a>
+						<a href="#" class="icon icon-pencil"></a>
+					</div>
+					<ul>
+						<li class="product" ng-repeat="list in product.listproducts">
+							<div class="product-item">
+								{{list.name}}
+								<a href="#" class="icon icon-plus"></a>
+								<a href="#" class="icon icon-minus"></a>
+								<a href="#" class="icon icon-pencil"></a>
+							</div>
+							<ul>
+								<li class="type" ng-repeat="type in list.type">
+									<div class="type-item">
+										{{type.desc}}
+										<a href="#" class="icon icon-plus"></a>
+										<a href="#" class="icon icon-minus"></a>
+										<a href="#" class="icon icon-pencil"></a>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="container-content wrap-content">
+			<div class="data-personal">
+				<div class="subtitle">Administrar categorias</div>
+
+				<div class="input-group">
+					<span>Nombre</span>
+					<input type="text" ng-model="datageneral.nombre" required>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-content wrap-content">
+			<div class="data-personal">
+				<div class="subtitle">Administrar productos</div>
+
+				<div class="input-group">
+					<span>Nombre</span>
+					<input type="text" ng-model="datageneral.nombre" required>
+				</div>
+				
+			</div>
+		</div>
+
+		<div class="container-content wrap-content">
+			<div class="data-personal">
+				<div class="subtitle">Administrar tipos</div>
+
+				<div class="input-group">
+					<span>Nombre</span>
+					<input type="text" ng-model="datageneral.nombre" required>
+				</div>
+			</div>
+		</div>
+</section>

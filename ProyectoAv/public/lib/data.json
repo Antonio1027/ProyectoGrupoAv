@@ -54,29 +54,28 @@
 			{
 				"name": "cubos",
 				"group": "sillones",
-				"type": {
-					"1": "Rojo",
-					"2": "Negro",
-					"3": "Azules"
-				}
+				"type": [
+					{
+						"id": 1,
+						"desc": "Rojo"
+					},
+					{
+						"id": 2,
+						"desc": "Negro"
+					},
+					{
+						"id": 3,
+						"desc": "Azul"
+					}
+				]
 			},
 			{
 				"name": "cilindros",
-				"group": "sillones",
-				"type": {
-					"1": "Rojo",
-					"2": "Negro",
-					"3": "Azules"
-				}
+				"group": "sillones"
 			},
 			{
 				"name": "triangulares",
-				"group": "sillones",
-				"type": {
-					"1": "Rojo",
-					"2": "Negro",
-					"3": "Azules"
-				}
+				"group": "sillones"				
 			}
 		]
 	}

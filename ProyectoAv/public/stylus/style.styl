@@ -119,6 +119,7 @@ input
 .icon
 	background azul-gris
 	border 0
+	cursor pointer
 	border-radius 50%
 	color white
 	padding 0.2em
@@ -247,6 +248,46 @@ input
 	margin 0
 	padding 0 0.5em
 	text-transform uppercase
+
+.tree-products
+	.icon
+		display none
+	.category
+	.product
+	.type
+		&-item
+			padding 0 0.5em
+			border-radius 5px
+			background transparent
+			transition 0.3s background
+			.icon-plus
+				background verde-mac
+			.icon-minus
+				background rojo-mac
+			.icon-pencil
+				background amarillo-mac
+			&:hover
+				background gris-fondo-oscuro
+				& > .icon
+					display inline-block
+	.category
+		margin 10px 0
+		font-weight 500
+		padding 0.5em 1em
+		text-transform capitalize
+		border-bottom 1px solid gris-borde
+		&-item:before
+		&-item:after
+			content: "-"
+		.product
+			font-weight 400
+			margin-left 2em
+			&-item:before
+				content: "-"
+			.type
+				font-weight 100
+				font-style italic
+				margin-left 2em
 	
 .wrap-content
 	min-width 52rem

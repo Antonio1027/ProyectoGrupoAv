@@ -7,7 +7,9 @@
 		<span class="product-name">{{product.category}} - {{listproducts.name}}</span>
 		<div class="product-controls">
 			<input type="number" class="product-input" ng-model="listproducts.price" ng-required="!listproducts.show">
-			<select name="" id="" ng-model="listproducts.typeselect" ng-options="item.id as item.desc for item in listproducts.type"></select>
+
+			<select name="" ng-model="listproducts.typeselect" ng-options="item.id as item.desc for item in listproducts.type" ng-if="listproducts.type"></select>
+
 
 			<span class="product-price">$ 2000.00 </span>
 			<span class="product-remove icon icon-minus" ng-click="listproducts.show = !listproducts.show"></span>
