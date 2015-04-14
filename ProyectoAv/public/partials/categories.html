@@ -1,19 +1,18 @@
-<div class="category" ng-repeat="product in products">
-
+<div class="category" ng-repeat="category in CPT">
 	<h3 class="category-title" 
-		ng-click="product.show = !product.show">{{product.category}}</h3>
+		ng-click="category.show = !category.show">{{category.name}}</h3>
 	<ul class="category-list animated" 
-		ng-show="product.show" 
-		ng-class="product.show ?  'fadeInDown' : 'fadeOutUp' ">
+		ng-show="category.show" 
+		ng-class="category.show ?  'fadeInDown' : 'fadeOutUp' ">
 
 		<li class="category-item animated" 
-			ng-repeat="listproducts in product.listproducts"
-			ng-init="listproducts.show = true" 
-			ng-show="listproducts.show" 
-			ng-class="listproducts.show ? 'fadeInLeft' : 'fadeOutRight' ">
+			ng-repeat="product in category.listproducts"
+			ng-init="product.show = true" 
+			ng-show="product.show" 
+			ng-class="product.show ? 'fadeInLeft' : 'fadeOutRight' ">
 
-			<span class="category-item-name">{{listproducts.name}}</span>
-			<span class="category-item-btn icon icon-plus" ng-click="listproducts.show = !listproducts.show"></span>
+			<span class="category-item-name">{{product.name}}</span>
+			<span class="category-item-btn icon icon-plus" ng-click="product.show = !product.show"></span>
 		</li>
 
 	</ul>

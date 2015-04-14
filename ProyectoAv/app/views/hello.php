@@ -31,7 +31,7 @@
 
 	<div ng-view></div>
 
-	<!-- <div class="notification animated" ng-show="noti" ng-click="noti = !noti" ng-class="{rotateInUpRight: noti, rotateOutUpRight: !noti}">
+	<!-- <div class="notification animated" ng-init="noti = true" ng-show="noti" ng-click="noti = !noti" ng-class="{rotateInUpRight: noti, rotateOutUpRight: !noti}">
 		<span>Transferencia correcta</span>
 	</div> -->
 

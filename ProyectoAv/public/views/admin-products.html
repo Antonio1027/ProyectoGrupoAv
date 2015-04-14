@@ -5,30 +5,175 @@
 			</div>
 		</div>
 
+		<div class="wrap-content container-content">
+			<div class="subtitle">Botonera</div>
+			<div class="text-center">
+				<button class="btn" ng-click="tab = 1">Nueva categoria</button>
+				<button class="btn" ng-click="tab = 2">Nuevo producto</button>
+				<button class="btn" ng-click="tab = 3">Nuevo tipo</button>
+			</div>
+
+			<div class="data-personal" ng-if="tab == 1">
+				<div class="subtitle">Agregar categorias</div>
+				<form name="form" ng-submit="form.$valid && sendcategory()">
+					<div class="input-group">
+						<span>Nombre</span>
+						<input type="text" ng-model="datacategory.name" required>
+					</div>
+					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
+				</form>
+			</div>
+			
+			<div class="data-personal" ng-if="tab == 2">
+				<div class="subtitle">Agregar productos</div>
+				<form name="form" ng-submit="form.$valid && sendproduct()">
+					<div class="input-group">
+						<span>Nombre</span>
+						<input type="text" ng-model="dataproduct.name" required>
+					</div>
+					<div class="input-group">
+						<span>Precio</span>
+						<input type="text" ng-model="dataproduct.rental_price" ng-pattern="regex_float" required>
+					</div>
+					<div class="input-group">
+						<span>Reserva</span>
+						<input type="text" ng-model="dataproduct.reserve" ng-pattern="regex_number" required>
+					</div>
+					<div class="input-group">
+						<span>Total</span>
+						<input type="text" ng-model="dataproduct.total" ng-pattern="regex_number" required>
+					</div>
+					<div class="input-group">
+						<span>Category</span>
+						<select name="category" ng-model="dataproduct.category_id" required>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+					</div>
+					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
+				</form>
+
+			</div>
+
+			<div class="data-personal" ng-if="tab == 3">
+				<div class="subtitle">Agregar tipos</div>
+				<form name="form" ng-submit="form.$valid && sendtype()">
+					<div class="input-group">
+						<span>Nombre</span>
+						<input type="text" ng-model="datatype.name" required>
+					</div>
+					<div class="input-group">
+						<span>Category</span>
+						<select name="category" ng-model="datatype.category_id" required>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+					</div>
+					<div class="input-group">
+						<span>Producto</span>
+						<select name="category" ng-model="datatype.product_id" required>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+					</div>
+					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
+				</form>
+				</form>
+			</div>
+		</div>
+
+		<div class="wrap-content container-content">
+			<div class="data-personal" ng-hide="indextype == null">
+				<div class="subtitle">Modificar tipos</div>
+				<form name="formtypeedit" ng-submit="formtypeedit.$valid && saveedit('T')">
+					<div class="input-group">
+						<span>Nombre</span>
+						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].name" required>
+					</div>
+					<div class="input-group">
+						<span>Category</span>
+						<select name="category" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].category_id" required>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+					</div>
+					<div class="input-group">
+						<span>Category</span>
+						<select name="category" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].product_id" required>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+					</div>
+					<button type="submit" class="icon btn-submit" ng-if="formtypeedit.$valid"><span class="icon icon-floppy-disk"></span></button>
+				</form>
+			</div>
+
+			<div class="data-personal " ng-hide="indexproduct == null">
+				<div class="subtitle">Modificar productos</div>
+				<form name="formproductedit" ng-submit="formproductedit.$valid && saveedit('P')">
+					<div class="input-group">
+						<span>Nombre</span>
+						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].name" required>
+					</div>
+					<div class="input-group">
+						<span>Precio</span>
+						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].rental_price" ng-pattern="regex_float" required>
+					</div>
+					<div class="input-group">
+						<span>Reserva</span>
+						<input type="number" ng-model="CPT[indexcategory].listproducts[indexproduct].reserve" ng-pattern="regex_number" required>
+					</div>
+					<div class="input-group">
+						<span>Total</span>
+						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].total" ng-pattern="regex_number" required>
+					</div>
+					<div class="input-group">
+						<span>Category</span>
+						<select name="category" ng-model="CPT[indexcategory].listproducts[indexproduct].category_id" required>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+					</div>
+					<button type="submit" class="icon btn-submit" ng-if="formproductedit.$valid"><span class="icon icon-floppy-disk"></span></button>
+				</form>
+			</div>
+
+			<div class="data-personal" ng-hide="indexcategory == null">
+				<div class="subtitle">Modificar categorias</div>
+				<form name="categoryedit" ng-submit="categoryedit.$valid && saveedit('C')">
+					<div class="input-group">
+						<span>Nombre</span>
+						<input type="text" ng-model="CPT[indexcategory].name" required>
+					</div>
+					<button type="submit" class="icon btn-submit" ng-if="categoryedit.$valid"><span class="icon icon-floppy-disk"></span></button>
+				</form>
+			</div>
+		</div>
+
 		<div class="container-content wrap-content">
+			<div class="subtitle">
+				Arbol de inventario
+			</div>
 			<ul class="tree-products">
-				<li class="category" ng-repeat="product in products">
+				<li class="category" ng-repeat="category in CPT">
 					<div class="category-item">
-						{{product.category}}
-						<a href="#" class="icon icon-plus"></a>
-						<a href="#" class="icon icon-minus"></a>
-						<a href="#" class="icon icon-pencil"></a>
+						{{category.name}}
+						<span class="icon icon-minus" ng-click="removecategory(category.id)"></span>
+						<span class="icon icon-pencil" ng-click="editcategory(category.id)"></span>
 					</div>
 					<ul>
-						<li class="product" ng-repeat="list in product.listproducts">
+						<li class="product" ng-repeat="product in category.listproducts">
 							<div class="product-item">
-								{{list.name}}
-								<a href="#" class="icon icon-plus"></a>
-								<a href="#" class="icon icon-minus"></a>
-								<a href="#" class="icon icon-pencil"></a>
+								{{product.name}}
+								<span class="icon icon-minus" ng-click="removeproduct(category.id, product.id)"></span>
+								<span class="icon icon-pencil" ng-click="editproduct(category.id, product.id)"></span>
 							</div>
 							<ul>
-								<li class="type" ng-repeat="type in list.type">
+								<li class="type" ng-repeat="type in product.types">
 									<div class="type-item">
-										{{type.desc}}
-										<a href="#" class="icon icon-plus"></a>
-										<a href="#" class="icon icon-minus"></a>
-										<a href="#" class="icon icon-pencil"></a>
+										{{type.name}}
+										<span class="icon icon-minus" ng-click="removetype(category.id, product.id, type.id)"></span>
+										<span class="icon icon-pencil" ng-click="edittype(category.id, product.id, type.id)"></span>
 									</div>
 								</li>
 							</ul>
@@ -36,39 +181,5 @@
 					</ul>
 				</li>
 			</ul>
-		</div>
-
-		<div class="container-content wrap-content">
-			<div class="data-personal">
-				<div class="subtitle">Administrar categorias</div>
-
-				<div class="input-group">
-					<span>Nombre</span>
-					<input type="text" ng-model="datageneral.nombre" required>
-				</div>
-			</div>
-		</div>
-
-		<div class="container-content wrap-content">
-			<div class="data-personal">
-				<div class="subtitle">Administrar productos</div>
-
-				<div class="input-group">
-					<span>Nombre</span>
-					<input type="text" ng-model="datageneral.nombre" required>
-				</div>
-				
-			</div>
-		</div>
-
-		<div class="container-content wrap-content">
-			<div class="data-personal">
-				<div class="subtitle">Administrar tipos</div>
-
-				<div class="input-group">
-					<span>Nombre</span>
-					<input type="text" ng-model="datageneral.nombre" required>
-				</div>
-			</div>
 		</div>
 </section>

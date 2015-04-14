@@ -1,83 +1,146 @@
 [
 	{
-		"category": "carpas",
+		"id": 1,
+		"name": "carpas",
 		"listproducts":[
 			{
-				"name": "sencila",
-				"group": "carpas",
-				"type": [
+				"id": 1,
+				"name": "sencilla",
+				"rental_price": 2.50,
+				"reserve": 5,
+				"total": 10,
+				"category_id": 1,
+				"types":[
 					{
 						"id": 1,
-						"desc": "12 x 15"
+						"name": "12x12"
 					},
 					{
 						"id": 2,
-						"desc": "14 x 15"
-					},
-					{
-						"id": 3,
-						"desc": "15 x 15"
-					},
-					{
-						"id": 4,
-						"desc": "16 x 15"
+						"name": "12x15"
 					}
 				]
 			},
 			{
+				"id": 2,
 				"name": "arabe",
-				"group": "carpas",
-				"type": [
+				"rental_price": 5.50,
+				"reserve": 5,
+				"total": 10,
+				"category_id": 1,
+				"types":[
 					{
 						"id": 1,
-						"desc": "12 x 15"
+						"name": "12x12"
 					},
 					{
 						"id": 2,
-						"desc": "14 x 15"
-					},
-					{
-						"id": 3,
-						"desc": "15 x 15"
-					},
-					{
-						"id": 4,
-						"desc": "16 x 15"
+						"name": "12x15"
 					}
 				]
 			}
 		]
 	},
 	{
-		"category": "sillones",
+		"id": 2,
+		"name": "sillones",
 		"listproducts":[
 			{
-				"name": "cubos",
-				"group": "sillones",
-				"type": [
+				"id": 1,
+				"name": "sencillo",
+				"rental_price": 5.50,
+				"reserve": 5,
+				"total": 10,
+				"category_id": 2,
+				"types":[
 					{
 						"id": 1,
-						"desc": "Rojo"
+						"name": "blanco"
 					},
 					{
 						"id": 2,
-						"desc": "Negro"
-					},
-					{
-						"id": 3,
-						"desc": "Azul"
+						"name": "rojo"
 					}
 				]
 			},
 			{
-				"name": "cilindros",
-				"group": "sillones"
+				"id": 2,
+				"name": "cubo",
+				"rental_price": 15.50,
+				"reserve": 5,
+				"total": 10,
+				"category_id": 2,
+				"types":[
+					{
+						"id": 1,
+						"name": "blanco"
+					},
+					{
+						"id": 2,
+						"name": "rojo"
+					},
+					{
+						"id": 3,
+						"name": "amarrillo"
+					}
+				]
 			},
 			{
-				"name": "triangulares",
-				"group": "sillones"				
+				"id": 3,
+				"name": "cilindro",
+				"rental_price": 25.50,
+				"reserve": 5,
+				"total": 10,
+				"category_id": 2,
+				"types":[
+					{
+						"id": 1,
+						"name": "blanco"
+					},
+					{
+						"id": 3,
+						"name": "amarrillo"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": 3,
+		"name": "mesas",
+		"listproducts":[
+			{
+				"id": 1,
+				"name": "periquera",
+				"rental_price": 50,
+				"reserve": 5,
+				"total": 10,
+				"category_id": 3,
+				"types":[
+					{
+						"id": 1,
+						"name": "redonda"
+					},
+					{
+						"id": 2,
+						"name": "cuadrada"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": 4,
+		"name": "platos",
+		"listproducts":[
+			{
+				"id": 1,
+				"name": "sencillo",
+				"rental_price": 5,
+				"reserve": 5,
+				"total": 10,
+				"category_id": 4
 			}
 		]
 	}
-	
 ]

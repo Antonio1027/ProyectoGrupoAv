@@ -1,0 +1,75 @@
+<section class="container-main">
+		<div class="container-title">
+			<div class="wrap-content">
+				<h1 class="title">Administrar productos</h1>
+			</div>
+		</div>
+
+		<div class="wrap-content container-content" ng-init="tab = 3">
+			<div class="subtitle">Botonera</div>
+			<div class="text-center">
+				<button class="btn" ng-click="tab = 1">Nuevo usuario</button>
+			</div>
+
+			<div class="data-personal" ng-if="tab == 1">
+				<div class="subtitle">Agregar usuario</div>
+				<form name="form" ng-submit="form.$valid && senduser()">
+					<div class="input-group">
+						<span>Nombre</span>
+						<input type="text" ng-model="datauser.name" required>
+					</div>
+					<div class="input-group">
+						<span>Correo</span>
+						<input type="email" ng-model="datauser.email" required>
+					</div>
+					<div class="input-group">
+						<span>Contraseña</span>
+						<input type="password" ng-model="datauser.password" required>
+					</div>
+					<div class="input-group">
+						<span>Confirmar contraseña</span>
+						<input type="password" ng-model="datauser.comfirm_password" required>
+					</div>
+					<div class="input-group">
+						<span>Movil</span>
+						<input type="text" ng-model="datauser.movil" required>
+					</div>
+					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
+				</form>
+			</div>
+			
+		</div>
+
+		<div class="container-content wrap-content">
+			<div class="subtitle">
+				Arbol de inventario
+			</div>
+			<ul class="tree-products">
+				<li class="category" ng-repeat="product in products">
+					<div class="category-item">
+						{{product.category}}
+						<a href="#" class="icon icon-minus"></a>
+						<a href="#" class="icon icon-pencil"></a>
+					</div>
+					<ul>
+						<li class="product" ng-repeat="list in product.listproducts">
+							<div class="product-item">
+								{{list.name}}
+								<a href="#" class="icon icon-minus"></a>
+								<a href="#" class="icon icon-pencil"></a>
+							</div>
+							<ul>
+								<li class="type" ng-repeat="type in list.type">
+									<div class="type-item">
+										{{type.desc}}
+										<a href="#" class="icon icon-minus"></a>
+										<a href="#" class="icon icon-pencil"></a>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+</section>

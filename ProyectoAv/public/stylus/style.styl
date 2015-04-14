@@ -12,7 +12,7 @@ gris-fondo-oscuro = #F0F0F0
 gris-scroll = #CBCBCB
 
 rojo-mac = #FD645B
-verde-mac = #25A938
+verde-mac = #1E892D
 amarillo-mac = #FDBA17
 body
 	font-size 16px
@@ -51,6 +51,11 @@ a
 	
 	
 .data-personal
+	position relative
+	.btn-submit
+		position absolute
+		top 0
+		right 0
 	.input-group
 		background azul-gris
 		padding-left 0.5em
@@ -61,12 +66,13 @@ a
 		overflow hidden
 		height 1.4em
 		line-height 1.4em
-		&:nth-child(odd)
+		&:nth-child(even)
 			float right
 		span
 			display inline-block
 			width 10em
 			text-align center
+		select
 		input
 			width 13em
 			border-left 0
@@ -76,14 +82,17 @@ a
 			transition 0.5s background
 			
 input
+select
 	border 1px solid azul-gris
 	border-radius 7px
 	&.ng-invalid
 		background rojo-mac
 		color white
-				// border 1px solid rojo-mac
+		option
+			color white
 					
 .header
+	z-index 3
 	background azul-oscuro
 	color white
 	position fixed
@@ -276,6 +285,8 @@ input
 		padding 0.5em 1em
 		text-transform capitalize
 		border-bottom 1px solid gris-borde
+		&:last-child
+			border-bottom 0
 		&-item:before
 		&-item:after
 			content: "-"

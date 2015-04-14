@@ -29,7 +29,11 @@
 		})
 		.when('/administrar-productos', {
 			templateUrl: 'views/admin-products.html',
-			controller: 'PresupuestosCtrl'
+			controller: 'AdminCtrl'
+		})
+		.when('/administrar-usuarios', {
+			templateUrl: 'views/admin-user.html',
+			controller: 'UserCtrl'
 		})
 		.otherwise({ 
 			redirectTo: '/' 

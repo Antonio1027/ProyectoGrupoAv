@@ -11,54 +11,58 @@
 				<div class="subtitle">Datos del evento</div>
 
 				<div class="input-group">
-					<span>Nombre</span>
-					<input type="text" ng-model="datageneral.nombre" required>
+					<span>Fecha de evento</span>
+					<input type="date" ng-model="datageneral.date_elaboration" required>
 				</div>
 				<div class="input-group">
-					<span>Fecha de evento</span>
-					<input type="date" ng-model="datageneral.fecha">
+					<span>Nombre</span>
+					<input type="text" ng-model="datageneral.name" required>
 				</div>
+
 				<div class="input-group">
 					<span>Dom. del evento</span>
-					<input type="text" ng-model="datageneral.domicilioEvento">
+					<input type="text" ng-model="datageneral.event_address" required>
 				</div>
 				<div class="input-group">
 					<span>Dom. particular</span>
-					<input type="text" ng-model="datageneral.domicilioParticular">
+					<input type="text" ng-model="datageneral.home_address" required>
 				</div>
 				<div class="input-group">
 					<span>Telefono</span>
-					<input type="text" ng-model="datageneral.telefono">
+					<input type="text" ng-model="datageneral.phone" required>
+				</div>
+				<div class="input-group">
+					<span>Movil</span>
+					<input type="text" ng-model="datageneral.movil" required>
 				</div>
 				<div class="input-group">
 					<span>E-Mail</span>
-					<input type="email" ng-model="datageneral.email">
+					<input type="email" ng-model="datageneral.email" required>
 				</div>
 				<div class="input-group">
 					<span>Surtir</span>
-					<input type="text" ng-model="datageneral.surtir">
+					<input type="text" ng-model="datageneral.date_range" required>
 				</div>
 				<div class="input-group">
 					<span>Recoger</span>
-					<input type="text" ng-model="datageneral.recoger">
+					<input type="text" ng-model="datageneral.date_collecting" required>
 				</div>
 				<div class="input-group">
 					<span>Tipo de evento</span>
-					<input type="text" ng-model="datageneral.tipoEvento">
+					<input type="text" ng-model="datageneral.type" required>
 				</div>
 				<div class="input-group">
 					<span>Numero de personas</span>
-					<input type="number" ng-model="datageneral.personas">
+					<input type="number" ng-model="datageneral.number_people" required>
 				</div>
 				<div class="input-group">
 					<span>Color</span>
-					<input type="number" ng-model="datageneral.color">
+					<input type="number" ng-model="datageneral.color" required>
 				</div>
 				<div class="input-group">
 					<span>Contacto</span>
-					<input type="number" ng-model="datageneral.contacto">
+					<input type="number" ng-model="datageneral.contact" required>
 				</div>
-
 			</div>
 		</div>
 
