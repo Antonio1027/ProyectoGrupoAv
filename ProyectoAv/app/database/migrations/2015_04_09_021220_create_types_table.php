@@ -16,8 +16,8 @@ class CreateTypesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->integer('products_id')->unsigned()->index();
-			$table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
+			$table->integer('product_id')->unsigned()->index();
+			$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

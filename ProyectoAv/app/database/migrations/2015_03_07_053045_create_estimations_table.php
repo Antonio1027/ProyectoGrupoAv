@@ -14,12 +14,10 @@ class CreateEstimationsTable extends Migration {
 	{
 		Schema::create('estimations', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->date('date_elaboration');
-			$table->string('folio');
-			$table->string('name');
-			$table->date('event_date');
-			$table->date('event_address');
+			$table->increments('id');			
+			$table->string('costumer_name');
+			$table->date('date_event');
+			$table->string('event_address');
 			$table->string('home_address');
 			$table->string('phone');
 			$table->string('movil');

@@ -2,16 +2,18 @@
 
 namespace Grupoav\Repositories;
 use Grupoav\Entities\Product;
+use Grupoav\Entities\Category;
 
 class ProductRepo extends \Eloquent
 {
-	public function products(){
-		$products = array();
-		$groups = Product::distinct()->get(array('grupo'));		
-		foreach ($groups as $key => $group) {		
-			$products[$group->grupo] = Product::where('grupo','=',$group->grupo)->lists('type','id');
-		}
-		return $products;
+	public function newProduct(){
+		$product = new Product();
+		return $product;
+	}
+	public function getListProduct($category_id){
+		$listProduct = Product::where('category_id','=',$category_id)
+								->lists('name','id');
+		return $listProduct;
 	}
 }
 

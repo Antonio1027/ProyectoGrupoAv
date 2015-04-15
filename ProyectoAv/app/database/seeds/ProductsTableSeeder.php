@@ -11,334 +11,276 @@ class ProductsTableSeeder extends Seeder {
 		
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Carpas',
-			'type'=>'Sencilla'
+			'grupo'=>'Carpas',			
 		]);	
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Carpas',
-			'type'=>'Arabe'
+			'grupo'=>'Carpas',			
 		]);	
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Otros',
-			'type'=>'Sillones'
+			'grupo'=>'Otros',			
 		]);			
 		// -------------------------Otros
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Otros',
-			'type'=>'Cubos'
+			'grupo'=>'Otros',			
 		]);	
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Otros',
-			'type'=>'Cilindros'
+			'grupo'=>'Otros',			
 		]);	
 		// ---------------------------Mesas
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mesas',
-			'type'=>'Iluminada'
+			'grupo'=>'Mesas',			
 		]);	
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mesas',
-			'type'=>'Periquera'
+			'grupo'=>'Mesas',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mesas',
-			'type'=>'Tablon hotelero'
+			'grupo'=>'Mesas',			
 		]);	
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mesas',
-			'type'=>'Bufet (stand)'
+			'grupo'=>'Mesas',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mesas',
-			'type'=>'Redondas'
+			'grupo'=>'Mesas',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mesas',
-			'type'=>'Imperial'
+			'grupo'=>'Mesas',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mesas',
-			'type'=>'Buffet'
+			'grupo'=>'Mesas',			
 		]);
 		// ---------------------------Sillas
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Sillas',
-			'type'=>'Periqueras'
+			'grupo'=>'Sillas',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Sillas',
-			'type'=>'Acojinadas'
+			'grupo'=>'Sillas',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Sillas',
-			'type'=>'Metálicas'
+			'grupo'=>'Sillas',			
 		]);		
 		// --------------------------Sillas Tiffany
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Sillas tiffany',
-			'type'=>'uno'
+			'grupo'=>'Sillas tiffany',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Sillas tiffany',
-			'type'=>'dos'
+			'grupo'=>'Sillas tiffany',			
 		]);
 		// --------------------------Cojines
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cojines',
-			'type'=>'uno'
+			'grupo'=>'Cojines',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cojines',
-			'type'=>'dos'
+			'grupo'=>'Cojines',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cojines',
-			'type'=>'tres'
+			'grupo'=>'Cojines',			
 		]);
 		// --------------------------Mantel Redondo
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mantel redondo',
-			'type'=>'verde'
+			'grupo'=>'Mantel redondo',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mantel redondo',
-			'type'=>'azul'
+			'grupo'=>'Mantel redondo',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mantel redondo',
-			'type'=>'blanco'
+			'grupo'=>'Mantel redondo',			
 		]);
 		// ---------------------------Cubre Mantel Redondo
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre mantel redondo',
-			'type'=>'verde'
+			'grupo'=>'Cubre mantel redondo',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre mantel redondo',
-			'type'=>'azul'
+			'grupo'=>'Cubre mantel redondo',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre mantel redondo',
-			'type'=>'blanco'
+			'grupo'=>'Cubre mantel redondo',			
 		]);
 		// ---------------------------------Mantel rectangular
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mantel rectangular',
-			'type'=>'verde'
+			'grupo'=>'Mantel rectangular',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mantel rectangular',
-			'type'=>'azul'
+			'grupo'=>'Mantel rectangular',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Mantel rectangular',
-			'type'=>'blanco'
+			'grupo'=>'Mantel rectangular',			
 		]);
 		// ------------------------Cubre mantel rectangular
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre mantel rectangular',
-			'type'=>'verde'
+			'grupo'=>'Cubre mantel rectangular',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre mantel rectangular',
-			'type'=>'azul'
+			'grupo'=>'Cubre mantel rectangular',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre mantel rectangular',
-			'type'=>'blanco'
+			'grupo'=>'Cubre mantel rectangular',			
 		]);
 		// -----------------Fundas francesas
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Fundas francesas',
-			'type'=>'uno'
+			'grupo'=>'Fundas francesas',			
 		]);
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Fundas francesas',
-			'type'=>'dos'
+			'grupo'=>'Fundas francesas',			
 		]);
 		// ----------------------Moños		
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Moños',
-			'type'=>'verde'
+			'grupo'=>'Moños',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Moños',
-			'type'=>'azul'
+			'grupo'=>'Moños',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Moños',
-			'type'=>'blanco'
+			'grupo'=>'Moños',			
 		]);
 		// ---------------------Cubre respaldos
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre respaldos',
-			'type'=>'verde'
+			'grupo'=>'Cubre respaldos',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre respaldos',
-			'type'=>'azul'
+			'grupo'=>'Cubre respaldos',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Cubre respaldos',
-			'type'=>'blanco'
+			'grupo'=>'Cubre respaldos',			
 		]);		
 		// ---------------------Servilleta de tela
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Servilleta de tela',
-			'type'=>'verde'
+			'grupo'=>'Servilleta de tela',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Servilleta de tela',
-			'type'=>'azul'
+			'grupo'=>'Servilleta de tela',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Servilleta de tela',
-			'type'=>'blanco'
+			'grupo'=>'Servilleta de tela',			
 		]);	
 		//------------------------------Bambalinas 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Bambalinas',
-			'type'=>'Cuadradas'
+			'grupo'=>'Bambalinas',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Bambalinas',
-			'type'=>'Rectangulares'
+			'grupo'=>'Bambalinas',			
 		]);	
 		// -----------------------------Platos base
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Platos base',
-			'type'=>'redondos'
+			'grupo'=>'Platos base',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Platos base',
-			'type'=>'cuadrados'
+			'grupo'=>'Platos base',			
 		]);	
 		// ------------------------------Platos postre
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Platos postre',
-			'type'=>'redondos'
+			'grupo'=>'Platos postre',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Platos postre',
-			'type'=>'cuadrados'
+			'grupo'=>'Platos postre',			
 		]);	
 		// ------------------------------Platos entremes
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Platos entremes',
-			'type'=>'redondos'
+			'grupo'=>'Platos entremes',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Platos entremes',
-			'type'=>'cuadrados'
+			'grupo'=>'Platos entremes',			
 		]);	
 		// -----------------------------Tazón
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Tazón',
-			'type'=>'Chico'
+			'grupo'=>'Tazón',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Tazón',
-			'type'=>'Mediano'
+			'grupo'=>'Tazón',			
 		]);	
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Tazón',
-			'type'=>'Grande'
+			'grupo'=>'Tazón',			
 		]);	
 		// -----------------------------Vasos
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Vasos',
-			'type'=>'High ball'
+			'grupo'=>'Vasos',			
 		]);
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Vasos',
-			'type'=>'Cubero'
+			'grupo'=>'Vasos',			
 		]);	
 
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Vasos',
-			'type'=>'Chaiser'
+			'grupo'=>'Vasos',			
 		]);	
 		Product::create([
 			'rental_price'=>'123',
-			'grupo'=>'Vasos',
-			'type'=>'old fashion'
+			'grupo'=>'Vasos',			
 		]);	
 	}
 }

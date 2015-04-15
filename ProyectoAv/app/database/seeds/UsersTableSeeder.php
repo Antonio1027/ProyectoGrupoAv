@@ -15,7 +15,8 @@ class UsersTableSeeder extends Seeder {
 				'name'		=> $faker->name,
 				'email'		=> $faker->email,
 				'password'	=> '123',
-				'movil'		=> $faker->phone
+				'movil'		=> $faker->phoneNumber,
+				'remember_token' => ''
 			]);
 		}
 	}

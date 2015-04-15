@@ -16,3 +16,13 @@ Route::get('/', function()
 	return View::make('hello');
 });
 Route::get('products',array('as'=>'products','uses'=>'ProductController@products'));
+Route::get('categories',array('as'=>'categories','uses'=>'CategoryController@categories'));
+
+// create fields
+Route::post('newUser',array('as'=>'newUser','uses'=>'CreateController@newUser'));
+Route::post('newCategory',array('as'=>'newCategory','uses'=>'CreateController@newCategory'));
+Route::post('newProduct',array('as'=>'newProduct','uses'=>'CreateController@newProduct'));
+Route::post('newEstimation',array('as'=>'newEstimation','uses'=>'CreateController@newEstimation'));
+Route::post('newType',array('as'=>'newType','uses'=>'CreateController@newType'));
+
+Route::get('getListProduct/{id}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));
