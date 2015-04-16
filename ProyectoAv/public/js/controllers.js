@@ -31,7 +31,7 @@
 			.then(function(data){
 				$scope.CPT.push(data);
 				$scope.datacategory = {};
-				setnotification("Nueva categoria ingresada");
+				setnotification(data.msg);
 			},
 			function(error){
 				console.log(error);
