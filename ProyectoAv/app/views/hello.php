@@ -30,11 +30,7 @@
 	</header>
 
 	<div ng-view></div>
-
-	<!-- <div class="notification animated" ng-init="noti = true" ng-show="noti" ng-click="noti = !noti" ng-class="{rotateInUpRight: noti, rotateOutUpRight: !noti}">
-		<span>Transferencia correcta</span>
-	</div> -->
-
+	
 	<script src="lib/angular.min.js"></script>
 	<script src="lib/angular-animate.min.js"></script>
 	<script src="lib/angular-route.min.js"></script>

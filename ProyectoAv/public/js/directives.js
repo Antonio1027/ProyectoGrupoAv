@@ -12,4 +12,10 @@
 			templateUrl: 'partials/products.html'
 		};
 	}])
+	.directive('notifications', [function () {
+		return {
+			restrict: 'E',
+			templateUrl: 'partials/notifications.html'
+		};
+	}])
 })();
