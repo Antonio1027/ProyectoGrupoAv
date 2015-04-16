@@ -41,7 +41,7 @@ class CreateController extends BaseController
 		$category = $this->categoryRepo->newCategory();		
 		$manager = new NewCategory($category,$data);		
 		if($manager->save())			
-			return Response::json(array('msg' => 'Categoria registrada',
+			return Response::json(array('msg' => 'Has agregado una categoria correctamente',
 										'name'=>$manager->entity->name,
 										'id'=>$manager->entity->id),201);
 		
@@ -53,7 +53,10 @@ class CreateController extends BaseController
 		$product = $this->productRepo->newProduct();
 		$manager = new NewProduct($product,$data);
 		if($manager->save())			
-			return Response::json(array('msg' => 'Producto registrado'),201);
+			return Response::json(array('msg' => 'Has agregado un producto correctamente',
+										'id'  => $manager->entity->id,
+										'name'=> $manager->entity->name,
+										'category_id'=> $manager->entity->category_id),201);
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}	
 
