@@ -15,10 +15,27 @@
 		$scope.regex_number = /^[0-9]*$/;
 		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
 
+		$scope.msgnoti = "";
+		$scope.noti = false;
+
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}
+
 		$scope.sendcategory = function(){
-			console.log($scope.datacategory);
-			$scope.CPT.push($scope.datacategory);
-			$scope.datacategory = {};
+			AVService.postCategory($scope.datacategory)
+			.then(function(data){
+				$scope.CPT.push(data);
+				$scope.datacategory = {};
+				setnotification("Nueva categoria ingresada");
+			},
+			function(error){
+				console.log(error);
+			})
 		}
 
 		$scope.sendproduct = function(){
@@ -27,6 +44,7 @@
 			$scope.CPT[indexcategory].listproducts.push($scope.dataproduct);
 			$scope.dataproduct = {};
 		}
+
 		$scope.sendtype = function(){
 			console.log($scope.datatype);
 
@@ -142,7 +160,7 @@
 			return indexcategory;
 		}
 
-		AVService.getProducts()
+		AVService.getCPT()
 			.then(function(data){
 				$scope.CPT = data;
 			},
