@@ -15,8 +15,8 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
-Route::get('products',array('as'=>'products','uses'=>'ProductController@products'));
-Route::get('categories',array('as'=>'categories','uses'=>'CategoryController@categories'));
+// Route::get('products',array('as'=>'products','uses'=>'ProductController@products'));
+Route::get('getCPT',array('as'=>'categories','uses'=>'CategoryController@categories'));
 
 // create fields
 Route::post('newUser',array('as'=>'newUser','uses'=>'CreateController@newUser'));

@@ -39,10 +39,12 @@ class CreateController extends BaseController
 	public function newCategory(){
 		$data = Input::all();
 		$category = $this->categoryRepo->newCategory();		
-		$manager = new NewCategory($category,$data);
-		dd($manager);
-		if($manager->save())
-			return Response::json(array('msg' => 'Categoria registrada'),201);
+		$manager = new NewCategory($category,$data);		
+		if($manager->save())			
+			return Response::json(array('msg' => 'Categoria registrada',
+										'name'=>$manager->entity->name,
+										'id'=>$manager->entity->id),201);
+		
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}
 
@@ -50,7 +52,7 @@ class CreateController extends BaseController
 		$data = Input::all();		
 		$product = $this->productRepo->newProduct();
 		$manager = new NewProduct($product,$data);
-		if($manager->save())
+		if($manager->save())			
 			return Response::json(array('msg' => 'Producto registrado'),201);
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}	

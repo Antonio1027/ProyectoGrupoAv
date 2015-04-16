@@ -6,8 +6,8 @@ namespace Grupoav\Managers;
 
 abstract class BaseManager{
 
-	//variables que se envian como parametro al usar un manejador
-	protected $entity; //entidad
+	//variables que se envian como parametro al usar un manejador	
+	public $entity; //entidad
 	protected $data;    //datos de la vista u objeto
 	protected $errors; //errores en la validacion del formulario	
 
@@ -37,10 +37,9 @@ abstract class BaseManager{
 	public function save(){
 		if( ! $this->isValid()){
 			return false;
-		}
-		
+		}		
 		$this->entity->fill($this->prepareData($this->data));		
-		$this->entity->save();
+		$this->entity->save();		
 		return true;
 	}
 
