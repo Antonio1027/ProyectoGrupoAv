@@ -32,5 +32,10 @@ Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updat
 Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
 
 //delete fields
-Route::delete('deleteUser',array('as'=>'deleteUser','uses'=>'DeleteController@deleteController'));
+Route::delete('deleteUser',array('as'=>'deleteUser','uses'=>'DeleteController@deleteUser'));
+Route::delete('deleteCategory',array('as'=>'deleteCategory','uses'=>'DeleteController@deleteCategory'));
+Route::delete('deleteProduct',array('as'=>'deleteProduct','uses'=>'DeleteController@deleteProduct'));
+Route::delete('deleteEstimation',array('as'=>'deleteEstimation','uses'=>'DeleteController@deleteEstimation'));
+Route::delete('deleteType',array('as'=>'deleteType','uses'=>'DeleteController@deleteType'));
+
 Route::get('getListProduct/{id}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));

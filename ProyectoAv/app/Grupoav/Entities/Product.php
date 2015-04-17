@@ -3,10 +3,7 @@
 namespace Grupoav\Entities;
 
 class Product extends \Eloquent {
-	protected $fillable = [ 'name',
-							'rental_price',
-							'reserve',
-							'total',
+	protected $fillable = [ 'name',							
 							'category_id'];
 
 	public function types(){

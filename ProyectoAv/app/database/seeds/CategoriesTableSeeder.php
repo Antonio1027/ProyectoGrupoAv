@@ -61,15 +61,13 @@ class CategoriesTableSeeder extends Seeder {
 			]);
 			foreach ($products[$key] as $key2 => $product) {
 				$field_product = Product::create([
-					'name'			=> $product,
-					'rental_price'	=> '1200',
-					'reserve'		=> '0',
-					'total'			=> '200',
+					'name'			=> $product,					
 					'category_id'	=> $field->id
 				]);
 				foreach ($types[$key2] as $type) {
 					Type::create([
 						'name'	=> $type,
+						'rental_price'	=> '1200',
 						'product_id'	=> $field_product->id
 					]);
 				}
