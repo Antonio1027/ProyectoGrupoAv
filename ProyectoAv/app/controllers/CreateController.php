@@ -32,7 +32,7 @@ class CreateController extends BaseController
 		$user = $this->userRepo->newUser();
 		$manager = new NewUser($user,$data);
 		if($manager->save())
-			return Response::json(array('msg' => 'Usuario registrado'),201);//recurso creado
+			return Response::json(array('success' => array('msg'=>array('Has agregado un usuario correctamente'))),201);//recurso creado			
 		return Response::json(array('errors' => $manager->getErrors()),422);//solicitud no procesada
 	}
 
@@ -41,10 +41,9 @@ class CreateController extends BaseController
 		$category = $this->categoryRepo->newCategory();		
 		$manager = new NewCategory($category,$data);		
 		if($manager->save())			
-			return Response::json(array('msg' => 'Has agregado una categoria correctamente',
-										'name'=>$manager->entity->name,
-										'id'=>$manager->entity->id),201);
-		
+			return Response::json(array('success' => array('msg'=>array('Has agregado una categoria correctamente')),
+								        'data'=>array('id'=>$manager->entity->id,
+								        			  'name'=> $manager->entity->name)),201);			
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}
 
@@ -53,10 +52,10 @@ class CreateController extends BaseController
 		$product = $this->productRepo->newProduct();
 		$manager = new NewProduct($product,$data);
 		if($manager->save())			
-			return Response::json(array('msg' => 'Has agregado un producto correctamente',
-										'id'  => $manager->entity->id,
-										'name'=> $manager->entity->name,
-										'category_id'=> $manager->entity->category_id),201);
+			return Response::json(array('success' => array('msg'=>array('Has agregado un producto correctamente')),
+								        'data'=>array('id'=>$manager->entity->id,
+								        			  'name'=> $manager->entity->name,
+								        			  'category'=> $manager->entity->category_id)),201);
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}	
 
@@ -67,7 +66,7 @@ class CreateController extends BaseController
 		$estimation = $this->estimationRepo->newEstimation();
 		$manager = new NewEstimation($estimation,$data);	
 		if($manager->save()){
-			return Response::json(array('msg' => 'Presupuesto registrado'),201);
+			return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'))),201);//recurso creado	
 		}
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}
@@ -77,7 +76,7 @@ class CreateController extends BaseController
 		$type = $this->typeRepo->newType();		
 		$manager = new NewType($type,$data);
 		if($manager->save())
-			return Response::json(array('msg' => 'Tipo registrado'),201);
+			return Response::json(array('success' => array('msg'=>array('Has agregado un tipo de producto correctamente'))),201);//recurso creado	
 		return Response::json(array('errors' => $manager->getErrors()),422);	
 	}
 }

@@ -13,6 +13,10 @@ class CategoryRepo extends \Eloquent
 	public function allCategories(){
 		return Category::with('listproducts.types')->get();
 	}
+
+	public function listCategory(){
+		return Category::lists('name','id');
+	}
 }
 
 ?>

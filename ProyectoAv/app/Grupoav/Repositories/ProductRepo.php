@@ -12,7 +12,7 @@ class ProductRepo extends \Eloquent
 	}
 	public function getListProduct($category_id){
 		$listProduct = Product::where('category_id','=',$category_id)
-								->lists('name','id');
+								->get(array('id','name'));
 		return $listProduct;
 	}
 }

@@ -17,6 +17,8 @@ Route::get('/', function()
 });
 // Route::get('products',array('as'=>'products','uses'=>'ProductController@products'));
 Route::get('getCPT',array('as'=>'categories','uses'=>'CategoryController@categories'));
+Route::get('getListProduct/{idcategory}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));
+Route::get('getUsers',array('as'=>'users','uses'=>''));
 
 // create fields
 Route::post('newUser',array('as'=>'newUser','uses'=>'CreateController@newUser'));
@@ -25,4 +27,10 @@ Route::post('newProduct',array('as'=>'newProduct','uses'=>'CreateController@newP
 Route::post('newEstimation',array('as'=>'newEstimation','uses'=>'CreateController@newEstimation'));
 Route::post('newType',array('as'=>'newType','uses'=>'CreateController@newType'));
 
+//update fields
+Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
+Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
+
+//delete fields
+Route::delete('deleteUser',array('as'=>'deleteUser','uses'=>'DeleteController@deleteController'));
 Route::get('getListProduct/{id}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));

@@ -15,8 +15,8 @@ class ProductController extends BaseController
 		$products = $this->productRepo->products();
 		return Response::json($products);		
 	}
-	public function getListProduct($category_id){
-		$listProducts = $this->productRepo->getListProduct($category_id);
+	public function getListProduct($idcategory){
+		$listProducts = $this->productRepo->getListProduct($idcategory);
 		return Response::json($listProducts);
 	}
 }
