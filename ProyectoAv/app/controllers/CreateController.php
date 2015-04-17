@@ -55,7 +55,7 @@ class CreateController extends BaseController
 			return Response::json(array('success' => array('msg'=>array('Has agregado un producto correctamente')),
 								        'data'=>array('id'=>$manager->entity->id,
 								        			  'name'=> $manager->entity->name,
-								        			  'category'=> $manager->entity->category_id)),201);
+								        			  'category_id'=> $manager->entity->category_id)),201);
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}	
 
@@ -79,7 +79,7 @@ class CreateController extends BaseController
 			return Response::json(array('success' => array('msg'=>array('Has agregado un tipo de producto correctamente')),
 										'data'=>array('id'=>$manager->entity->id,
 								        			  'name'=> $manager->entity->name,
-								        			  'category'=> $manager->entity->product_id)),201);//recurso creado	
+								        			  'category_id'=> $manager->entity->product_id)),201);//recurso creado	
 		return Response::json(array('errors' => $manager->getErrors()),422);	
 	}	
 }

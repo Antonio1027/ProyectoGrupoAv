@@ -63,16 +63,12 @@
 					</div>
 					<div class="input-group">
 						<span>Category</span>
-						<select name="category" ng-model="datatype.category_id" required>
-							<option value="1">1</option>
-							<option value="2">2</option>
+						<select name="category" ng-model="datatype.category_id" ng-change="searchListProduct()" ng-options="category.name for category in CPT track by category.id" required>
 						</select>
 					</div>
 					<div class="input-group">
 						<span>Producto</span>
-						<select name="category" ng-model="datatype.product_id" required>
-							<option value="1">1</option>
-							<option value="2">2</option>
+						<select name="category" ng-model="datatype.product_id" ng-options="product.name for product in listProducts track by product.id" required>
 						</select>
 					</div>
 					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
