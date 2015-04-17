@@ -76,9 +76,12 @@ class CreateController extends BaseController
 		$type = $this->typeRepo->newType();		
 		$manager = new NewType($type,$data);
 		if($manager->save())
-			return Response::json(array('success' => array('msg'=>array('Has agregado un tipo de producto correctamente'))),201);//recurso creado	
+			return Response::json(array('success' => array('msg'=>array('Has agregado un tipo de producto correctamente')),
+										'data'=>array('id'=>$manager->entity->id,
+								        			  'name'=> $manager->entity->name,
+								        			  'category'=> $manager->entity->product_id)),201);//recurso creado	
 		return Response::json(array('errors' => $manager->getErrors()),422);	
-	}
+	}	
 }
 
 ?>

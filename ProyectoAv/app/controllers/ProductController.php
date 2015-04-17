@@ -16,8 +16,10 @@ class ProductController extends BaseController
 		return Response::json($products);		
 	}
 	public function getListProduct($idcategory){
-		$listProducts = $this->productRepo->getListProduct($idcategory);
-		return Response::json($listProducts);
+		$listProducts = $this->productRepo->getListProduct($idcategory);		
+		if($listProducts->count())
+			return Response::json($listProducts,200);
+		return Response::json(array('errors'=>array('msg'=>array('No se encontraron resultados'))),422);
 	}
 }
 
