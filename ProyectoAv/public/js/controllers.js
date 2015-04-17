@@ -29,7 +29,7 @@
 		$scope.sendcategory = function(){
 			AVService.postCategory($scope.datacategory)
 			.then(function(data){
-				$scope.CPT.push(data);
+				$scope.CPT.push(data.data);
 				$scope.datacategory = {};
 				setnotification(data.msg);
 			},
@@ -39,10 +39,20 @@
 		}
 
 		$scope.sendproduct = function(){
-			console.log($scope.dataproduct);
-			var indexcategory = findcategory($scope.dataproduct.category_id);
-			$scope.CPT[indexcategory].listproducts.push($scope.dataproduct);
-			$scope.dataproduct = {};
+			$scope.dataproduct.category_id = $scope.dataproduct.category_id.id;
+
+			AVService.postProduct($scope.dataproduct)
+			.then(function(data){
+				var indexcategory = findcategory($scope.dataproduct.category_id);
+				$scope.CPT[indexcategory].listproducts.push($scope.dataproduct);
+				$scope.dataproduct = {};
+				setnotification(data.msg);
+			},
+			function(error){
+				console.log(error);
+				setnotification(error.errors);
+			})
+
 		}
 
 		$scope.sendtype = function(){

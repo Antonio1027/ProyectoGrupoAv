@@ -45,9 +45,8 @@
 					</div>
 					<div class="input-group">
 						<span>Category</span>
-						<select name="category" ng-model="dataproduct.category_id" required>
-							<option value="1">1</option>
-							<option value="2">2</option>
+						<select name="category" ng-model="dataproduct.category_id" ng-options="category.name for category in CPT track by category.id" required>
+							
 						</select>
 					</div>
 					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>

@@ -17,14 +17,16 @@ respuesta
 	
 	Success
 	{
-		"msg": "Correcto"
+		"success"{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
 	{
 		"errors":{
-			"name": "Nombre es un campo requerido",
-			"email": "Email es un campo requerido"
+			"name": ["Nombre es un campo requerido"],
+			"email": ["Email es un campo requerido"]
 		}
 	}
 
@@ -44,7 +46,9 @@ Respuesta
 	
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
@@ -63,12 +67,16 @@ Respuesta
 
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
 	{
-		"msg": "Error"
+		"errors":{
+			"msg": ["Error"]
+		}
 	}
 
 ###Obtener usuarios
@@ -98,7 +106,9 @@ Respuesta
 
 	Error
 	{
-		"msg": "Error"
+		"errors":{
+			"msg": ["Error"]
+		}
 	}
 
 ---
@@ -137,7 +147,9 @@ Respuesta
 	
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
@@ -156,24 +168,16 @@ Respuesta
 
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
 	{
-		"msg": "Error"
-	}
-
-###Obtener lista de categorias
-Solicitud [GET] /getListCategory
-
-Respuesta
-	
-	Success
-	{
-		"1": "Sillones",
-		"2": "Mesas",
-		"3": "Carpas"
+		"errors":{
+			"msg": ["Error"]
+		}
 	}
 
 ---
@@ -183,7 +187,7 @@ Respuesta
 Solicitud [POST] /newProduct
 
 	{
-		"name": "sillon",
+		"name": "Doble",
 		"rental_price": 5.50,
 		"reserve": 5,
 		"total": 10,
@@ -223,7 +227,9 @@ Respuesta
 
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
@@ -242,12 +248,16 @@ Respuesta
 
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
 	{
-		"msg": "Error"
+		"errors":{
+			"msg": ["Error"]
+		}
 	}
 
 ###Obtener lista de productos
@@ -256,14 +266,22 @@ Solicitud [GET] /getListProduct/{idcategory}
 Respuesta
 	
 	Success
-	{
-		"1": "Sencillo",
-		"2": "Doble"
-	}
+	[
+		{
+			"id": 1,
+			"name": Sencillo
+		},
+		{
+			"id": 2,
+			"name": Doble	
+		}
+	]
 
 	Error
 	{
-		"msg": "Error"
+		"errors":{
+			"msg": ["Error"]
+		}
 	}
 	
 ---
@@ -305,7 +323,9 @@ Respuesta
 	
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
@@ -324,12 +344,16 @@ Respuesta
 
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
 	{
-		"msg": "Error"
+		"errors":{
+			"msg": ["Error"]
+		}
 	}
 
 ---
@@ -377,7 +401,9 @@ Respuesta
 
 	Success
 	{
-		"msg": "Correcto"
+		"success":{
+			"msg": ["Correcto"]
+		}
 	}
 
 	Error
