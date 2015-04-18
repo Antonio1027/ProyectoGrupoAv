@@ -29,7 +29,10 @@ Route::post('newType',array('as'=>'newType','uses'=>'CreateController@newType'))
 
 //update fields
 Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
-Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
+Route::put('updateCategory',array('as'=>'updateCategory','uses'=>'UpdateController@updateCategory'));
+Route::put('updateProduct',array('as'=>'updateProduct','uses'=>'UpdateController@updateProduct'));
+Route::put('updateEstimation',array('as'=>'updateEstimation','uses'=>'UpdateController@updateEstimation'));
+Route::put('updateType',array('as'=>'updateType','uses'=>'UpdateController@updateType'));
 
 //delete fields
 Route::delete('deleteUser/{idUser}',array('as'=>'deleteUser','uses'=>'DeleteController@deleteUser'));

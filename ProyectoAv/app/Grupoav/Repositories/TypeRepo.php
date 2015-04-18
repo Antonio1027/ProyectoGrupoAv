@@ -9,6 +9,10 @@ class TypeRepo extends \Eloquent
 		$type = new Type();
 		return $type;
 	}
+
+	public function findType($id){
+		return Type::find($id);
+	}
 }
 
 ?>

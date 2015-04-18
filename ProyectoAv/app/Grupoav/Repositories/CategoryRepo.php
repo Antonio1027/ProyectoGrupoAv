@@ -17,6 +17,10 @@ class CategoryRepo extends \Eloquent
 	public function listCategory(){
 		return Category::lists('name','id');
 	}
+
+	public function findCategory($id){
+		return Category::find($id);
+	}
 }
 
 ?>

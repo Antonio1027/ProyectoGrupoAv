@@ -15,6 +15,9 @@ class ProductRepo extends \Eloquent
 								->get(array('id','name'));
 		return $listProduct;
 	}
+	public function findProduct($id){
+		return Product::find($id);
+	}
 }
 
 
