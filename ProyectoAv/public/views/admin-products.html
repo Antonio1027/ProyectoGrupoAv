@@ -32,18 +32,6 @@
 						<input type="text" ng-model="dataproduct.name" required>
 					</div>
 					<div class="input-group">
-						<span>Precio</span>
-						<input type="text" ng-model="dataproduct.rental_price" ng-pattern="regex_float" required>
-					</div>
-					<div class="input-group">
-						<span>Reserva</span>
-						<input type="text" ng-model="dataproduct.reserve" ng-pattern="regex_number" required>
-					</div>
-					<div class="input-group">
-						<span>Total</span>
-						<input type="text" ng-model="dataproduct.total" ng-pattern="regex_number" required>
-					</div>
-					<div class="input-group">
 						<span>Category</span>
 						<select name="category" ng-model="dataproduct.category_id" ng-options="category.name for category in CPT track by category.id" required>
 							
@@ -60,6 +48,10 @@
 					<div class="input-group">
 						<span>Nombre</span>
 						<input type="text" ng-model="datatype.name" required>
+					</div>
+					<div class="input-group">
+						<span>Precio</span>
+						<input type="text" ng-model="datatype.rental_price" ng-pattern="regex_float" required>
 					</div>
 					<div class="input-group">
 						<span>Category</span>
@@ -86,18 +78,8 @@
 						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].name" required>
 					</div>
 					<div class="input-group">
-						<span>Category</span>
-						<select name="category" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].category_id" required>
-							<option value="1">1</option>
-							<option value="2">2</option>
-						</select>
-					</div>
-					<div class="input-group">
-						<span>Category</span>
-						<select name="category" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].product_id" required>
-							<option value="1">1</option>
-							<option value="2">2</option>
-						</select>
+						<span>Precio</span>
+						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].rental_price" ng-pattern="regex_float" required>
 					</div>
 					<button type="submit" class="icon btn-submit" ng-if="formtypeedit.$valid"><span class="icon icon-floppy-disk"></span></button>
 				</form>
@@ -109,25 +91,6 @@
 					<div class="input-group">
 						<span>Nombre</span>
 						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].name" required>
-					</div>
-					<div class="input-group">
-						<span>Precio</span>
-						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].rental_price" ng-pattern="regex_float" required>
-					</div>
-					<div class="input-group">
-						<span>Reserva</span>
-						<input type="number" ng-model="CPT[indexcategory].listproducts[indexproduct].reserve" ng-pattern="regex_number" required>
-					</div>
-					<div class="input-group">
-						<span>Total</span>
-						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].total" ng-pattern="regex_number" required>
-					</div>
-					<div class="input-group">
-						<span>Category</span>
-						<select name="category" ng-model="CPT[indexcategory].listproducts[indexproduct].category_id" required>
-							<option value="1">1</option>
-							<option value="2">2</option>
-						</select>
 					</div>
 					<button type="submit" class="icon btn-submit" ng-if="formproductedit.$valid"><span class="icon icon-floppy-disk"></span></button>
 				</form>

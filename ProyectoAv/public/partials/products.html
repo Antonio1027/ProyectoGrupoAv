@@ -1,18 +1,19 @@
 <div class="category" ng-repeat="category in CPT">
-	<div class="product-item animated" 
+	<div
 	ng-repeat="product in category.listproducts" 
-	ng-hide="product.show" 
-	ng-class="!product.show ? 'bounceInRight' : 'bounceOutRight'">
+	>
+		<div
+		class="product-item animated"
+		ng-repeat="type in product.types"
+		ng-show="type.show" 
+		ng-class="!type.show ? 'bounceOutRight' : 'bounceInRight'">
+			<span class="product-name">{{category.name}} - {{product.name}} - {{type.name}}</span>
+			<div class="product-controls">
+				<input type="number" class="product-input" ng-model="product.price" ng-required="!product.show">
 
-		<span class="product-name">{{category.name}} - {{product.name}}</span>
-		<div class="product-controls">
-			<input type="number" class="product-input" ng-model="product.price" ng-required="!product.show">
-
-			<select name="" ng-model="product.typeselect" ng-options="item.id as item.name for item in product.types" ng-if="product.types" ng-required="!product.show"></select>
-
-
-			<span class="product-price">$ {{product.rental_price | currency}} </span>
-			<span class="product-remove icon icon-minus" ng-click="product.show = !product.show"></span>
+				<span class="product-price">{{product.rental_price | currency}} </span>
+				<span class="product-remove icon icon-minus" ng-click="type.show = !type.show"></span>
+			</div>
 		</div>
 	</div>
 </div>

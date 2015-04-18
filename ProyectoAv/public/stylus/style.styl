@@ -148,7 +148,10 @@ select
 			overflow hidden
 		&-item
 			text-align right
-			margin 0.3em 0
+			&-name
+				text-transform capitalize
+				font-weight 600
+				margin-right 3em
 			&-btn
 				background verde-mac
 				margin-left 0.5em
@@ -159,6 +162,10 @@ select
 			cursor pointer
 		&:last-child
 			border-bottom none
+		.types-item
+			margin 0.2em 0
+			font-weight 100
+			font-size italic
 			
 .notification
 	padding 1em
@@ -183,7 +190,7 @@ select
 			text-align center
 		&-price
 			margin-left 0.5em
-			width 5em
+			width 7em
 			display inline-block
 		&-item
 			height 2em

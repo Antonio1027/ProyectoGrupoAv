@@ -57,11 +57,7 @@ Respuesta
 	}
 
 ###Eliminar un usuario
-Solicitud [DELETE] /deleteUser
-
-	{
-		"id": 3
-	}
+Solicitud [DELETE] /deleteUser/{id}
 
 Respuesta
 
@@ -158,11 +154,7 @@ Respuesta
 	}
 
 ###Eliminar categoria
-Solicitud [DELETE] /deleteCategory
-
-	{
-		"id": 3
-	}
+Solicitud [DELETE] /deleteCategory/{id}
 
 Respuesta 
 
@@ -188,9 +180,6 @@ Solicitud [POST] /newProduct
 
 	{
 		"name": "Doble",
-		"rental_price": 5.50,
-		"reserve": 5,
-		"total": 10,
 		"category_id": 1
 	}
 
@@ -200,9 +189,6 @@ Respuesta
 	{
 		"id": 3,
 		"name": "sillon",
-		"rental_price": 5.50,
-		"reserve": 5,
-		"total": 10,
 		"category_id": 1
 	}
 
@@ -217,9 +203,6 @@ Solicitud [UPDATE] /updateProduct
 	{
 		"id": 3,
 		"name": "sillon",
-		"rental_price": 5.50,
-		"reserve": 5,
-		"total": 10,
 		"category_id": 1
 	}
 
@@ -238,11 +221,8 @@ Respuesta
 	}
 
 ###Eliminar producto
-Solicitud [DELETE] /deleteProduct
+Solicitud [DELETE] /deleteProduct/{id}
 
-	{
-		"id": 3
-	}
 
 Respuesta
 
@@ -293,6 +273,7 @@ Solicutud [POST] /newType
 
 	{
 		"name": "verde",
+		"rental_price": 5.50,
 		"product_id": 3
 	}
 
@@ -302,6 +283,7 @@ Respuesta
 	{
 		"id": 6,
 		"name": "verde",
+		"rental_price": 5.50,
 		"product_id": 3
 	}
 
@@ -316,6 +298,7 @@ Solicitud [UPDATE] /updateType
 	{
 		"id": 6,
 		"name": "verde",
+		"rental_price": 5.50,
 		"product_id": 3
 	}
 
@@ -334,11 +317,7 @@ Respuesta
 	}
 
 ###Eliminar tipo
-Solicitud [DELETE] /deleteType
-
-	{
-		"id": 5
-	}
+Solicitud [DELETE] /deleteType/{id}
 
 Respuesta
 
@@ -388,11 +367,11 @@ Solicitud [POST] /newestimation
 		[
 			{
 				"type_id": 2,
-				"product_id": 2,
+				"quantity": 5
 			},
 			{
 				"type_id": 1,
-				"product_id": 1,
+				"quantity": 1
 			}
 		]
 	]

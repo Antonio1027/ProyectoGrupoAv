@@ -50,7 +50,7 @@
 			console.log(user);
 			var deferred = $q.defer();
 
-			$http.delete('deleteUser',user)
+			$http.delete('deleteUser/' + user.id)
 			.success(function(data){
 				deferred.resolve(data);
 			})
@@ -97,16 +97,15 @@
 			return deferred.promise;
 		}
 
-		function deleteCategory(category){
-			console.log(category);
+		function deleteCategory(category){	
 			var deferred = $q.defer();
-			$http.delete('deleteCategory',category)
+			$http.delete('deleteCategory/' + category.id)
 			.success(function(data){
 				deferred.resolve(data);
 			})
 			.error(function(error){
 				deferred.reject(error)
-			});
+			});			
 			return deferred.promise;
 		}
 
@@ -149,9 +148,8 @@
 		}
 
 		function deleteProduct(product){
-			console.log(product);
 			var deferred = $q.defer();
-			$http.delete('deleteProduct', product)
+			$http.delete('deleteProduct/' + product.id)
 			.success(function(data){
 				deferred.resolve(data);
 			})
@@ -201,9 +199,8 @@
 		}
 
 		function deleteType(type){
-			console.log(type);
 			var deferred = $q.defer();
-			$http.delete('deleteType', type)
+			$http.delete('deleteType/' + type.id)
 			.success(function(data){
 				deferred.resolve(data);
 			})

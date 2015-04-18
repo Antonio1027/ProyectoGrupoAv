@@ -73,30 +73,52 @@
 		}
 
 		$scope.removecategory = function(idcategory){
-			$scope.CPT = $scope.CPT.filter(function(element){
-				return element.id != idcategory;
+			AVService.deleteCategory({"id":idcategory})
+			.then(function(data){
+				$scope.CPT = $scope.CPT.filter(function(element){
+					return element.id != idcategory;
+				})
+				setnotification(data.success)				
+			},
+			function(error){
+				console.log(error);
+				setnotification(error.errors)
 			})
 		}
 
 		$scope.removeproduct = function(idcategory, idproduct){
-			angular.forEach($scope.CPT, function(element, index){
-				if(element.id == idcategory){
-					element.listproducts = element.listproducts.filter(function(e){
-						return e.id != idproduct;
-					})
-				}
+			AVService.deleteProduct({"id":idproduct})
+			.then(function(data){
+				angular.forEach($scope.CPT, function(element, index){
+					if(element.id == idcategory){
+						element.listproducts = element.listproducts.filter(function(e){
+							return e.id != idproduct;
+						})
+					}
+				})
+				setnotification(data.success)				
+			},
+			function(error){
+				setnotification(error.errors)
 			})
 		}
 
 		$scope.removetype = function(idcategory, idproduct, idtype){
-			angular.forEach($scope.CPT, function(element, index){
-				if(element.id == idcategory)
-					angular.forEach(element.listproducts, function(e, i){
-						if(e.id == idproduct)
-							e.types = e.types.filter(function(element){
-								return element.id != idtype;
-							})
-					})
+			AVService.deleteType({"id":idtype})
+			.then(function(data){
+				angular.forEach($scope.CPT, function(element, index){
+					if(element.id == idcategory)
+						angular.forEach(element.listproducts, function(e, i){
+							if(e.id == idproduct)
+								e.types = e.types.filter(function(element){
+									return element.id != idtype;
+								})
+						})
+				})
+				setnotification(data.success)				
+			},
+			function(error){
+				setnotification(error.errors)
 			})
 		}
 
@@ -116,16 +138,38 @@
 			$scope.indexcategory = findcategory(idcategory);
 			$scope.indexproduct = findproduct($scope.indexcategory, idproduct);
 			$scope.indextype = findtype($scope.indexcategory, $scope.indexproduct, idtype);
-
 		}
 
 		$scope.saveedit = function(e){
 			switch(e){
 				case 'C':
+					// var category = $scope.CPT[$scope.indexcategory];
+					// delete category.listproducts;
+					AVService.updateCategory($scope.CPT[$scope.indexcategory])
+					.then(function(data){
+						setnotification(data.success)
+					},
+					function(error){
+						setnotification(error.errors)
+					})
 				break;
 				case 'P':
+					AVService.updateProduct($scope.CPT[$scope.indexproduct])
+					.then(function(data){
+						setnotification(data.success)
+					},
+					function(error){
+						setnotification(error.errors)
+					})
 				break;
 				case 'T':
+					AVService.updateType($scope.CPT[$scope.indextype])
+					.then(function(data){
+						setnotification(data.success)
+					},
+					function(error){
+						setnotification(error.errors)
+					})
 				break;
 			}
 			resetindex();
@@ -204,7 +248,7 @@
 		var estimacion = [];
 
 
-		AVService.getProducts()
+		AVService.getCPT()
 			.then(function(data){
 				$scope.CPT = data;
 			},
@@ -226,6 +270,7 @@
 
 			estimacion.push($scope.datageneral);
 			estimacion.push(listproducts);
+			console.log(estimacion);
 
 		}
 	}])
