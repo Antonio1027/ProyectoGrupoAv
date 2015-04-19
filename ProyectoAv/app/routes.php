@@ -18,7 +18,7 @@ Route::get('/', function()
 // Route::get('products',array('as'=>'products','uses'=>'ProductController@products'));
 Route::get('getCPT',array('as'=>'categories','uses'=>'CategoryController@categories'));
 Route::get('getListProduct/{idcategory}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));
-Route::get('getUsers',array('as'=>'users','uses'=>''));
+Route::get('getUsers',array('as'=>'getUsers','uses'=>'UserController@getUsers'));
 
 // create fields
 Route::post('newUser',array('as'=>'newUser','uses'=>'CreateController@newUser'));

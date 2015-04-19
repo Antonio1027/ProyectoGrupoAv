@@ -15,6 +15,10 @@ class UserRepo extends \Eloquent
 		$user = User::find($id);
 		return $user;
 	}
+
+	public function getUsers(){
+		return User::all();
+	}
 }
 
 ?>

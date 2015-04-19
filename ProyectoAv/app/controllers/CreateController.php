@@ -60,13 +60,19 @@ class CreateController extends BaseController
 	}	
 
 	public function newEstimation(){
+
 		$data = Input::all();
-		// if(! $data['products'])
-		// 	return Response::json(array('errors' =>'Debe seleccionar al menos un producto'),422);
+		$dataEstimation = $data[0];
+		$dataType = $data[1];
+
+		if(! isset($data[1]) || empty($data[1]))
+			return Response::json(array('errors' =>'Debe seleccionar al menos un producto'),422);						
+
 		$estimation = $this->estimationRepo->newEstimation();
-		$manager = new NewEstimation($estimation,$data);	
-		if($manager->save()){
-			return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'))),201);//recurso creado	
+		$manager = new NewEstimation($estimation,$dataEstimation);	
+
+		if($manager->save() && $manager->entity->types()->sync($this->renameIndex($dataType))){			
+				return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'))),201);//recurso creado	
 		}
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}
@@ -82,6 +88,16 @@ class CreateController extends BaseController
 								        			  'category_id'=> $manager->entity->product_id)),201);//recurso creado	
 		return Response::json(array('errors' => $manager->getErrors()),422);	
 	}	
+
+	public function renameIndex($array){
+		$array = array_map(function($tag){
+			return array(
+				'type_id' => $tag['id'],
+				'quantity'=> $tag['quantity']
+			);		
+		},$array);		
+		return $array;
+	}
 }
 
 ?>

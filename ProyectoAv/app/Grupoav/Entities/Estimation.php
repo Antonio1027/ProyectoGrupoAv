@@ -23,7 +23,17 @@ class Estimation extends \Eloquent {
 						   "balance",
 						   "discount"];
 
-	public function products(){
-		return $this->belongsToMany("Grupoav\Entities\Product");
+	public function types(){
+		return $this->belongsToMany("Grupoav\Entities\Type")->withPivot('quantity')->withTimestamps();
 	}
+
+	public function delete(){
+
+		if(count($this->types) > 0){
+			$this->types()->detach();
+		}
+
+		return parent::delete();
+	}
+
 }
