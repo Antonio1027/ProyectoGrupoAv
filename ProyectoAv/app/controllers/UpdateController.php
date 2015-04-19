@@ -6,10 +6,10 @@ use Grupoav\Repositories\ProductRepo;
 use Grupoav\Repositories\EstimationRepo;
 use Grupoav\Repositories\TypeRepo;
 
-use Grupoav\Managers\updateUser;
-use Grupoav\Managers\newCategory;
-use Grupoav\Managers\newProduct;
-use Grupoav\Managers\newType;
+use Grupoav\Managers\UpdateUser;
+use Grupoav\Managers\NewCategory;
+use Grupoav\Managers\NewProduct;
+use Grupoav\Managers\NewType;
 // use Grupoav\Managers\UpdateEstimation;
 
 class UpdateController extends BaseController

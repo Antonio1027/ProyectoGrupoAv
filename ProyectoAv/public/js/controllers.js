@@ -147,9 +147,11 @@
 					// delete category.listproducts;
 					AVService.updateCategory($scope.CPT[$scope.indexcategory])
 					.then(function(data){
+						console.log(data);
 						setnotification(data.success)
 					},
 					function(error){
+						console.log(error);
 						setnotification(error.errors)
 					})
 				break;
