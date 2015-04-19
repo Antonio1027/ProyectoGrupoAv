@@ -366,11 +366,11 @@ Solicitud [POST] /newestimation
 		},
 		[
 			{
-				"type_id": 2,
+				"id": 2,
 				"quantity": 5
 			},
 			{
-				"type_id": 1,
+				"id": 1,
 				"quantity": 1
 			}
 		]
