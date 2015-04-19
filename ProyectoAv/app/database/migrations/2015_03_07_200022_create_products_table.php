@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration {
 			$table->integer('category_id')->unsigned()->index();
 			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

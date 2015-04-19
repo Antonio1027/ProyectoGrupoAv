@@ -22,19 +22,22 @@ class DeleteController extends BaseController
 	}
 
 	public function deleteUser($idUser){		
-		if($idUser > 0){		
+		$user = $this->userRepo->findUser($idUser);
+		if($user->delete()){		
 			return Response::json(array('success' => array('msg'=>array('Has eliminado un usuario'))));//solicitud procesad== 1	
 		}	
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el usuario'))));//solicitud no procesada
 	}
 	
 	public function deleteCategory($idCategory){			
-		if($idCategory > 0)
+		$category = $this->categoryRepo->findCategory($idCategory);
+		if($category->delete())
 			return Response::json(array('success' => array('msg'=>array('Has eliminado una categoria'))),200);//solicitud procesada			
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar la categoria'))),422);//solicitud no procesada
 	}
 	public function deleteProduct($idProduct){		
-		if($idProduct > 0)
+		$product = $this->productRepo->findProduct($idProduct);
+		if($product->delete())
 			return Response::json(array('success' => array('msg'=>array('Has eliminado un producto'))),200);//solicitud procesada			
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el producto'))),422);//solicitud no procesada
 	}
@@ -44,7 +47,8 @@ class DeleteController extends BaseController
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el presupuesto'))),422);//solicitud no procesada
 	}
 	public function deleteType($idType){		
-		if($idType > 0)
+		$type = $this->typeRepo->findType($idType);
+		if($type->delete())
 			return Response::json(array('success' => array('msg'=>array('Has eliminado un tipo de producto'))),200);//solicitud procesada			
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el tipo de producto'))),422);//solicitud no procesada
 	}

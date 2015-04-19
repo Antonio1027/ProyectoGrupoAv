@@ -2,6 +2,8 @@
 
 namespace Grupoav\Entities;
 
+
+
 class Estimation extends \Eloquent {
 	protected $fillable = ["costumer_name"   ,
 						   "date_event",
