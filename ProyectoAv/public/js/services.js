@@ -213,7 +213,7 @@
 		function postEstimation(estimation){
 			console.log(estimation);
 			var deferred = $q.defer();
-			$http.post('newestimation', estimation)
+			$http.post('newEstimation', estimation)
 			.success(function(data){
 				deferred.resolve(data);
 			})

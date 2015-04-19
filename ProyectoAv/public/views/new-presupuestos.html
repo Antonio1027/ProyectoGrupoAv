@@ -6,17 +6,17 @@
 			</div>
 		</div>
 
-		<!-- <div class="container-content wrap-content">
+		<div class="container-content wrap-content">
 			<div class="data-personal">
 				<div class="subtitle">Datos del evento</div>
 
 				<div class="input-group">
 					<span>Fecha de evento</span>
-					<input type="date" ng-model="datageneral.date_elaboration" required>
+					<input type="date" ng-model="datageneral.date_event" required>
 				</div>
 				<div class="input-group">
 					<span>Nombre</span>
-					<input type="text" ng-model="datageneral.name" required>
+					<input type="text" ng-model="datageneral.costumer_name" required>
 				</div>
 
 				<div class="input-group">
@@ -29,11 +29,11 @@
 				</div>
 				<div class="input-group">
 					<span>Telefono</span>
-					<input type="text" ng-model="datageneral.phone" required>
+					<input type="number" ng-model="datageneral.phone" ng-pattern="regex_number" required>
 				</div>
 				<div class="input-group">
 					<span>Movil</span>
-					<input type="text" ng-model="datageneral.movil" required>
+					<input type="number" ng-model="datageneral.movil" ng-pattern="regex_number" required>
 				</div>
 				<div class="input-group">
 					<span>E-Mail</span>
@@ -41,11 +41,11 @@
 				</div>
 				<div class="input-group">
 					<span>Surtir</span>
-					<input type="text" ng-model="datageneral.date_range" required>
+					<input type="date" ng-model="datageneral.date_range" required>
 				</div>
 				<div class="input-group">
 					<span>Recoger</span>
-					<input type="text" ng-model="datageneral.date_collecting" required>
+					<input type="date" ng-model="datageneral.date_collecting" required>
 				</div>
 				<div class="input-group">
 					<span>Tipo de evento</span>
@@ -53,18 +53,42 @@
 				</div>
 				<div class="input-group">
 					<span>Numero de personas</span>
-					<input type="number" ng-model="datageneral.number_people" required>
+					<input type="number" ng-model="datageneral.number_people" ng-pattern="regex_number" required>
 				</div>
 				<div class="input-group">
 					<span>Color</span>
-					<input type="number" ng-model="datageneral.color" required>
+					<input type="text" ng-model="datageneral.color" required>
 				</div>
 				<div class="input-group">
 					<span>Contacto</span>
-					<input type="number" ng-model="datageneral.contact" required>
+					<input type="text" ng-model="datageneral.contact" required>
+				</div>
+				<div class="input-group">
+					<span>Subtotal</span>
+					<input type="text" ng-model="datageneral.subtotal" required>
+				</div>
+				<div class="input-group">
+					<span>Total</span>
+					<input type="text" ng-model="datageneral.total" required>
+				</div>
+				<div class="input-group">
+					<span>Deposito</span>
+					<input type="text" ng-model="datageneral.deposit" required>
+				</div>
+				<div class="input-group">
+					<span>Anticipo</span>
+					<input type="text" ng-model="datageneral.advanced_payment" required>
+				</div>
+				<div class="input-group">
+					<span>Por cobrar</span>
+					<input type="text" ng-model="datageneral.balance" required>
+				</div>
+				<div class="input-group">
+					<span>Descuento</span>
+					<input type="text" ng-model="datageneral.discount" required>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<div class="container-content wrap-content">
 			<div class="leftcol">
@@ -85,6 +109,6 @@
 			</div>
 		</div>
 	</form>
-
-	<div ng-bind-html="noti"></div>
 </section>
+
+<notifications></notifications>

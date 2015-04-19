@@ -247,15 +247,25 @@
 		$scope.CPT = [];
 		var listproducts = [];
 		var estimacion = [];
-
-
+		$scope.regex_number = /^[0-9]*$/;
+		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
+		
 		AVService.getCPT()
 			.then(function(data){
 				$scope.CPT = data;
 			},
 			function(error){
+				console.log(error);
+				setnotification(error.errors);
 			})
 		
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}
 
 		$scope.sendpresupuesto = function (){
 			listproducts = [];
@@ -269,11 +279,24 @@
 					})
 				})
 			})
-
 			estimacion.push($scope.datageneral);
 			estimacion.push(listproducts);
-			console.log(estimacion);
 
+			AVService.postEstimation(estimacion)
+				.then(function(data){
+					$scope.datageneral = {};
+					angular.forEach($scope.CPT, function(element, index){
+						angular.forEach(element.listproducts, function(element, index){
+							angular.forEach(element.types, function(element, index){
+								element.show = false;
+							})
+						})
+					})
+					setnotification(data.success);
+				},
+				function(error){
+					setnotification(error.errors);
+				})
 		}
 	}])
 })()
