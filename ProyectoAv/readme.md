@@ -405,19 +405,18 @@ Solicitud [GET] /CPT
 				{
 					"id": 1,
 					"name": "sillon",
-					"rental_price": 5.50,
-					"reserve": 5,
-					"total": 10,
 					"category_id": 1
 					"types":[
 						//Tipos
 						{
 							"id": 1,
-							"name": "verde"
+							"name": "verde",
+							"rental_price": 5.50,
 						},
 						{
 							"id": 2,
-							"name": "rojo"
+							"name": "rojo",
+							"rental_price": 5.50,
 						}
 					]
 				}

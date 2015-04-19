@@ -147,7 +147,6 @@
 					// delete category.listproducts;
 					AVService.updateCategory($scope.CPT[$scope.indexcategory])
 					.then(function(data){
-						console.log(data);
 						setnotification(data.success)
 					},
 					function(error){
@@ -156,7 +155,7 @@
 					})
 				break;
 				case 'P':
-					AVService.updateProduct($scope.CPT[$scope.indexproduct])
+					AVService.updateProduct($scope.CPT[$scope.indexcategory].listproducts[$scope.indexproduct])
 					.then(function(data){
 						setnotification(data.success)
 					},
@@ -165,7 +164,7 @@
 					})
 				break;
 				case 'T':
-					AVService.updateType($scope.CPT[$scope.indextype])
+					AVService.updateType($scope.CPT[$scope.indexcategory].listproducts[$scope.indexproduct].types[$scope.indextype])
 					.then(function(data){
 						setnotification(data.success)
 					},
@@ -256,8 +255,7 @@
 			},
 			function(error){
 			})
-		$scope.as = function(){
-		}
+		
 
 		$scope.sendpresupuesto = function (){
 			listproducts = [];
@@ -265,8 +263,10 @@
 
 			angular.forEach($scope.CPT, function(element, index){
 				angular.forEach(element.listproducts, function(element, index){
-					if(element.show == false)
-						listproducts.push(element)
+					angular.forEach(element.types, function(element, index){
+						if(element.show == true)
+							listproducts.push(element)
+					})
 				})
 			})
 

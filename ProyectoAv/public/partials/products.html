@@ -5,11 +5,11 @@
 		<div
 		class="product-item animated"
 		ng-repeat="type in product.types"
-		ng-show="type.show" 
-		ng-class="!type.show ? 'bounceOutRight' : 'bounceInRight'">
+		ng-if="type.show" 
+		ng-class="type.show ? 'bounceInRight' : 'bounceOutRight'">
 			<span class="product-name">{{category.name}} - {{product.name}} - {{type.name}}</span>
 			<div class="product-controls">
-				<input type="number" class="product-input" ng-model="product.price" ng-required="!product.show">
+				<input type="number" class="product-input" ng-model="type.quantity" ng-required="!product.show">
 
 				<span class="product-price">{{product.rental_price | currency}} </span>
 				<span class="product-remove icon icon-minus" ng-click="type.show = !type.show"></span>
