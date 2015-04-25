@@ -9,6 +9,7 @@ class Product extends \Eloquent {
 	protected $fillable = [ 'name',							
 							'category_id'];
 	protected $dates = ['deleted_at'];
+	
 	public function types(){
 		return $this->hasMany('Grupoav\Entities\Type');
 	}

@@ -369,3 +369,56 @@ Solicitud [GET] /CPT
 			]
 		}
 	]
+
+###Obtener lista de presupuestos
+Solicitud [GET] /getlistEstimation
+
+Respuesta
+	
+	Success
+	[
+		{
+			"id":1,	
+			"costumer_name":"Jose Jimenez",
+			"date_event":"2015-12-12",
+			"event_address":"Av. central No. 34",
+			"home_address":"Av. central No. 34",
+			"phone":"6533434543",
+			"movil":"9612323322",
+			"email":"correo@hotmail.com",
+			"date_range":"2015-12-12",
+			"date_collecting":"2015-12-12",
+			"type":"coffy",
+			"number_people":"233",
+			"color":"blanco"
+			"contact":"Contacto",
+			"subtotal":1500,
+			"deposit":500,
+			"total":2000,
+			"advanced_payment":400,
+			"balance":1600,
+			"discount":"2",
+		},
+		{
+			"id": 2,
+			"name": "4 x 3",
+			"rental_price":1200,
+			"getproduct":{
+				"id":1,
+				"name":"Sencilla",
+				"getcategory":{
+					"id":1,
+					"name":"carpas"
+				}
+			},	
+		}
+	]
+
+	Error
+	{
+		"errors":{
+			"msg": ["Error"]
+		}
+	}
+	
+---
