@@ -75,36 +75,51 @@ Respuesta
 		"errors": {}
 	}
 
-###Obtener presupuestos
-Solicitud [GET] /getestimations
+###Obtener lista de presupuestos
+Solicitud [GET] /getEstimations
 
 Respuesta
 	
 	Success
 	{
-		"data":[
+		"data": [
 			{
-				"id": 001,
-				"create_at": "2015-04-19 23:05:18",
-				"date_event": "2015-05-19",
-				"costumer_name": "Cristian Ramirez",
-				"type": "Infantil",
-				"phone": "9612783946"
-			},
-			{
-				"id": 002,
-				"create_at": "2015-04-19 23:05:18",
-				"date_event": "2015-05-19",
-				"costumer_name": "Cristian Ramirez",
-				"type": "Infantil",
-				"phone": "9612783946"
+				"id":1,	
+				"costumer_name":"Jose Jimenez",
+				"date_event":"2015-12-12",
+				"event_address":"Av. central No. 34",
+				"home_address":"Av. central No. 34",
+				"phone":"6533434543",
+				"movil":"9612323322",
+				"email":"correo@hotmail.com",
+				"date_range":"2015-12-12",
+				"date_collecting":"2015-12-12",
+				"type":"coffy",
+				"number_people":"233",
+				"color":"blanco"
+				"contact":"Contacto",
+				"subtotal":1500,
+				"deposit":500,
+				"total":2000,
+				"advanced_payment":400,
+				"balance":1600,
+				"discount":"2",						
 			}
-		]
+		]	
+	}
+		
+	Error
+	{
+		"errors":{
+			"msg": ["Error"]
+		}
 	}
 
 
+
+
 ###Obtener un presupuesto
-Solicitud [GET] /getestimation
+Solicitud [GET] /getEstimation
 
 	{
 		"id": 1
@@ -158,7 +173,7 @@ Respuesta
 	}
 
 ###Eliminar presupuesto
-Solicitud [DELETE] /deleteestimation/{id}
+Solicitud [DELETE] /deleteEstimation/{id}
 
 Respuesta
 

@@ -9,6 +9,10 @@ class EstimationRepo extends \Eloquent
 		$estimation = new Estimation();
 		return $estimation;
 	}
+
+	public function allEstimations(){
+		return Estimation::all();
+	}
 }
 
 ?>
