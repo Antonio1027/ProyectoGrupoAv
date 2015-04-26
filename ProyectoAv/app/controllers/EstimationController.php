@@ -17,6 +17,24 @@ class EstimationController extends BaseController
 			return Response::json(array("data" => $estimations),200);
 		return Response::json(array('errors'=>array('msg'=>array('No se encontraron resultados'))),422);
 	}
+
+	public function getEstimation($id){
+		$estimation = $this->estimationRepo->findEstimation($id);		
+		$data = $estimation->toArray();
+		$types = array();		
+		foreach ($estimation->types as $key => $type) {
+			$types[$key]['name'] = $type->name;
+			$types[$key]['subtotal'] = ($type->pivot->quantity * (int)$type->rental_price);
+			$types[$key]['rental_price'] = (int)$type->rental_price;
+			$types[$key]['quantity'] = $type->pivot->quantity;			
+			$types[$key]['product'] = $type->product->name;			
+			$types[$key]['category'] = $type->product->category->name;
+
+		}						
+		if($estimation)
+			return Response::json(array('data' => $data,'types'=>$types),200);
+		return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
+	}
 }
 
 ?>

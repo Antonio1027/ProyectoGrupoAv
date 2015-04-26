@@ -2,6 +2,7 @@
 
 namespace Grupoav\Repositories;
 use Grupoav\Entities\Estimation;
+use Grupoav\Entities\Type;
 
 class EstimationRepo extends \Eloquent
 {
@@ -12,6 +13,11 @@ class EstimationRepo extends \Eloquent
 
 	public function allEstimations(){
 		return Estimation::all();
+	}
+
+	public function findEstimation($id){		
+		$estimation = Estimation::find($id);		
+		return $estimation;
 	}
 }
 

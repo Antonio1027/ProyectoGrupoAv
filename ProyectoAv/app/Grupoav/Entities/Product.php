@@ -28,4 +28,8 @@ class Product extends \Eloquent {
 		}	
 		return parent::delete();
 	}
+
+	public function category(){
+		return $this->belongsTo('Grupoav\Entities\Category');
+	}
 }

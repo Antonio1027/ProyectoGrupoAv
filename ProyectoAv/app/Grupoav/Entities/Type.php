@@ -12,7 +12,10 @@ class Type extends \Eloquent {
 							'product_id'];
 
 	protected $dates = ['deleted_at'];
-	public function estimations(){
+	public function estimation(){
 		return $this->belongsToMany('Grupoav\Entities\Estimation')->withPivot('quantity')->withTimestamps();		
+	}
+	public function product(){
+		return $this->belongsTo('Grupoav\Entities\Product');
 	}
 }
