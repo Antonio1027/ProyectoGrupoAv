@@ -15,7 +15,7 @@
 			});
 
 			return deferred.promise;
-		}
+		}		
 
 		function postUser(user){
 			console.log(user);
@@ -222,7 +222,18 @@
 			});
 			return deferred.promise;
 		}
-
+		//lista de presupuestos
+		function getEstimations(){
+			var deferred = $q.defer();
+			$http.get('getEstimations')
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
 
 		return {
 			getCPT: getCPT,
@@ -241,7 +252,8 @@
 			postType: postType,
 			updateType: updateType,
 			deleteType: deleteType,
-			postEstimation: postEstimation
+			postEstimation: postEstimation,
+			getEstimations: getEstimations
 		};
 
 	}])

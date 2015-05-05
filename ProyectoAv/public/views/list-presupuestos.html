@@ -25,85 +25,24 @@
 		<table class="table">
 			<tr>
 				<th>Folio</th>
-				<th>Fecha de elaboracion</th>
-				<th>Fecha de evento</th>
-				<th>Nombre</th>
 				<th>Tipo de evento</th>
-				<th>Tel</th>
+				<th>Sirve</th>
+				<th>Fecha del evento</th>
+				<th>Domicilio de evento</th>				
+				<th>Cliente</th>
+				<th>Tels.</th>
 				<th>Acciones</th>
 			</tr>
-			<tr>
-				<td>001</td>
-				<td>10/10/10</td>
-				<td>19/16/18</td>
-				<td>Cristian Ramirez</td>
-				<td>Fiesta infantil</td>
-				<td>961-178-2738</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>001</td>
-				<td>10/10/10</td>
-				<td>19/16/18</td>
-				<td>Cristian Ramirez</td>
-				<td>Fiesta infantil</td>
-				<td>961-178-2738</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>001</td>
-				<td>10/10/10</td>
-				<td>19/16/18</td>
-				<td>Cristian Ramirez</td>
-				<td>Fiesta infantil</td>
-				<td>961-178-2738</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>001</td>
-				<td>10/10/10</td>
-				<td>19/16/18</td>
-				<td>Cristian Ramirez</td>
-				<td>Fiesta infantil</td>
-				<td>961-178-2738</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>001</td>
-				<td>10/10/10</td>
-				<td>19/16/18</td>
-				<td>Cristian Ramirez</td>
-				<td>Fiesta infantil</td>
-				<td>961-178-2738</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>001</td>
-				<td>10/10/10</td>
-				<td>19/16/18</td>
-				<td>Cristian Ramirez</td>
-				<td>Fiesta infantil</td>
-				<td>961-178-2738</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>001</td>
-				<td>10/10/10</td>
-				<td>19/16/18</td>
-				<td>Cristian Ramirez</td>
-				<td>Fiesta infantil</td>
-				<td>961-178-2738</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>001</td>
-				<td>10/10/10</td>
-				<td>19/16/18</td>
-				<td>Cristian Ramirez</td>
-				<td>Fiesta infantil</td>
-				<td>961-178-2738</td>
-				<td></td>
-			</tr>
+			<tr ng-repeat="estimation in estimations">
+				<td>{{estimation.id}}</td>
+				<td>{{estimation.type}}</td>
+				<td>{{estimation.date_range}}</td>
+				<td>{{estimation.date_event}}</td>
+				<td>{{estimation.event_address}}</td>
+				<td>{{estimation.costumer_name}}</td>
+				<td>{{estimation.movil}}<br>{{estimation.phone}}</td>
+				<td><a href="">Detalles</a></td>
+			</tr>			
 		</table>
 	</div>
 </section>

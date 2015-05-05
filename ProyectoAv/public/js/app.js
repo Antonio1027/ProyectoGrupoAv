@@ -25,7 +25,7 @@
 		})
 		.when('/presupuestos', {
 			templateUrl: 'views/list-presupuestos.html',
-			controller: 'PresupuestosCtrl'
+			controller: 'listPresupuestosCtrl'
 		})
 		.when('/administrar-productos', {
 			templateUrl: 'views/admin-products.html',

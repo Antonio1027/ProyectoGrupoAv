@@ -242,6 +242,17 @@
 		}
 		
 	}])
+
+	.controller('listPresupuestosCtrl',['$scope','AVService', function ($scope, AVService){					
+		AVService.getEstimations()			
+			.then(function(data){					
+				$scope.estimations = data.data;								
+			},
+			function(error){				
+				setnotification(error.errros);
+			})
+	}])
+		
 	.controller('PresupuestosCtrl', ['$scope', 'AVService' , function ($scope, AVService) {
 		$scope.datageneral = {};
 		$scope.CPT = [];
@@ -257,8 +268,7 @@
 			function(error){
 				console.log(error);
 				setnotification(error.errors);
-			})
-		
+			})		
 		function setnotification(msg){
 			$scope.msgnoti = msg;
 			$scope.noti = true;
