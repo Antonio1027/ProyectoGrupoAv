@@ -12,7 +12,7 @@
 				<input type="number" class="product-input" ng-model="type.quantity" ng-required="!product.show">
 
 				<span class="product-price">{{product.rental_price | currency}} </span>
-				<span class="product-remove icon icon-minus" ng-click="type.show = !type.show"></span>
+				<span class="product-remove icon icon-minus" ng-click="type.show = removeProduct(type)"></span>
 			</div>
 		</div>
 	</div>

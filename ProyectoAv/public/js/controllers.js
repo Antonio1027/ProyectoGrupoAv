@@ -255,6 +255,7 @@
 		
 	.controller('PresupuestosCtrl', ['$scope', 'AVService' , function ($scope, AVService) {
 		$scope.datageneral = {};
+		$scope.datageneral.subtotal = 0;
 		$scope.CPT = [];
 		var listproducts = [];
 		var estimacion = [];
@@ -268,7 +269,19 @@
 			function(error){
 				console.log(error);
 				setnotification(error.errors);
-			})		
+			})
+
+		$scope.addProduct = function(type){
+			$scope.datageneral.subtotal += parseFloat(type.rental_price);
+			return !type.show;
+		}
+
+		$scope.removeProduct = function (type){
+			$scope.datageneral.subtotal -= parseFloat(type.rental_price);
+			return !type.show;
+		}
+
+
 		function setnotification(msg){
 			$scope.msgnoti = msg;
 			$scope.noti = true;

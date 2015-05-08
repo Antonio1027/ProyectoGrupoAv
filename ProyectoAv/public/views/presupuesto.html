@@ -1,0 +1,107 @@
+<section class="container-main">
+	<div class="container-title">
+		<div class="wrap-content">
+			<h1 class="title">Presupuesto</h1>
+		</div>
+	</div>
+
+	<div class="container-content wrap-content">
+		<div class="data-personal">
+			<div class="subtitle">Presupuesto No. {{estimation.data.id | folio}}</div>
+
+
+			<div class="input-group">
+				<span>Nombre</span>
+				<input type="text" ng-model="estimation.data.costumer_name">
+			</div>
+			<div class="input-group">
+				<span>Fecha de evento</span>
+				<input type="text" ng-model="estimation.data.date_event">
+			</div>
+			<div class="input-group">
+				<span>Dom. del evento</span>
+				<input type="text" ng-model="estimation.data.event_address">
+			</div>
+			<div class="input-group">
+				<span>Dom. particular</span>
+				<input type="text" ng-model="estimation.data.home_address">
+			</div>
+			<div class="input-group">
+				<span>Telefono</span>
+				<input type="text" ng-model="estimation.data.phone">
+			</div>
+			<div class="input-group">
+				<span>E-Mail</span>
+				<input type="email" ng-model="estimation.data.email">
+			</div>
+			<div class="input-group">
+				<span>Surtir</span>
+				<input type="text" ng-model="estimation.data.date_range">
+			</div>
+			<div class="input-group">
+				<span>Recoger</span>
+				<input type="text" ng-model="estimation.data.date_collecting">
+			</div>
+			<div class="input-group">
+				<span>Tipo de evento</span>
+				<input type="text" ng-model="estimation.data.type">
+			</div>
+			<div class="input-group">
+				<span>Numero de personas</span>
+				<input type="text" ng-model="estimation.data.number_people">
+			</div>
+			<div class="input-group">
+				<span>Color</span>
+				<input type="text" ng-model="estimation.data.color">
+			</div>
+			<div class="input-group">
+				<span>Contacto</span>
+				<input type="text" ng-model="estimation.data.contact">
+			</div>
+		</div>
+
+		<table class="table">
+			<tr>
+				<th>Cantidad</th>
+				<th>Concepto</th>
+				<th>Importe</th>
+			</tr>
+			<tr ng-repeat="product in estimation.types">
+				<td>{{product.quantity}}</td>
+				<td>{{product.product | capitalize}} - {{product.name}}</td>
+				<td>{{product.subtotal | currency}}</td>
+			</tr>
+			<tr class="cuantity">
+				<td></td>
+				<td class="text-right">Subtotal:</td>
+				<td>$ 29.00</td>
+			</tr>
+			<tr class="cuantity">
+				<td></td>
+				<td class="text-right">Deposito:</td>
+				<td>$ 29.00</td>
+			</tr>
+			<tr class="cuantity">
+				<td></td>
+				<td class="text-right">Total:</td>
+				<td>$ 29.00</td>
+			</tr>
+			<tr class="cuantity">
+				<td></td>
+				<td class="text-right">Anticipo:</td>
+				<td>$ 29.00</td>
+			</tr>
+			<tr class="cuantity">
+				<td></td>
+				<td class="text-right">Por cobrar:</td>
+				<td>$ 29.00</td>
+			</tr>			
+		</table>
+		<div class="text-right">
+			<button class="btn">Imprimir</button>
+			<button class="btn">Agregar producto</button>
+		</div>
+	</div>
+
+	
+</section>
