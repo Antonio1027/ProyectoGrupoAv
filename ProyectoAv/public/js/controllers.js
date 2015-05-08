@@ -279,7 +279,7 @@
 		$scope.regex_number = /^[0-9]*$/;
 		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
 
-		AVService.getCPT()
+		AVService.getEstimation($routeParams.estimation_id)
 			.then(function(data){
 				$scope.CPT = data;
 			},
@@ -342,7 +342,6 @@
 
 	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', 'AVService' , function ($scope, $routeParams, AVService) {
 		$scope.datageneral = {};
-		$scope.datageneral.subtotal = 0;
 		$scope.CPT = [];
 		var listproducts = [];
 		var estimacion = [];
@@ -358,14 +357,23 @@
 				setnotification(error.errors);
 			})
 
-		$scope.addProduct = function(type){
-			$scope.datageneral.subtotal += parseFloat(type.rental_price);
-			return !type.show;
-		}
+		$scope.calculator = function (){
+			var subtotal = 0;
+			var total = 0;
+			angular.forEach($scope.CPT, function(element, index){
+				angular.forEach(element.listproducts, function(element, index){
+					angular.forEach(element.types, function(element, index){
+						if(element.show == true){
+							subtotal += element.rental_price * element.quantity;
+						}
+					})
+				})
+			})
+			$scope.datageneral.subtotal = subtotal;
 
-		$scope.removeProduct = function (type){
-			$scope.datageneral.subtotal -= parseFloat(type.rental_price);
-			return !type.show;
+			if($scope.datageneral.advanced_payment)
+				$scope.datageneral.total = $scope.datageneral.subtotal - $scope.datageneral.advanced_payment;
+			
 		}
 
 

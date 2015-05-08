@@ -16,7 +16,7 @@
 				ng-hide="type.show"
 				ng-class="type.show ? 'fadeOutRight' : 'fadeInLeft'" >
 					{{type.name}}
-					<span class="category-item-btn icon icon-plus" ng-click="type.show = addProduct(type)"></span>
+					<span class="category-item-btn icon icon-plus" ng-click="type.show = !type.show"></span>
 				</li>
 			</ul>
 		</li>
