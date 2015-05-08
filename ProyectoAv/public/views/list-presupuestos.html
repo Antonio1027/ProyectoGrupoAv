@@ -41,7 +41,11 @@
 				<td>{{estimation.event_address}}</td>
 				<td>{{estimation.costumer_name}}</td>
 				<td>{{estimation.movil}}<br>{{estimation.phone}}</td>
-				<td><a href="">Detalles</a></td>
+				<td>
+					<a href="#/presupuesto/{{estimation.id}}"><span class="icon icon-plus"></span></a>
+
+					<span class="icon icon-minus" ng-click="deleteEstimation(estimation.id)"></span>
+				</td>
 			</tr>			
 		</table>
 	</div>

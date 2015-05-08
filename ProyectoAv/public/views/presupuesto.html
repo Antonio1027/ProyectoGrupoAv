@@ -7,58 +7,86 @@
 
 	<div class="container-content wrap-content">
 		<div class="data-personal">
-			<div class="subtitle">Presupuesto No. {{estimation.data.id | folio}}</div>
+				<div class="subtitle">Datos del evento</div>
 
+				<div class="input-group">
+					<span>Fecha de evento</span>
+					<input type="text" ng-model="estimation.data.date_event">
+				</div>
+				<div class="input-group">
+					<span>Nombre</span>
+					<input type="text" ng-model="estimation.data.costumer_name">
+				</div>
 
-			<div class="input-group">
-				<span>Nombre</span>
-				<input type="text" ng-model="estimation.data.costumer_name">
+				<div class="input-group">
+					<span>Dom. del evento</span>
+					<input type="text" ng-model="estimation.data.event_address">
+				</div>
+				<div class="input-group">
+					<span>Dom. particular</span>
+					<input type="text" ng-model="estimation.data.home_address">
+				</div>
+				<div class="input-group">
+					<span>Telefono</span>
+					<input type="text" ng-model="estimation.data.phone" ng-pattern="regex_number">
+				</div>
+				<div class="input-group">
+					<span>Celular</span>
+					<input type="text" ng-model="estimation.data.movil" ng-pattern="regex_number">
+				</div>
+				<div class="input-group">
+					<span>E-Mail</span>
+					<input type="email" ng-model="estimation.data.email">
+				</div>
+				<div class="input-group">
+					<span>Surtir</span>
+					<input type="text" ng-model="estimation.data.date_range">
+				</div>
+				<div class="input-group">
+					<span>Recoger</span>
+					<input type="text" ng-model="estimation.data.date_collecting">
+				</div>
+				<div class="input-group">
+					<span>Tipo de evento</span>
+					<input type="text" ng-model="estimation.data.type">
+				</div>
+				<div class="input-group">
+					<span>Numero de personas</span>
+					<input type="text" ng-model="estimation.data.number_people" ng-pattern="regex_number">
+				</div>
+				<div class="input-group">
+					<span>Color</span>
+					<input type="text" ng-model="estimation.data.color">
+				</div>
+				<div class="input-group">
+					<span>Contacto</span>
+					<input type="text" ng-model="estimation.data.contact">
+				</div>
+				<!-- <div class="input-group">
+					<span>Subtotal</span>
+					<input type="text" ng-model="estimation.data.subtotal" ng-pattern="regex_float">
+				</div>
+				<div class="input-group">
+					<span>Total</span>
+					<input type="text" ng-model="estimation.data.total" ng-pattern="regex_float">
+				</div>
+				<div class="input-group">
+					<span>Deposito</span>
+					<input type="text" ng-model="estimation.data.deposit" ng-pattern="regex_float">
+				</div>
+				<div class="input-group">
+					<span>Anticipo</span>
+					<input type="text" ng-model="estimation.data.advanced_payment" ng-pattern="regex_float">
+				</div>
+				<div class="input-group">
+					<span>Por cobrar</span>
+					<input type="text" ng-model="estimation.data.balance" ng-pattern="regex_float">
+				</div>
+				<div class="input-group">
+					<span>Descuento</span>
+					<input type="text" ng-model="estimation.data.discount" ng-pattern="regex_float">
+				</div> -->
 			</div>
-			<div class="input-group">
-				<span>Fecha de evento</span>
-				<input type="text" ng-model="estimation.data.date_event">
-			</div>
-			<div class="input-group">
-				<span>Dom. del evento</span>
-				<input type="text" ng-model="estimation.data.event_address">
-			</div>
-			<div class="input-group">
-				<span>Dom. particular</span>
-				<input type="text" ng-model="estimation.data.home_address">
-			</div>
-			<div class="input-group">
-				<span>Telefono</span>
-				<input type="text" ng-model="estimation.data.phone">
-			</div>
-			<div class="input-group">
-				<span>E-Mail</span>
-				<input type="email" ng-model="estimation.data.email">
-			</div>
-			<div class="input-group">
-				<span>Surtir</span>
-				<input type="text" ng-model="estimation.data.date_range">
-			</div>
-			<div class="input-group">
-				<span>Recoger</span>
-				<input type="text" ng-model="estimation.data.date_collecting">
-			</div>
-			<div class="input-group">
-				<span>Tipo de evento</span>
-				<input type="text" ng-model="estimation.data.type">
-			</div>
-			<div class="input-group">
-				<span>Numero de personas</span>
-				<input type="text" ng-model="estimation.data.number_people">
-			</div>
-			<div class="input-group">
-				<span>Color</span>
-				<input type="text" ng-model="estimation.data.color">
-			</div>
-			<div class="input-group">
-				<span>Contacto</span>
-				<input type="text" ng-model="estimation.data.contact">
-			</div>
-		</div>
 
 		<table class="table">
 			<tr>
@@ -66,40 +94,40 @@
 				<th>Concepto</th>
 				<th>Importe</th>
 			</tr>
-			<tr ng-repeat="product in estimation.types">
-				<td>{{product.quantity}}</td>
-				<td>{{product.product | capitalize}} - {{product.name}}</td>
-				<td>{{product.subtotal | currency}}</td>
+			<tr ng-repeat="type in estimation.types">
+				<td>{{type.quantity}}</td>
+				<td>{{type.category}} : {{type.product}} : {{type.name}} </td>
+				<td>{{type.subtotal}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Subtotal:</td>
-				<td>$ 29.00</td>
+				<td>{{estimation.data.subtotal}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Deposito:</td>
-				<td>$ 29.00</td>
+				<td>{{estimation.data.deposit}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Total:</td>
-				<td>$ 29.00</td>
+				<td>{{estimation.data.total}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Anticipo:</td>
-				<td>$ 29.00</td>
+				<td>{{estimation.data.advanced_payment}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Por cobrar:</td>
-				<td>$ 29.00</td>
+				<td>{{estimation.data.balance}}</td>
 			</tr>			
 		</table>
 		<div class="text-right">
 			<button class="btn">Imprimir</button>
-			<button class="btn">Agregar producto</button>
+			<button class="btn">Editar presupuesto</button>
 		</div>
 	</div>
 

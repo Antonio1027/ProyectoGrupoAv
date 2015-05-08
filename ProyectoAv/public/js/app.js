@@ -13,27 +13,31 @@
 		$routeProvider
 		.when('/', {
 			templateUrl: 'views/new-presupuestos.html',
-			controller: 'PresupuestosCtrl'
+			controller: 'NewPresupuestosCtrl'
 		})
 		.when('/ordenservicio', {
 			templateUrl: 'views/ordenservicio.html',
-			controller: 'PresupuestosCtrl'
+			controller: ''
 		})
 		.when('/ordenes', {
 			templateUrl: 'views/list-ordenes.html',
-			controller: 'PresupuestosCtrl'
+			controller: ''
 		})
 		.when('/presupuestos', {
 			templateUrl: 'views/list-presupuestos.html',
-			controller: 'listPresupuestosCtrl'
+			controller: 'ListPresupuestosCtrl'
+		})
+		.when('/presupuesto/:estimation_id', {
+			templateUrl: 'views/presupuesto.html',
+			controller: 'PresupuestoCtrl'
 		})
 		.when('/administrar-productos', {
 			templateUrl: 'views/admin-products.html',
-			controller: 'AdminCtrl'
+			controller: 'AdminProductCtrl'
 		})
 		.when('/administrar-usuarios', {
 			templateUrl: 'views/admin-user.html',
-			controller: 'UserCtrl'
+			controller: 'AdminUserCtrl'
 		})
 		.otherwise({ 
 			redirectTo: '/' 

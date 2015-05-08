@@ -1,6 +1,6 @@
 (function(){
 	angular.module('controllers', [])
-	.controller('AdminCtrl', ['$scope', 'AVService', function ($scope, AVService) {
+	.controller('AdminProductCtrl', ['$scope', 'AVService', function ($scope, AVService) {
 		//JSON POST
 		$scope.datacategory = {};
 		$scope.dataproduct = {};
@@ -234,7 +234,7 @@
 			})
 
 	}])
-	.controller('UserCtrl', ['$scope', function ($scope) {
+	.controller('AdminUserCtrl', ['$scope', function ($scope) {
 		$scope.datauser = {};
 
 		$scope.senduser = function(){
@@ -243,7 +243,7 @@
 		
 	}])
 
-	.controller('listPresupuestosCtrl',['$scope','AVService', function ($scope, AVService){					
+	.controller('ListPresupuestosCtrl',['$scope','AVService', function ($scope, AVService){					
 		AVService.getEstimations()			
 			.then(function(data){					
 				$scope.estimations = data.data;								
@@ -253,7 +253,25 @@
 			})
 	}])
 		
-	.controller('PresupuestosCtrl', ['$scope', 'AVService' , function ($scope, AVService) {
+	.controller('PresupuestoCtrl', ['$scope', '$routeParams', 'AVService' , function ($scope, $routeParams, AVService) {
+		AVService.getEstimation($routeParams.estimation_id)
+			.then(function(data){
+				$scope.estimation = data;
+			},
+			function(error){
+				setnotification(error.errors);
+			})
+
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}
+	}])
+
+	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', 'AVService' , function ($scope, $routeParams, AVService) {
 		$scope.datageneral = {};
 		$scope.datageneral.subtotal = 0;
 		$scope.CPT = [];
@@ -261,7 +279,7 @@
 		var estimacion = [];
 		$scope.regex_number = /^[0-9]*$/;
 		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
-		
+
 		AVService.getCPT()
 			.then(function(data){
 				$scope.CPT = data;

@@ -235,6 +235,18 @@
 			return deferred.promise;
 		}
 
+		function getEstimation(id){
+			var deferred = $q.defer();
+			$http.get('getEstimation/' + id)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
 		return {
 			getCPT: getCPT,
 			postUser: postUser,
@@ -253,7 +265,8 @@
 			updateType: updateType,
 			deleteType: deleteType,
 			postEstimation: postEstimation,
-			getEstimations: getEstimations
+			getEstimations: getEstimations,
+			getEstimation: getEstimation
 		};
 
 	}])
