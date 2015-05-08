@@ -21,6 +21,10 @@ Route::get('getUsers',array('as'=>'getUsers','uses'=>'UserController@getUsers'))
 Route::get('getEstimations',array('as'=>'getEstimations','uses'=>'EstimationController@getEstimations'));
 Route::get('getListProduct/{idcategory}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));
 Route::get('getEstimation/{idestimation}',array('as'=>'getEstimation','uses'=>'EstimationController@getEstimation'));
+Route::get('getupdateEstimation/{idestimation}',array('as'=>'getupdateEstimation','uses'=>'CategoryController@getupdateEstimation'));
+
+Route::get('printEstimation/{idestimation}',array('as'=>'printEstimation','uses'=>'EstimationController@printEstimation'));
+
 
 // create fields
 Route::post('newUser',array('as'=>'newUser','uses'=>'CreateController@newUser'));
@@ -42,5 +46,6 @@ Route::delete('deleteCategory/{idCategory}',array('as'=>'deleteCategory','uses'=
 Route::delete('deleteProduct/{idProduct}',array('as'=>'deleteProduct','uses'=>'DeleteController@deleteProduct'));
 Route::delete('deleteEstimation/{idEstimation}',array('as'=>'deleteEstimation','uses'=>'DeleteController@deleteEstimation'));
 Route::delete('deleteType/{idType}',array('as'=>'deleteType','uses'=>'DeleteController@deleteType'));
+
 
 // Route::get('getListProduct/{id}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));

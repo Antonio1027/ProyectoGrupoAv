@@ -34,6 +34,10 @@ class EstimationController extends BaseController
 		if($estimation)
 			return Response::json(array('data' => $data,'types'=>$types),200);
 		return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
+	}	
+
+	public function printEstimation($id){
+		return View::make('email.formatestimation');
 	}
 }
 

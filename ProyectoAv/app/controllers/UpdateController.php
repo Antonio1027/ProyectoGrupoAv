@@ -53,11 +53,7 @@ class UpdateController extends BaseController
 		if($manager->save())
 			return Response::json(array('success' => array('msg'=>array('Has actualizado la información del producto'))),201);//recurso creado			
 		return Response::json(array('errors' => $manager->getErrors()),422);//solicitud no procesada		
-	}
-
-	public function updateEstimation(){
-		$data = Input::all();
-	}
+	}	
 
 	public function updateType(){
 		$data = Input::all();
@@ -66,7 +62,7 @@ class UpdateController extends BaseController
 		if($manager->save())
 			return Response::json(array('success' => array('msg'=>array('Has actualizado la información del tipo de producto'))),201);//recurso creado			
 		return Response::json(array('errors' => $manager->getErrors()),422);//solicitud no procesada		
-	}
+	}	
 }
 
 ?>
