@@ -271,6 +271,75 @@
 		}
 	}])
 
+	.controller('EditPresupuestosCtrl', ['$scope', 'AVService' , function ($scope, AVService) {
+		$scope.presupuesto = {};
+		$scope.CPT = [];
+		var listproducts = [];
+		var estimacion = [];
+		$scope.regex_number = /^[0-9]*$/;
+		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
+
+		AVService.getCPT()
+			.then(function(data){
+				$scope.CPT = data;
+			},
+			function(error){
+				console.log(error);
+				setnotification(error.errors);
+			})
+
+		$scope.addProduct = function(type){
+			$scope.datageneral.subtotal += parseFloat(type.rental_price);
+			return !type.show;
+		}
+
+		$scope.removeProduct = function (type){
+			$scope.datageneral.subtotal -= parseFloat(type.rental_price);
+			return !type.show;
+		}
+
+
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}
+
+		$scope.sendpresupuesto = function (){
+			listproducts = [];
+			estimacion = [];
+
+			angular.forEach($scope.CPT, function(element, index){
+				angular.forEach(element.listproducts, function(element, index){
+					angular.forEach(element.types, function(element, index){
+						if(element.show == true)
+							listproducts.push(element)
+					})
+				})
+			})
+			estimacion.push($scope.datageneral);
+			estimacion.push(listproducts);
+
+			AVService.postEstimation(estimacion)
+				.then(function(data){
+					$scope.datageneral = {};
+					angular.forEach($scope.CPT, function(element, index){
+						angular.forEach(element.listproducts, function(element, index){
+							angular.forEach(element.types, function(element, index){
+								element.show = false;
+							})
+						})
+					})
+					setnotification(data.success);
+				},
+				function(error){
+					setnotification(error.errors);
+				})
+		}
+	}])
+
 	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', 'AVService' , function ($scope, $routeParams, AVService) {
 		$scope.datageneral = {};
 		$scope.datageneral.subtotal = 0;

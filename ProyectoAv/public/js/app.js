@@ -31,6 +31,10 @@
 			templateUrl: 'views/presupuesto.html',
 			controller: 'PresupuestoCtrl'
 		})
+		.when('/update-presupuesto/:estimation_id', {
+			templateUrl: 'views/update-presupuesto.html',
+			controller: 'EditPresupuestosCtrl'
+		})
 		.when('/administrar-productos', {
 			templateUrl: 'views/admin-products.html',
 			controller: 'AdminProductCtrl'
