@@ -291,15 +291,21 @@
 		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
 
 		AVService.getUpdateEstimation($routeParams.estimation_id)
-			.then(function(data){					
-
+			.then(function(data){
 				$scope.datageneral = data.datageneral;
+				$scope.datageneral.date_event = converseDate($scope.datageneral.date_event);
+				$scope.datageneral.date_range = converseDate($scope.datageneral.date_range);
+				$scope.datageneral.date_collecting = converseDate($scope.datageneral.date_collecting);
 				$scope.CPT = data.CPT;
 			},
 			function(error){
 				console.log(error);
 				setnotification(error.errors);
 			})
+		function converseDate(date){
+			var aux = date.split('-');
+			return new Date(aux[0], aux[1], aux[2]);
+		}
 
 		$scope.calculator = function (){
 			var subtotal = 0;
