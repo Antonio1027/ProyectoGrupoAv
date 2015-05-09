@@ -10,10 +10,10 @@
 			<div class="data-personal">
 				<div class="subtitle">Datos del evento</div>
 
-				<div class="input-group">
+				<!-- <div class="input-group">
 					<span>Fecha de evento</span>
 					<input type="date" ng-model="datageneral.date_event" required>
-				</div>
+				</div> -->
 				<div class="input-group">
 					<span>Nombre</span>
 					<input type="text" ng-model="datageneral.costumer_name" required>
@@ -29,31 +29,31 @@
 				</div>
 				<div class="input-group">
 					<span>Telefono</span>
-					<input type="number" ng-model="datageneral.phone" ng-pattern="regex_number" required>
+					<input type="text" ng-model="datageneral.phone" ng-pattern="regex_number" required>
 				</div>
 				<div class="input-group">
 					<span>Celular</span>
-					<input type="number" ng-model="datageneral.movil" ng-pattern="regex_number" required>
+					<input type="text" ng-model="datageneral.movil" ng-pattern="regex_number" required>
 				</div>
 				<div class="input-group">
 					<span>E-Mail</span>
 					<input type="email" ng-model="datageneral.email">
 				</div>
-				<div class="input-group">
+				<!-- <div class="input-group">
 					<span>Surtir</span>
 					<input type="date" ng-model="datageneral.date_range" required>
-				</div>
-				<div class="input-group">
+				</div> -->
+				<!-- <div class="input-group">
 					<span>Recoger</span>
 					<input type="date" ng-model="datageneral.date_collecting" required>
-				</div>
+				</div> -->
 				<div class="input-group">
 					<span>Tipo de evento</span>
 					<input type="text" ng-model="datageneral.type" required>
 				</div>
 				<div class="input-group">
 					<span>Numero de personas</span>
-					<input type="number" ng-model="datageneral.number_people" ng-pattern="regex_number" required>
+					<input type="text" ng-model="datageneral.number_people" ng-pattern="regex_number" required>
 				</div>
 				<div class="input-group">
 					<span>Color</span>
@@ -86,6 +86,9 @@
 				<div class="input-group">
 					<span>Descuento</span>
 					<input type="text" ng-model="datageneral.discount" ng-pattern="regex_float" required>
+				</div>
+				<div>
+					<spans class="pointer" ng-click="calculator()"> Realizar calculo</span>
 				</div>
 			</div>
 		</div>

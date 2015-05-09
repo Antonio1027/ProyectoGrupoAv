@@ -18,7 +18,6 @@
 		}		
 
 		function postUser(user){
-			console.log(user);
 			var deferred = $q.defer();
 
 			$http.post('newUser',user)
@@ -33,7 +32,6 @@
 		}
 
 		function updateUser(user){
-			console.log(user);
 			var deferred = $q.defer();
 
 			$http.put('updateUser',user)
@@ -47,7 +45,6 @@
 		}
 
 		function deleteUser(user){
-			console.log(user);
 			var deferred = $q.defer();
 
 			$http.delete('deleteUser/' + user.id)
@@ -85,7 +82,6 @@
 		}
 
 		function updateCategory(category){
-			console.log(category);
 			var deferred = $q.defer();
 			$http.put('updateCategory',category)
 			.success(function(data){
@@ -122,7 +118,6 @@
 		}
 
 		function postProduct(product){
-			console.log(product);
 			var deferred = $q.defer();
 			$http.post('newProduct', product)
 			.success(function(data){
@@ -135,7 +130,6 @@
 		}
 
 		function updateProduct(product){
-			console.log(product);
 			var deferred = $q.defer();
 			$http.put('updateProduct', product)
 			.success(function(data){
@@ -160,7 +154,6 @@
 		}
 
 		function getListProduct(id){
-			console.log(id);
 			var deferred = $q.defer();
 			$http.get('getListProduct/'+id)
 			.success(function(data){
@@ -173,7 +166,6 @@
 		}
 
 		function postType(type){
-			console.log(type);
 			var deferred = $q.defer();
 			$http.post('newType', type)
 			.success(function(data){
@@ -186,7 +178,6 @@
 		}
 
 		function updateType(type){
-			console.log(type);
 			var deferred = $q.defer();
 			$http.put('updateType', type)
 			.success(function(data){
@@ -211,7 +202,6 @@
 		}
 
 		function postEstimation(estimation){
-			console.log(estimation);
 			var deferred = $q.defer();
 			$http.post('newEstimation', estimation)
 			.success(function(data){
@@ -247,6 +237,42 @@
 			return deferred.promise;
 		}
 
+		function getUpdateEstimation(id){
+			var deferred = $q.defer();
+			$http.get('getupdateEstimation/' + id)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
+		function updateEstimation(estimation){
+			var deferred = $q.defer();
+			$http.put('updateEstimation', estimation)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
+		function deleteEstimation(id){
+			var deferred = $q.defer();
+			$http.delete('deleteEstimation/' + id)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
 		return {
 			getCPT: getCPT,
 			postUser: postUser,
@@ -266,7 +292,10 @@
 			deleteType: deleteType,
 			postEstimation: postEstimation,
 			getEstimations: getEstimations,
-			getEstimation: getEstimation
+			getEstimation: getEstimation,
+			getUpdateEstimation: getUpdateEstimation,
+			updateEstimation: updateEstimation,
+			deleteEstimation: deleteEstimation
 		};
 
 	}])

@@ -253,7 +253,7 @@
 			})
 	}])
 		
-	.controller('PresupuestoCtrl', ['$scope', '$routeParams', 'AVService' , function ($scope, $routeParams, AVService) {
+	.controller('PresupuestoCtrl', ['$scope', '$routeParams', '$location', 'AVService' , function ($scope, $routeParams, $location, AVService) {
 		AVService.getEstimation($routeParams.estimation_id)
 			.then(function(data){
 				$scope.estimation = data;
@@ -269,33 +269,54 @@
 				$scope.noti = false;
 			},3000);
 		}
+
+		$scope.deleteEstimation = function(id){
+			AVService.deleteEstimation(id)
+				.then(function(data){
+					setnotification(data.success);
+					$location.url('/presupuestos');
+				},
+				function(error){
+					setnotification(error.errors);
+				})			
+		}
 	}])
 
-	.controller('EditPresupuestosCtrl', ['$scope', 'AVService' , function ($scope, AVService) {
-		$scope.presupuesto = {};
+	.controller('EditPresupuestosCtrl', ['$scope', '$routeParams' , 'AVService' , function ($scope, $routeParams, AVService) {
+		$scope.datageneral = {};
 		$scope.CPT = [];
 		var listproducts = [];
 		var estimacion = [];
 		$scope.regex_number = /^[0-9]*$/;
 		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
 
-		AVService.getEstimation($routeParams.estimation_id)
-			.then(function(data){
-				$scope.CPT = data;
+		AVService.getUpdateEstimation($routeParams.estimation_id)
+			.then(function(data){					
+
+				$scope.datageneral = data.datageneral;
+				$scope.CPT = data.CPT;
 			},
 			function(error){
 				console.log(error);
 				setnotification(error.errors);
 			})
 
-		$scope.addProduct = function(type){
-			$scope.datageneral.subtotal += parseFloat(type.rental_price);
-			return !type.show;
-		}
+		$scope.calculator = function (){
+			var subtotal = 0;
+			var total = 0;
+			angular.forEach($scope.CPT, function(element, index){
+				angular.forEach(element.listproducts, function(element, index){
+					angular.forEach(element.types, function(element, index){
+						if(element.show == true){
+							subtotal += element.rental_price * element.quantity;
+						}
+					})
+				})
+			})
+			$scope.datageneral.subtotal = subtotal;
 
-		$scope.removeProduct = function (type){
-			$scope.datageneral.subtotal -= parseFloat(type.rental_price);
-			return !type.show;
+			if($scope.datageneral.advanced_payment)
+				$scope.datageneral.total = $scope.datageneral.subtotal - $scope.datageneral.advanced_payment;
 		}
 
 
@@ -322,7 +343,7 @@
 			estimacion.push($scope.datageneral);
 			estimacion.push(listproducts);
 
-			AVService.postEstimation(estimacion)
+			AVService.updateEstimation(estimacion)
 				.then(function(data){
 					$scope.datageneral = {};
 					angular.forEach($scope.CPT, function(element, index){
@@ -373,7 +394,6 @@
 
 			if($scope.datageneral.advanced_payment)
 				$scope.datageneral.total = $scope.datageneral.subtotal - $scope.datageneral.advanced_payment;
-			
 		}
 
 
