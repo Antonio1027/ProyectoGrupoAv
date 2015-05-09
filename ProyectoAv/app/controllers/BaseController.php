@@ -15,4 +15,14 @@ class BaseController extends Controller {
 		}
 	}
 
+	public function renameIndex($array){
+		$array = array_map(function($tag){
+			return array(
+				'type_id' => $tag['id'],
+				'quantity'=> $tag['quantity']
+			);		
+		},$array);		
+		return $array;
+	}
+
 }

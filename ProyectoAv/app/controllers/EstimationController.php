@@ -15,7 +15,7 @@ class EstimationController extends BaseController
 		$estimations = $this->estimationRepo->allEstimations();
 		if($estimations->count())
 			return Response::json(array("data" => $estimations),200);
-		return Response::json(array('errors'=>array('msg'=>array('No se encontraron resultados'))),422);
+		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error intente más tarde'))),422);//solicitud no procesada
 	}
 
 	public function getEstimation($id){

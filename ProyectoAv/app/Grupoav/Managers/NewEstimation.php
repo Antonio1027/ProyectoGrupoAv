@@ -26,6 +26,11 @@ class NewEstimation extends BaseManager
 					   'discount'		=>	'required');
 		return $rules;
 	}	
+	public function prepareData($data){
+		if(isset($data['id']))
+			unset($data['id']);
+		return $data;
+	}
 }
 
 ?>

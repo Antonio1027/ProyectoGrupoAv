@@ -63,7 +63,7 @@ class CreateController extends BaseController
 
 		$data = Input::all();
 		$dataEstimation = $data[0];
-		$dataType = $data[1];
+		$dataType = $data[1];		
 
 		if(! isset($data[1]) || empty($data[1]))
 			return Response::json(array('errors' =>'Debe seleccionar al menos un producto'),422);						
@@ -88,16 +88,7 @@ class CreateController extends BaseController
 								        			  'category_id'=> $manager->entity->product_id)),201);//recurso creado	
 		return Response::json(array('errors' => $manager->getErrors()),422);	
 	}	
-
-	public function renameIndex($array){
-		$array = array_map(function($tag){
-			return array(
-				'type_id' => $tag['id'],
-				'quantity'=> $tag['quantity']
-			);		
-		},$array);		
-		return $array;
-	}
+	
 }
 
 ?>
