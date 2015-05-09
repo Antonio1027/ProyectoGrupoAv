@@ -25,10 +25,7 @@ class CategoryController extends BaseController
 			foreach ($types as $index => $type) {		
 				foreach ($categories as $key1 => $categorie) {
 					foreach ($categorie->listproducts as $key2 => $product) {
-						foreach ($product->types as $key3 => $value) {											
-							if($index == 0)
-								$value->show = false;																				
-						
+						foreach ($product->types as $key3 => $value) {																															
 							if($type['id'] == $value->id){								
 								$value->show = true;	
 								$value->quantity = $type['pivot']['quantity'];
