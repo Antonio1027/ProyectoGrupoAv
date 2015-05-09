@@ -249,7 +249,7 @@
 				$scope.estimations = data.data;								
 			},
 			function(error){				
-				setnotification(error.errros);
+				setnotification(error.erros);
 			})
 	}])
 		
