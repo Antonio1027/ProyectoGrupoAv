@@ -271,18 +271,20 @@
 		}
 
 		$scope.deleteEstimation = function(id){
-			AVService.deleteEstimation(id)
-				.then(function(data){
-					setnotification(data.success);
-					$location.url('/presupuestos');
-				},
-				function(error){
-					setnotification(error.errors);
-				})			
+			if( window.confirm('¿Seguro que quieres eliminar este presupuesto?') ){
+				AVService.deleteEstimation(id)
+					.then(function(data){
+						setnotification(data.success);
+						$location.url('/presupuestos');
+					},
+					function(error){
+						setnotification(error.errors);
+					})
+			}
 		}
 	}])
 
-	.controller('EditPresupuestosCtrl', ['$scope', '$routeParams' , 'AVService' , function ($scope, $routeParams, AVService) {
+	.controller('EditPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService' , function ($scope, $routeParams, $location, AVService) {
 		$scope.datageneral = {};
 		$scope.CPT = [];
 		var listproducts = [];
@@ -351,15 +353,8 @@
 
 			AVService.updateEstimation(estimacion)
 				.then(function(data){
-					$scope.datageneral = {};
-					angular.forEach($scope.CPT, function(element, index){
-						angular.forEach(element.listproducts, function(element, index){
-							angular.forEach(element.types, function(element, index){
-								element.show = false;
-							})
-						})
-					})
 					setnotification(data.success);
+					$location.url('/presupuestos');
 				},
 				function(error){
 					setnotification(error.errors);
@@ -367,13 +362,14 @@
 		}
 	}])
 
-	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', 'AVService' , function ($scope, $routeParams, AVService) {
+	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService' , function ($scope, $routeParams, $location, AVService) {
 		$scope.datageneral = {};
 		$scope.CPT = [];
 		var listproducts = [];
 		var estimacion = [];
 		$scope.regex_number = /^[0-9]*$/;
 		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
+		$scope.calculo = false;
 
 		AVService.getCPT()
 			.then(function(data){
@@ -385,6 +381,7 @@
 			})
 
 		$scope.calculator = function (){
+			$scope.calculo = true;
 			var subtotal = 0;
 			var total = 0;
 			angular.forEach($scope.CPT, function(element, index){
@@ -428,15 +425,8 @@
 
 			AVService.postEstimation(estimacion)
 				.then(function(data){
-					$scope.datageneral = {};
-					angular.forEach($scope.CPT, function(element, index){
-						angular.forEach(element.listproducts, function(element, index){
-							angular.forEach(element.types, function(element, index){
-								element.show = false;
-							})
-						})
-					})
 					setnotification(data.success);
+					$location.url('/presupuestos');
 				},
 				function(error){
 					setnotification(error.errors);

@@ -10,14 +10,13 @@
 				<div class="subtitle">Datos del evento</div>
 
 				<div class="input-group">
-					<span>Fecha de evento</span>
-					<input type="text" ng-model="estimation.data.date_event">
-				</div>
-				<div class="input-group">
 					<span>Nombre</span>
 					<input type="text" ng-model="estimation.data.costumer_name">
 				</div>
-
+				<div class="input-group">
+					<span>Fecha de evento</span>
+					<input type="text" ng-model="estimation.data.date_event | reorderdate">
+				</div>
 				<div class="input-group">
 					<span>Dom. del evento</span>
 					<input type="text" ng-model="estimation.data.event_address">
@@ -40,11 +39,11 @@
 				</div>
 				<div class="input-group">
 					<span>Surtir</span>
-					<input type="text" ng-model="estimation.data.date_range">
+					<input type="text" ng-model="estimation.data.date_range | reorderdate">
 				</div>
 				<div class="input-group">
 					<span>Recoger</span>
-					<input type="text" ng-model="estimation.data.date_collecting">
+					<input type="text" ng-model="estimation.data.date_collecting | reorderdate">
 				</div>
 				<div class="input-group">
 					<span>Tipo de evento</span>

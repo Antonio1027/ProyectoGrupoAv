@@ -9,16 +9,14 @@
 		<div class="container-content wrap-content">
 			<div class="data-personal">
 				<div class="subtitle">Datos del evento</div>
-
-				<div class="input-group">
-					<span>Fecha de evento</span>
-					<input type="date" ng-model="datageneral.date_event" required>
-				</div>
 				<div class="input-group">
 					<span>Nombre</span>
 					<input type="text" ng-model="datageneral.costumer_name" required>
 				</div>
-
+				<div class="input-group">
+					<span>Fecha de evento</span>
+					<input type="date" ng-model="datageneral.date_event" required>
+				</div>
 				<div class="input-group">
 					<span>Dom. del evento</span>
 					<input type="text" ng-model="datageneral.event_address" required>
@@ -63,24 +61,27 @@
 					<span>Contacto</span>
 					<input type="text" ng-model="datageneral.contact" required>
 				</div>
-				<div class="input-group">
-					<span>Subtotal</span>
-					<input type="text" ng-model="datageneral.subtotal" ng-pattern="regex_float" required>
-				</div>
-				<div class="input-group">
-					<span>Total</span>
-					<input type="text" ng-model="datageneral.total" ng-pattern="regex_float" required>
-				</div>
+			</div>
+			<hr/>
+			<div class="data-personal margin-top">
 				<div class="input-group">
 					<span>Deposito</span>
 					<input type="text" ng-model="datageneral.deposit" ng-pattern="regex_float" required>
+				</div>
+				<div class="input-group">
+					<span>Subtotal</span>
+					<input type="text" ng-model="datageneral.subtotal" ng-pattern="regex_float" required>
 				</div>
 				<div class="input-group">
 					<span>Anticipo</span>
 					<input type="text" ng-model="datageneral.advanced_payment" ng-pattern="regex_float" required>
 				</div>
 				<div class="input-group">
-					<span>Por cobrar</span>
+					<span>Total</span>
+					<input type="text" ng-model="datageneral.total" ng-pattern="regex_float" required>
+				</div>
+				<div class="input-group">
+					<span>Saldo</span>
 					<input type="text" ng-model="datageneral.balance" ng-pattern="regex_float" required>
 				</div>
 				<div class="input-group">
@@ -88,8 +89,8 @@
 					<input type="text" ng-model="datageneral.discount" ng-pattern="regex_float" required>
 				</div>
 				<div>
-					<spans class="pointer" ng-click="calculator()"> Realizar calculo</span>
-				</div>
+					<spans class="pointer calculo" ng-click="calculator()"> Realizar calculo</span>
+				</div> 
 			</div>
 		</div>
 
@@ -104,7 +105,7 @@
 						
 							<products></products>
 
-							<div class="text-center" ng-show="form.$valid">
+							<div class="text-center" ng-show="form.$valid && calculo">
 								<button type="submit" class=" icon icon-save"><span class=" icon-floppy-disk"></span></button>
 							</div>
 					</div>
