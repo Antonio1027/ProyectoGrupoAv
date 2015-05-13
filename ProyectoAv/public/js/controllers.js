@@ -282,6 +282,17 @@
 				setnotification(error.errors);
 			})
 
+		$scope.comfirmOrder = function(id){
+			var data = {id: id};
+			AVService.comfirmOrder(data)
+				.then(function(data){
+					setnotification(data.success);
+				},
+				function(error){
+					setnotification(error.errors);
+				})
+		}
+
 		function setnotification(msg){
 			$scope.msgnoti = msg;
 			$scope.noti = true;
@@ -403,6 +414,7 @@
 			$scope.calculo = true;
 			var subtotal = 0;
 			var total = 0;
+
 			angular.forEach($scope.CPT, function(element, index){
 				angular.forEach(element.listproducts, function(element, index){
 					angular.forEach(element.types, function(element, index){
@@ -414,8 +426,10 @@
 			})
 			$scope.datageneral.subtotal = subtotal;
 
-			if($scope.datageneral.advanced_payment)
-				$scope.datageneral.total = $scope.datageneral.subtotal - $scope.datageneral.advanced_payment;
+			if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
+				$scope.datageneral.total = $scope.datageneral.subtotal + $scope.datageneral.deposit;
+				$scope.datageneral.balance = $scope.datageneral.total - $scope.datageneral.discount;
+			}
 		}
 
 

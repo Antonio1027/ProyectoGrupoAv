@@ -125,9 +125,10 @@
 			</tr>			
 		</table>
 		<div class="text-right">
-			<a href="printEstimation/{{estimation.data.id}}" class="btn">Imprimir</a>
-			<a href="#/update-presupuesto/{{estimation.data.id}}" class="btn icon-pencil">Editar presupuesto</a>
+			<a href="printEstimation/{{estimation.data.id}}" class="btn icon-printer"> Imprimir</a>
+			<a href="#/update-presupuesto/{{estimation.data.id}}" class="btn icon-pencil"> Editar presupuesto</a>
 			<button class="btn icon-minus" ng-click="deleteEstimation(estimation.data.id)"> Eliminar presupuesto</button>
+			<button class="btn icon-checkmark" ng-click="comfirmOrder(estimation.data.id)"> Generar orden</button>
 		</div>
 	</div>
 

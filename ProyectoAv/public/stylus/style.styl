@@ -3,7 +3,8 @@
 @import "normalize.styl"
 @import "fonts.styl"
 
-azul-oscuro = #37474F
+rojo-oscuro = #FD645B
+rojo-mas-oscuro = #E4463D
 azul-gris = #485961
 gris-borde = #DDDDDD
 
@@ -31,13 +32,15 @@ a
 	color white
 	border-radius 10px
 	padding 0.5em
-	box-shadow 0 0 2px azul-oscuro
+	box-shadow 0 0 2px rojo-oscuro
 .left
 	float left
 .right
 	float right
 .margin-top
 	margin-top 1em
+.circle
+	border-radius 50%
 .pointer
 	cursor pointer
 .calculo
@@ -104,7 +107,7 @@ select
 					
 .header
 	z-index 3
-	background azul-oscuro
+	background rojo-oscuro
 	color white
 	position fixed
 	top 0 
@@ -114,7 +117,7 @@ select
 	line-height 3.5em
 	transition background 1s 
 	&.alpha
-		background rgba(azul-oscuro, 0.76)
+		background rgba(rojo-oscuro, 0.76)
 	.btn-menu
 		display none
 	.image
@@ -132,7 +135,7 @@ select
 			display inline-block
 			transition 0.3s background
 			&:hover
-				background azul-gris
+				background rojo-mas-oscuro
 		&-link
 			color white
 			padding 1.2em 0.5em
@@ -142,7 +145,7 @@ select
 	cursor pointer
 	border-radius 50%
 	color white
-	padding 0.2em
+	padding 0.4em
 	
 .leftcol
 	padding 0.5em
@@ -287,6 +290,10 @@ select
 	background rojo-mac
 .icon-pencil
 	background amarillo-mac
+.icon-checkmark
+.icon-binoculars
+	background azul-gris
+	
 .tree-products
 	.icon
 		display none

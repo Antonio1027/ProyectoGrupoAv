@@ -13,7 +13,7 @@
 			<span class="btn-menu">*</span>
 			<a href="#/">
 				<figure class="image">
-					<img src="http://miguelnieva.github.io/mejorandolaconferencia/img/mejorandola.png" width="50" alt="">
+					<img src="images/logo.png" class="circle" width="50" alt="">
 				</figure>
 				<h2 class="title">Grupo AV</h2>
 			</a>

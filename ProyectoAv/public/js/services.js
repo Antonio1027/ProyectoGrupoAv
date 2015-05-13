@@ -273,6 +273,18 @@
 			return deferred.promise;
 		}
 
+		function comfirmOrder(data){
+			var deferred = $q.defer();
+			$http.post('confirmestimation', data)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
 		return {
 			getCPT: getCPT,
 			postUser: postUser,
@@ -295,7 +307,8 @@
 			getEstimation: getEstimation,
 			getUpdateEstimation: getUpdateEstimation,
 			updateEstimation: updateEstimation,
-			deleteEstimation: deleteEstimation
+			deleteEstimation: deleteEstimation,
+			comfirmOrder: comfirmOrder
 		};
 
 	}])
