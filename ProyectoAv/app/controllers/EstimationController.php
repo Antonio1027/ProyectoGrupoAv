@@ -39,6 +39,7 @@ class EstimationController extends BaseController
 	public function printEstimation($id){
 		$estimation = $this->estimationRepo->findEstimation($id);
 		$html = View::make("emails.formatestimation",compact('estimation'));
+		// return View::make('emails/formatestimation');
     	return PDF::load($html, 'A4', 'portrait')->show();
 	}
 }
