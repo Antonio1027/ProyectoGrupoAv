@@ -15,7 +15,7 @@
 				</div>
 				<div class="input-group">
 					<span>Fecha de evento</span>
-					<input type="text" ng-model="estimation.data.date_event | reorderdate">
+					<input type="text" value="{{estimation.data.date_event | date:'longDate'}}">
 				</div>
 				<div class="input-group">
 					<span>Dom. del evento</span>
@@ -39,11 +39,11 @@
 				</div>
 				<div class="input-group">
 					<span>Surtir</span>
-					<input type="text" ng-model="estimation.data.date_range | reorderdate">
+					<input type="text" value="{{estimation.data.date_range | date:'longDate'}}">
 				</div>
 				<div class="input-group">
 					<span>Recoger</span>
-					<input type="text" ng-model="estimation.data.date_collecting | reorderdate">
+					<input type="text" value="{{estimation.data.date_collecting | date:'longDate'}}">
 				</div>
 				<div class="input-group">
 					<span>Tipo de evento</span>

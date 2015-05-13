@@ -35,6 +35,7 @@
 	<script src="lib/angular-animate.min.js"></script>
 	<script src="lib/angular-route.min.js"></script>
 	<script src="lib/angular-sanitize.min.js"></script>
+	<script src="lib/angular-locale-es-mx.js"></script>
 	<script src="lib/jquery-2.1.3.min.js"></script>
 
 	<script src="js/filters.js"></script>

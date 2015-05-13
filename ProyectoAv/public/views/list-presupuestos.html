@@ -9,17 +9,17 @@
 		<div class="search-controls">
 			<div class="search-input">
 				<span class="icon icon-search"></span>
-				<input type="text" placeholder="Buscar por nombre">
+				<input type="text" placeholder="Buscar por nombre" ng-model="search.name">
 			</div>
 
 			<div class="search-input">
 				<span class="icon icon-calendar"></span>
-				<input type="date" placeholder="Fecha inicial">
+				<input type="date" placeholder="Fecha inicial" ng-model="search.datestart" ng-change="filterDate()">
 			</div>
 
 			<div class="search-input">
 				<span class="icon icon-calendar"></span>
-				<input type="date" placeholder="Fecha final">
+				<input type="date" placeholder="Fecha final" ng-model="search.dateend" ng-change="filterDate()">
 			</div>
 		</div>
 		<table class="table">
@@ -33,11 +33,11 @@
 				<th>Tels.</th>
 				<th>Acciones</th>
 			</tr>
-			<tr ng-repeat="estimation in estimations">
+			<tr ng-repeat="estimation in estimations | filter:search.name">
 				<td>{{estimation.id}}</td>
 				<td>{{estimation.type}}</td>
-				<td>{{estimation.date_range | reorderdate}}</td>
-				<td>{{estimation.date_event | reorderdate}}</td>
+				<td>{{estimation.date_event | date: 'longDate'}}</td>
+				<td>{{estimation.date_range | date: 'longDate'}}</td>
 				<td>{{estimation.event_address}}</td>
 				<td>{{estimation.costumer_name}}</td>
 				<td>{{estimation.movil}}<br>{{estimation.phone}}</td>

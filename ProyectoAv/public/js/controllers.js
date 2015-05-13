@@ -232,25 +232,45 @@
 			},
 			function(error){
 			})
-
 	}])
+
 	.controller('AdminUserCtrl', ['$scope', function ($scope) {
 		$scope.datauser = {};
 
 		$scope.senduser = function(){
 			$scope.datauser = {};
 		}
-		
 	}])
 
-	.controller('ListPresupuestosCtrl',['$scope','AVService', function ($scope, AVService){					
+	.controller('ListPresupuestosCtrl',['$scope','AVService', function ($scope, AVService){
+
+		$scope.search = {};
+
 		AVService.getEstimations()			
 			.then(function(data){					
 				$scope.estimations = data.data;								
+				$scope.estimationsfilter = data.data;
 			},
 			function(error){				
 				setnotification(error.erros);
 			})
+
+		$scope.filterDate = function(element){
+			var date = [];
+			if($scope.search.datestart){
+				date.start = Date.parse($scope.search.datestart);
+				if($scope.search.dateend)
+					date.end = Date.parse($scope.search.dateend) + 86400000;
+				else
+					date.end = Date.parse($scope.search.datestart) + 86400000;
+
+				$scope.estimations = $scope.estimationsfilter.filter(function(element){
+					if( Date.parse(element.date_event) >= date.start && Date.parse(element.date_event) < date.end )
+						return element;
+				});
+			}
+
+		}
 	}])
 		
 	.controller('PresupuestoCtrl', ['$scope', '$routeParams', '$location', 'AVService' , function ($scope, $routeParams, $location, AVService) {
@@ -305,8 +325,7 @@
 				setnotification(error.errors);
 			})
 		function converseDate(date){
-			var aux = date.split('-');
-			return new Date(aux[0], aux[1], aux[2]);
+			return new Date(date);
 		}
 
 		$scope.calculator = function (){
