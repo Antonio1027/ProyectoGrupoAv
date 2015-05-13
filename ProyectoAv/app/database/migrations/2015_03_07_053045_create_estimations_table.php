@@ -16,14 +16,14 @@ class CreateEstimationsTable extends Migration {
 		{
 			$table->increments('id');			
 			$table->string('costumer_name');
-			$table->date('date_event');
+			$table->timestamp('date_event');
 			$table->string('event_address');
 			$table->string('home_address');
 			$table->string('phone');
 			$table->string('movil');
 			$table->string('email');
-			$table->date('date_range');
-			$table->date('date_collecting');
+			$table->timestamp('date_range');
+			$table->timestamp('date_collecting');
 			$table->string('type');
 			$table->integer('number_people');
 			$table->string('color');
