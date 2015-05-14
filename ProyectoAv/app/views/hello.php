@@ -21,7 +21,6 @@
 				<nav class="menu-list">
 					<li class="menu-item"><a href="#/presupuestos/" class="menu-link">Presupuestos</a></li>
 					<li class="menu-item"><a href="#/ordenes" class="menu-link">Ordenes</a></li>
-					<li class="menu-item"><a href="#/ordenservicio" class="menu-link">Ordenes de servicio</a></li>
 					<li class="menu-item"><a href="#/administrar-productos" class="menu-link">Productos</a></li>
 					<li class="menu-item"><a href="#/administrar-usuarios" class="menu-link">Usuarios</a></li>
 				</nav>

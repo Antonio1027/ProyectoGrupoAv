@@ -1,5 +1,25 @@
 (function(){
 	angular.module('controllers', [])
+	.controller('ListOrdenesCtrl', ['$scope', 'AVService', function ($scope, AVService) {
+		$scope.orders = [];
+
+		AVService.getOrders()
+			.then(function(data){
+				$scope.orders = data.data;
+				console.log(data.data);
+			},
+			function(error){
+				setnotification(error.errors);
+			})
+
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}
+	}])
 	.controller('AdminProductCtrl', ['$scope', 'AVService', function ($scope, AVService) {
 		//JSON POST
 		$scope.datacategory = {};
@@ -35,7 +55,7 @@
 				setnotification(data.success);
 			},
 			function(error){
-				console.log(error);
+				setnotification(error.errors);
 			})
 		}
 
@@ -340,8 +360,10 @@
 		}
 
 		$scope.calculator = function (){
+			$scope.calculo = true;
 			var subtotal = 0;
 			var total = 0;
+
 			angular.forEach($scope.CPT, function(element, index){
 				angular.forEach(element.listproducts, function(element, index){
 					angular.forEach(element.types, function(element, index){
@@ -353,8 +375,10 @@
 			})
 			$scope.datageneral.subtotal = subtotal;
 
-			if($scope.datageneral.advanced_payment)
-				$scope.datageneral.total = $scope.datageneral.subtotal - $scope.datageneral.advanced_payment;
+			if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
+				$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
+				$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
+			}
 		}
 
 
@@ -427,8 +451,8 @@
 			$scope.datageneral.subtotal = subtotal;
 
 			if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
-				$scope.datageneral.total = $scope.datageneral.subtotal + $scope.datageneral.deposit;
-				$scope.datageneral.balance = $scope.datageneral.total - $scope.datageneral.discount;
+				$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
+				$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
 			}
 		}
 

@@ -21,7 +21,7 @@
 		})
 		.when('/ordenes', {
 			templateUrl: 'views/list-ordenes.html',
-			controller: ''
+			controller: 'ListOrdenesCtrl'
 		})
 		.when('/presupuestos', {
 			templateUrl: 'views/list-presupuestos.html',

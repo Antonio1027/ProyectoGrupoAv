@@ -285,6 +285,18 @@
 			return deferred.promise;
 		}
 
+		function getOrders(){
+			var deferred = $q.defer();
+			$http.get('getOrders')
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
 		return {
 			getCPT: getCPT,
 			postUser: postUser,
@@ -308,7 +320,8 @@
 			getUpdateEstimation: getUpdateEstimation,
 			updateEstimation: updateEstimation,
 			deleteEstimation: deleteEstimation,
-			comfirmOrder: comfirmOrder
+			comfirmOrder: comfirmOrder,
+			getOrders: getOrders
 		};
 
 	}])
