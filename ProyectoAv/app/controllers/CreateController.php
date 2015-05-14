@@ -5,6 +5,7 @@ use Grupoav\Repositories\CategoryRepo;
 use Grupoav\Repositories\ProductRepo;
 use Grupoav\Repositories\EstimationRepo;
 use Grupoav\Repositories\TypeRepo;
+use Grupoav\Repositories\OrderRepo;
 
 use Grupoav\Managers\NewUser;
 use Grupoav\Managers\NewCategory;
@@ -14,17 +15,18 @@ use Grupoav\Managers\NewType;
 
 class CreateController extends BaseController
 {
-	protected $userRepo,$categoryRepo,$productRepo,$estimationRepo,$typeRepo;
+	protected $userRepo,$categoryRepo,$productRepo,$estimationRepo,$typeRepo,$orderRepo;
 
 	function __construct(UserRepo $userRepo, CategoryRepo $categoryRepo,
 						 ProductRepo $productRepo, EstimationRepo $estimationRepo,
-						 TypeRepo $typeRepo)
-	{
+						 TypeRepo $typeRepo, OrderRepo $orderRepo)
+	{		
 		$this->userRepo = $userRepo;
 		$this->categoryRepo = $categoryRepo;
 		$this->productRepo = $productRepo;
 		$this->estimationRepo = $estimationRepo;
 		$this->typeRepo = $typeRepo;
+		$this->orderRepo = $orderRepo;
 	}
 
 	public function newUser(){
@@ -66,7 +68,7 @@ class CreateController extends BaseController
 		$dataType = $data[1];		
 
 		if(! isset($data[1]) || empty($data[1]))
-			return Response::json(array('errors' =>'Debe seleccionar al menos un producto'),422);						
+			return Response::json(array('errors'=>array('msg'=>array('Debe seleccionar al menos un producto'))),422);
 
 		$estimation = $this->estimationRepo->newEstimation();
 		$manager = new NewEstimation($estimation,$dataEstimation);	
@@ -87,8 +89,21 @@ class CreateController extends BaseController
 								        			  'name'=> $manager->entity->name,
 								        			  'category_id'=> $manager->entity->product_id)),201);//recurso creado	
 		return Response::json(array('errors' => $manager->getErrors()),422);	
-	}	
-	
+	}
+
+	public function confirmEstimation(){
+		$estimation = $this->estimationRepo->findEstimation(Input::get('id'));		
+		if($estimation){						
+			if(!$estimation->order){				
+				$order = $this->orderRepo->newOrder(Input::get('id'));	
+				if($order->save())
+					return Response::json(array('success'=>array('msg'=>array('Ha generado una orden de servicio correctamente'))),422);
+			}
+			else
+				return Response::json(array('errors'=>array('msg'=>array('Ya ha sido elaborada una orden con este presupuesto'))),422);
+		}
+		return Response::json(array('errors'=>array('msg'=>array('No se encontraron resultados'))),422);
+	}		
 }
 
 ?>

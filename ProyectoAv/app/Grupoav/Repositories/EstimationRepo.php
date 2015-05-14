@@ -12,13 +12,13 @@ class EstimationRepo extends \Eloquent
 	}
 
 	public function allEstimations(){
-		return Estimation::all();
+		return Estimation::has('order','=',0)->get();
 	}
 
 	public function findEstimation($id){		
 		$estimation = Estimation::find($id);		
 		return $estimation;
-	}
+	}	
 }
 
 ?>

@@ -14,8 +14,8 @@ class CreateOrdersTable extends Migration {
 	{
 		Schema::create('orders', function(Blueprint $table)
 		{
-			$table->increments('id');			
-			$table->integer('estimation_id')->unsigned()->index();			
+			$table->increments('id');
+			$table->integer('estimation_id')->unsigned()->index();
 			$table->foreign('estimation_id')->references('id')->on('estimations');
 			$table->timestamps();
 		});

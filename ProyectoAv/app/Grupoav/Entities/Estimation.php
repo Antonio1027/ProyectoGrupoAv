@@ -26,7 +26,11 @@ class Estimation extends \Eloquent {
 						   "discount"];
 
 	public function types(){
-		return $this->belongsToMany("Grupoav\Entities\Type")->withPivot('quantity')->withTimestamps();
+		return $this->belongsToMany('Grupoav\Entities\Type')->withPivot('quantity')->withTimestamps();
+	}
+
+	public function order(){
+		return $this->hasOne('Grupoav\Entities\Order');
 	}
 
 	public function delete(){
