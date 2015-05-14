@@ -19,6 +19,7 @@ Route::get('/', function()
 Route::get('getCPT',array('as'=>'categories','uses'=>'CategoryController@categories'));
 Route::get('getUsers',array('as'=>'getUsers','uses'=>'UserController@getUsers'));
 Route::get('getEstimations',array('as'=>'getEstimations','uses'=>'EstimationController@getEstimations'));
+Route::get('getOrders',array('as'=>'getOrders','uses'=>'OrderController@getOrders'));
 Route::get('getListProduct/{idcategory}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));
 Route::get('getEstimation/{idestimation}',array('as'=>'getEstimation','uses'=>'EstimationController@getEstimation'));
 Route::get('getupdateEstimation/{idestimation}',array('as'=>'getupdateEstimation','uses'=>'CategoryController@getupdateEstimation'));

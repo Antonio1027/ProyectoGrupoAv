@@ -26,8 +26,7 @@ class CreateEstimationsTable extends Migration {
 			$table->string('date_collecting');
 			$table->string('type');
 			$table->integer('number_people');
-			$table->string('color');
-			$table->string('contact');
+			$table->string('color');			
 
 			$table->float('subtotal');
 			$table->float('deposit');

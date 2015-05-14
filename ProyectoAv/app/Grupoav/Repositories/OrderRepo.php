@@ -2,6 +2,7 @@
 
 namespace Grupoav\Repositories;
 use Grupoav\Entities\Order;
+use Grupoav\Entities\Estimation;
 
 class OrderRepo extends \Eloquent
 {
@@ -9,6 +10,10 @@ class OrderRepo extends \Eloquent
 		$order = new Order();
 		$order->estimation_id = $estimation_id;
 		return $order;
+	}
+
+	public function allOrders(){
+		return Estimation::has('order')->with('order')->get();
 	}
 }
 

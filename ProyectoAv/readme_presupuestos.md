@@ -190,3 +190,52 @@ Respuesta
 			"msg": ["Error"]
 		}
 	}
+
+###lista de ordenes
+Solicitud [GET] /getOrders
+
+Respuesta
+	
+	Success
+	{
+		"data":
+		[
+			{
+			"id": 1,
+			"costumer_name": "Antonio de Jesus Shilon",
+			"date_event": "2015-05-01 05:00:00",
+			"event_address": "Av. central Pte N. 234",
+			"home_address": "Fracc. mactumatza",
+			"phone": "6559034",
+			"movil": "9611103182",
+			"email": "shilong_92@hotmail.com",
+			"date_range": "2015-05-15 05:00:00",
+			"date_collecting": "2015-05-16 05:00:00",
+			"type": "Cumpleaños",
+			"number_people": 500,
+			"color": "Azul",
+			"contact": "contacto",
+			"subtotal": 15600,
+			"deposit": 1000,
+			"total": 12600,
+			"advanced_payment": 3000,
+			"balance": 17500,
+			"discount": 0,
+			"created_at": "2015-05-13 15:05:59",
+			"updated_at": "2015-05-13 20:47:14",
+				"order": {
+					"id": 1,
+					"estimation_id": 1,
+					"created_at": "2015-05-13 23:29:59",
+					"updated_at": "2015-05-13 23:29:59"
+				}
+			}
+		]
+	}
+
+	Error
+	{
+		"errors": {
+			"msg": ["Error"]
+		}
+	}

@@ -14,7 +14,7 @@ class CategoryController extends BaseController
 	}
 
 	public function categories(){
-		$categories = $this->categoryRepo->allCategories();
+		$categories = $this->categoryRepo->allCategories();		
 		return Response::json($categories,200);
 	}		
 	public function getupdateEstimation($id){
