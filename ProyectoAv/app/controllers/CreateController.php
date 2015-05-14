@@ -97,7 +97,7 @@ class CreateController extends BaseController
 			if(!$estimation->order){				
 				$order = $this->orderRepo->newOrder(Input::get('id'));	
 				if($order->save())
-					return Response::json(array('success'=>array('msg'=>array('Ha generado una orden de servicio correctamente'))),422);
+					return Response::json(array('success'=>array('msg'=>array('Ha generado una orden de servicio correctamente'))),201);
 			}
 			else
 				return Response::json(array('errors'=>array('msg'=>array('Ya ha sido elaborada una orden con este presupuesto'))),422);
