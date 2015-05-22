@@ -287,7 +287,8 @@
 
 		function getOrders(){
 			var deferred = $q.defer();
-			$http.get('getOrders')
+			// $http.get('getOrders')
+			$http.get('lib/data.json')
 			.success(function(data){
 				deferred.resolve(data);
 			})

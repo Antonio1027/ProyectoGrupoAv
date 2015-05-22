@@ -1,146 +1,70 @@
-[
-	{
-		"id": 1,
-		"name": "carpas",
-		"listproducts":[
-			{
-				"id": 1,
-				"name": "sencilla",
-				"rental_price": 2.50,
-				"reserve": 5,
-				"total": 10,
-				"category_id": 1,
-				"types":[
-					{
-						"id": 1,
-						"name": "12x12"
-					},
-					{
-						"id": 2,
-						"name": "12x15"
-					}
-				]
-			},
-			{
-				"id": 2,
-				"name": "arabe",
-				"rental_price": 5.50,
-				"reserve": 5,
-				"total": 10,
-				"category_id": 1,
-				"types":[
-					{
-						"id": 1,
-						"name": "12x12"
-					},
-					{
-						"id": 2,
-						"name": "12x15"
-					}
-				]
-			}
-		]
-	},
-	{
-		"id": 2,
-		"name": "sillones",
-		"listproducts":[
-			{
-				"id": 1,
-				"name": "sencillo",
-				"rental_price": 5.50,
-				"reserve": 5,
-				"total": 10,
-				"category_id": 2,
-				"types":[
-					{
-						"id": 1,
-						"name": "blanco"
-					},
-					{
-						"id": 2,
-						"name": "rojo"
-					}
-				]
-			},
-			{
-				"id": 2,
-				"name": "cubo",
-				"rental_price": 15.50,
-				"reserve": 5,
-				"total": 10,
-				"category_id": 2,
-				"types":[
-					{
-						"id": 1,
-						"name": "blanco"
-					},
-					{
-						"id": 2,
-						"name": "rojo"
-					},
-					{
-						"id": 3,
-						"name": "amarrillo"
-					}
-				]
-			},
-			{
-				"id": 3,
-				"name": "cilindro",
-				"rental_price": 25.50,
-				"reserve": 5,
-				"total": 10,
-				"category_id": 2,
-				"types":[
-					{
-						"id": 1,
-						"name": "blanco"
-					},
-					{
-						"id": 3,
-						"name": "amarrillo"
-					}
-				]
-			}
-		]
-	},
-	{
-		"id": 3,
-		"name": "mesas",
-		"listproducts":[
-			{
-				"id": 1,
-				"name": "periquera",
-				"rental_price": 50,
-				"reserve": 5,
-				"total": 10,
-				"category_id": 3,
-				"types":[
-					{
-						"id": 1,
-						"name": "redonda"
-					},
-					{
-						"id": 2,
-						"name": "cuadrada"
-					}
-				]
-			}
-		]
-	},
-	{
-		"id": 4,
-		"name": "platos",
-		"listproducts":[
-			{
-				"id": 1,
-				"name": "sencillo",
-				"rental_price": 5,
-				"reserve": 5,
-				"total": 10,
-				"category_id": 4
-			}
-		]
-	}
-]
+{
+    "data": [
+        {
+            "id": "1",
+            "costumer_name": "Cristian",
+            "date_event": "2015-05-13T05:00:00.000Z",
+            "event_address": "Fiesta de cristian",
+            "home_address": "2 Sur poniente",
+            "phone": "9612789576",
+            "movil": "9282736392",
+            "email": "",
+            "date_range": "2015-05-13T05:00:00.000Z",
+            "date_collecting": "2015-05-14T05:00:00.000Z",
+            "type": "Infantil",
+            "number_people": "200",
+            "color": "Blanco",
+            "contact": "Sin cover",
+            "subtotal": "6000.00",
+            "deposit": "0.00",
+            "total": "6000.00",
+            "advanced_payment": "400.00",
+            "balance": "5600.00",
+            "discount": "0",
+            "created_at": "2015-05-13 18:32:07",
+            "updated_at": "2015-05-14 01:34:18",
+            "order": {
+                "id": "1",
+                "available_facture": true,
+                "status": "initial",
+                "date_elaboration": "0000-00-00",
+                "estimation_id": "1",
+                "created_at": "2015-05-14 01:46:07",
+                "updated_at": "2015-05-14 01:46:07"
+            }
+        },
+        {
+            "id": "1",
+            "costumer_name": "Cristian1",
+            "date_event": "2015-05-13T05:00:00.000Z",
+            "event_address": "Fiesta de cristian",
+            "home_address": "2 Sur poniente",
+            "phone": "9612789576",
+            "movil": "9282736392",
+            "email": "",
+            "date_range": "2015-05-13T05:00:00.000Z",
+            "date_collecting": "2015-05-14T05:00:00.000Z",
+            "type": "Infantil",
+            "number_people": "200",
+            "color": "Blanco",
+            "contact": "Sin cover",
+            "subtotal": "6000.00",
+            "deposit": "0.00",
+            "total": "6000.00",
+            "advanced_payment": "400.00",
+            "balance": "5600.00",
+            "discount": "0",
+            "created_at": "2015-05-13 18:32:07",
+            "updated_at": "2015-05-14 01:34:18",
+            "order": {
+                "id": "1",
+                "available_facture": false,
+                "status": "send",
+                "date_elaboration": "0000-00-00",
+                "estimation_id": "1",
+                "created_at": "2015-05-14 01:46:07",
+                "updated_at": "2015-05-14 01:46:07"
+            }
+        }
+    ]
+}

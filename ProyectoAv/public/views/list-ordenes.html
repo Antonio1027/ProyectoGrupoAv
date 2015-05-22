@@ -30,15 +30,19 @@
 				<th>Tipo de evento</th>
 				<th>Domicilio de evento</th>
 				<th>Fecha de elaboracion</th>
+				<td></td>
 				<th>Acciones</th>
 			</tr>
-			<tr ng-repeat="orden in orders">
+			<tr ng-repeat="orden in orders" ng-class="{'bgc-orange': orden.order.status == 'send', 'bgc-blue': orden.order.status == 'initial'}">
 				<td>{{orden.order.id}}</td>
 				<td>{{orden.date_range | date: 'longDate'}}</td>
 				<td>{{orden.costumer_name}}</td>
 				<td>{{orden.type}}</td>
 				<td>{{orden.event_address}}</td>
 				<td>{{orden.order.created_at}}</td>
+				<td>
+					<span ng-if="orden.order.available_facture" class="icon-clipboard"></span>
+				</td>
 				<td>
 					<a href="#"><span class="icon icon-binoculars"></span></a>
 					<a href="#"><span class="icon icon-pencil"></span></a>
