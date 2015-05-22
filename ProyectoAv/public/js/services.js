@@ -287,8 +287,20 @@
 
 		function getOrders(){
 			var deferred = $q.defer();
-			// $http.get('getOrders')
-			$http.get('lib/data.json')
+			$http.get('getOrders')
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
+		function putFacture(data){
+			console.log(data);
+			var deferred = $q.defer();
+			$http.put('updateFacture',data)
 			.success(function(data){
 				deferred.resolve(data);
 			})
@@ -322,7 +334,8 @@
 			updateEstimation: updateEstimation,
 			deleteEstimation: deleteEstimation,
 			comfirmOrder: comfirmOrder,
-			getOrders: getOrders
+			getOrders: getOrders,
+			putFacture: putFacture
 		};
 
 	}])

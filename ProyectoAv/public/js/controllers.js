@@ -1,5 +1,40 @@
 (function(){
 	angular.module('controllers', [])
+	.controller('ordenServicioCtrl', ['$scope', '$routeParams', 'AVService', function ($scope, $routeParams, AVService) {
+		$scope.order = [];
+		console.log($routeParams.orden_id);
+
+		$scope.toggleFacture = function(id,name){
+			var data = {id: id}
+			if( $('#'+name).is(':checked') ){
+				data.facture = true;
+				updateFacture(data);
+			}
+			else{
+				data.facture = false;
+				updateFacture(data);
+			}
+		}
+
+		function updateFacture(data){
+			AVService.putFacture(data)
+				.then(function(data){
+					setnotification(data.success);
+				},
+				function(error){
+					setnotification(error.errors);
+				})
+		}
+
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}
+		
+	}])
 	.controller('ListOrdenesCtrl', ['$scope', 'AVService', function ($scope, AVService) {
 		$scope.orders = [];
 

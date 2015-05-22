@@ -15,9 +15,9 @@
 			templateUrl: 'views/new-presupuestos.html',
 			controller: 'NewPresupuestosCtrl'
 		})
-		.when('/ordenservicio', {
+		.when('/ordenservicio/:orden_id', {
 			templateUrl: 'views/ordenservicio.html',
-			controller: ''
+			controller: 'ordenServicioCtrl'
 		})
 		.when('/ordenes', {
 			templateUrl: 'views/list-ordenes.html',

@@ -30,6 +30,45 @@ a
 	background rgba(orange, .5) !important
 .bgc-blue
 	background rgba(blue, .5) !important
+.content-checkbox
+	display inline-block
+	background gris-fondo-oscuro
+	border-radius 5px
+	border 1px solid gris-borde
+	position relative
+	height 2em
+	line-height 2em
+	width 4em
+	span 
+		font-style italic
+	&:before
+		position absolute
+		left 0.2em
+		content 'Si'
+		z-index 1
+	&:after
+		position absolute
+		content 'No'
+		right 0.2em
+		z-index 1
+	.checkbox
+		visibility hidden
+		&:checked + .label-checkbox
+			left 1.8em
+			background verde-mac
+	.label-checkbox
+		transition all 0.5s
+		z-index 2
+		cursor pointer
+		position absolute
+		left 0.2em
+		top 50%
+		margin-top -0.7em
+		border-radius 5px
+		background rojo-mac
+		display inline-block
+		height 1.4em
+		width 2em
 .btn
 	background verde-mac
 	border 0
