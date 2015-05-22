@@ -9,11 +9,16 @@ class OrderRepo extends \Eloquent
 	public function newOrder($estimation_id){
 		$order = new Order();
 		$order->estimation_id = $estimation_id;
+		$order->status = 1;
 		return $order;
 	}
 
 	public function allOrders(){
 		return Estimation::has('order')->with('order')->get();
+	}
+
+	public function findOrder($id){
+		return Order::find($id);
 	}
 }
 

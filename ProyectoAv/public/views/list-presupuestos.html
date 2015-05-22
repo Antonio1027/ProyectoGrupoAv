@@ -36,8 +36,8 @@
 			<tr ng-repeat="estimation in estimations | filter:search.name">
 				<td>{{estimation.id}}</td>
 				<td>{{estimation.type}}</td>
-				<td>{{estimation.date_event | date: 'longDate'}}</td>
 				<td>{{estimation.date_range | date: 'longDate'}}</td>
+				<td>{{estimation.date_event | date: 'longDate'}}</td>
 				<td>{{estimation.event_address}}</td>
 				<td>{{estimation.costumer_name}}</td>
 				<td>{{estimation.movil}}<br>{{estimation.phone}}</td>

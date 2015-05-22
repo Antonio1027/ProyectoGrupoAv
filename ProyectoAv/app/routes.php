@@ -34,13 +34,13 @@ Route::post('newProduct',array('as'=>'newProduct','uses'=>'CreateController@newP
 Route::post('newEstimation',array('as'=>'newEstimation','uses'=>'CreateController@newEstimation'));
 Route::post('newType',array('as'=>'newType','uses'=>'CreateController@newType'));
 Route::post('confirmestimation',array('as'=>'confirmestimation','uses'=>'CreateController@confirmEstimation'));
-
 //update fields
 Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
 Route::put('updateCategory',array('as'=>'updateCategory','uses'=>'UpdateController@updateCategory'));
 Route::put('updateProduct',array('as'=>'updateProduct','uses'=>'UpdateController@updateProduct'));
 Route::put('updateEstimation',array('as'=>'updateEstimation','uses'=>'UpdateController@updateEstimation'));
 Route::put('updateType',array('as'=>'updateType','uses'=>'UpdateController@updateType'));
+Route::put('updateFacture',array('as'=>'updateFacture','uses'=>'OrderController@updateFacture'));
 
 //delete fields
 Route::delete('deleteUser/{idUser}',array('as'=>'deleteUser','uses'=>'DeleteController@deleteUser'));

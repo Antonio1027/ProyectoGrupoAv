@@ -17,6 +17,18 @@ class OrderController extends BaseController
 		else
 			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
 	}
+
+	public function updateFacture(){
+		$order = $this->orderRepo->findOrder(Input::get('id'));		
+		if($order){
+			$order->available_facture = Input::get('facture');
+			if($order->save())
+				return Response::json(array('success' => array('msg' => 'Orden actualizada')),200);	
+			else
+				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);	
+		}
+		return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+	}
 }
 
 ?>

@@ -410,10 +410,10 @@
 			})
 			$scope.datageneral.subtotal = subtotal;
 
-			if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
+			// if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
 				$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
 				$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
-			}
+			// }
 		}
 
 
@@ -485,10 +485,10 @@
 			})
 			$scope.datageneral.subtotal = subtotal;
 
-			if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
+			// if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
 				$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
 				$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
-			}
+			// }
 		}
 
 
