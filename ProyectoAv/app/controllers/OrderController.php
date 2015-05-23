@@ -58,7 +58,7 @@ class OrderController extends BaseController
 
 			$order->status =  $order->status + 1;
 			if($order->save())
-				return Response::json(array('success' => array('msg' => 'Orden actualizada'),'status' => $order->status),200);	
+				return Response::json(array('success' => array('msg' => 'Orden actualizada','status' => $order->status)),200);	
 			else
 				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);				
 		}
