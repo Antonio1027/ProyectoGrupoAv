@@ -18,6 +18,14 @@ class OrderController extends BaseController
 			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
 	}
 
+	public function getOrder($id){
+		$order = $this->orderRepo->findOrderWithTypes($id);
+		if($order)
+			return Response::json(array('data' => $order),200);
+		else
+			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+	}
+
 	public function updateFacture(){
 		$order = $this->orderRepo->findOrder(Input::get('id'));		
 		if($order){

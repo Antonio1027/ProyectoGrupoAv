@@ -22,6 +22,7 @@ Route::get('getEstimations',array('as'=>'getEstimations','uses'=>'EstimationCont
 Route::get('getOrders',array('as'=>'getOrders','uses'=>'OrderController@getOrders'));
 Route::get('getListProduct/{idcategory}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));
 Route::get('getEstimation/{idestimation}',array('as'=>'getEstimation','uses'=>'EstimationController@getEstimation'));
+Route::get('getOrder/{idorder}',array('as'=>'getOrder','uses'=>'OrderController@getOrder'));
 Route::get('getupdateEstimation/{idestimation}',array('as'=>'getupdateEstimation','uses'=>'CategoryController@getupdateEstimation'));
 
 Route::get('printEstimation/{idestimation}',array('as'=>'printEstimation','uses'=>'EstimationController@printEstimation'));

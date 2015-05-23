@@ -20,6 +20,12 @@ class OrderRepo extends \Eloquent
 	public function findOrder($id){
 		return Order::find($id);
 	}
+
+	public function findOrderWithTypes($id){
+		return Order::with('estimation.types.product.category')
+					->where('id','=',$id)
+					->get();
+	}
 }
 
 ?>
