@@ -74,7 +74,7 @@ class CreateController extends BaseController
 		$manager = new NewEstimation($estimation,$dataEstimation);	
 
 		if($manager->save() && $manager->entity->types()->sync($this->renameIndex($dataType))){			
-				return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'))),201);//recurso creado	
+				return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'),'id' => $manager->entity->id)),201);//recurso creado	
 		}
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}
