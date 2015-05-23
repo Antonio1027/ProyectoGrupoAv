@@ -9,18 +9,36 @@
 		<div class="search-controls">
 			<div class="search-input">
 				<span class="icon icon-search"></span>
-				<input type="text" placeholder="Buscar por nombre">
+				<input type="text" ng-model="filter.costumer_name" placeholder="Buscar por nombre">
+			</div>			
+
+			<div class="search-input">
+				<span class="icon icon-calendar"></span>
+				<input type="date" ng-model="filterdate.datestart" ng-change="filterDate()" placeholder="Fecha inicial">
 			</div>
 
 			<div class="search-input">
 				<span class="icon icon-calendar"></span>
-				<input type="date" placeholder="Fecha inicial">
+				<input type="date" ng-model="filterdate.dateend" ng-change="filterDate()" placeholder="Fecha final">
 			</div>
 
-			<div class="search-input">
-				<span class="icon icon-calendar"></span>
-				<input type="date" placeholder="Fecha final">
+			<select name="" id="" ng-model="filter.order.status">
+				<option value="">Seleccione una opcion</option>
+				<option value="0">Inicial</option>
+				<option value="1">Enviado</option>
+				<option value="2">Recibido</option>
+			</select>
+
+			<br>
+
+			<span>Factura</span>
+			<div class="content-checkbox">
+				<input type="checkbox" id="available_facture" class="checkbox" ng-model="filter.order.available_facture" ng-change="filterFacture()">
+				<label for="available_facture" class="label-checkbox"></label>
 			</div>
+
+			<button ng-click="showall()" class="btn">Mostrar todos</button>
+
 		</div>
 		<table class="table">
 			<tr>
@@ -33,7 +51,9 @@
 				<td></td>
 				<th>Acciones</th>
 			</tr>
-			<tr ng-repeat="orden in orders" ng-class="{'bgc-orange': orden.order.status == '1', 'bgc-blue': orden.order.status == '2'}">
+			<tr 
+			ng-repeat="orden in orders | filter: filter" 
+			ng-class="{'bgc-orange': orden.order.status == '1', 'bgc-blue': orden.order.status == '2'}">
 				<td>{{orden.order.id}}</td>
 				<td>{{orden.date_range | date: 'longDate'}}</td>
 				<td>{{orden.costumer_name}}</td>
@@ -41,7 +61,7 @@
 				<td>{{orden.event_address}}</td>
 				<td>{{orden.order.created_at}}</td>
 				<td>
-					<span ng-if="orden.order.available_facture == 1" class="icon-clipboard"></span>
+					<span ng-if="orden.order.available_facture" class="icon-clipboard"></span>
 				</td>
 				<td>
 					<a href="#/ordenservicio/{{orden.order.id}}"><span class="icon icon-binoculars"></span></a>

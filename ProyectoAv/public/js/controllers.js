@@ -58,14 +58,44 @@
 	}])
 	.controller('ListOrdenesCtrl', ['$scope', 'AVService', function ($scope, AVService) {
 		$scope.orders = [];
+		$scope.ordersfilter = [];
 
-		AVService.getOrders()
-			.then(function(data){
-				$scope.orders = data.data;
-			},
-			function(error){
-				setnotification(error.errors);
-			})
+		getOrders();
+
+		$scope.showall = function(){
+			if( $scope.filter.hasOwnProperty('order') )
+				delete $scope.filter.order.available_facture;
+		}
+
+		function getOrders(){
+			AVService.getOrders()
+				.then(function(data){
+					angular.forEach(data.data, function(e, i){
+						e.order.available_facture = e.order.available_facture == 1 ? true : false;
+					})
+					$scope.orders = data.data;
+					$scope.ordersfilter = data.data;
+				},
+				function(error){
+					setnotification(error.errors);
+				});
+		}
+
+		$scope.filterDate = function(element){
+			var date = [];
+			if($scope.filterdate.datestart){
+				date.start = Date.parse($scope.filterdate.datestart);
+				if($scope.filterdate.dateend)
+					date.end = Date.parse($scope.filterdate.dateend) + 86400000;
+				else
+					date.end = Date.parse($scope.filterdate.datestart) + 86400000;
+				console.log(date);
+				$scope.orders = $scope.ordersfilter.filter(function(element){
+					if( Date.parse(element.date_range) >= date.start && Date.parse(element.date_event) < date.end )
+						return element;
+				});
+			}
+		}
 
 		function setnotification(msg){
 			$scope.msgnoti = msg;
@@ -344,8 +374,8 @@
 						return element;
 				});
 			}
-
 		}
+
 	}])
 		
 	.controller('PresupuestoCtrl', ['$scope', '$routeParams', '$location', 'AVService' , function ($scope, $routeParams, $location, AVService) {
@@ -503,12 +533,10 @@
 					})
 				})
 			})
-			$scope.datageneral.subtotal = subtotal;
 
-			// if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
-				$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
-				$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
-			// }
+			$scope.datageneral.subtotal = subtotal - parseInt($scope.datageneral.discount);
+			$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
+			$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
 		}
 
 
