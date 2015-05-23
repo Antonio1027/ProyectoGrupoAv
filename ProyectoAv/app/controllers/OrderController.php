@@ -50,10 +50,8 @@ class OrderController extends BaseController
 
 	public function updateStatus(){
 		$data = Input::all();
-		$order = $this->orderRepo->findOrder($data['id']);
-
+		$order = $this->orderRepo->findOrder((int)$data['id']);		
 		if($order){
-
 			if($order->status > 2 || $order->status < 0){
 				return Response::json(array('errors' => array('msg' => 'Error al actualizar')),422);
 			}
