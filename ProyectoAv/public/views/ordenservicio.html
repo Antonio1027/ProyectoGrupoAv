@@ -126,14 +126,15 @@
 			</tr>			
 		</table>
 		<div class="text-right">
-
-			<div class="status">
+			<div class="status" ng-switch on="order.status">
 				<div class="bar-progress">
-					<div class="progress"></div>
+					<div class="progress" ng-class="{'send': order.status == 1,'received': order.status == 2, }"></div>
+					<span class="label" ng-switch-when="0">Inicial</span>
+					<span class="label" ng-switch-when="1">Enviado</span>
+					<span class="label" ng-switch-when="2">Recibido</span>
 				</div>
-				<button>Next</button>
+				<span class="icon icon-redo2" ng-click="nextStatus()" ng-if="order.status != 2"></span>
 			</div>
-			
 			<span>Factura</span>
 			<div class="content-checkbox">
 				<input type="checkbox" id="available_facture" class="checkbox" ng-checked="order.available_facture == 1">

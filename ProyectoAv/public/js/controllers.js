@@ -3,6 +3,20 @@
 	.controller('ordenServicioCtrl', ['$scope', '$routeParams', 'AVService', function ($scope, $routeParams, AVService) {
 		$scope.order = [];
 
+		$scope.nextStatus = function(){
+			if( window.confirm('¿Desea avanzar al siguiente status?') ){
+				var data = {id: $routeParams.orden_id, status:$scope.order.status}
+				AVService.updateStatus(data)
+					.then(function(data){
+						$scope.order.status = data.success.status;
+						setnotification(data.success);
+					},
+					function(error){
+						setnotification(error.errors);
+					})
+			}
+		}
+
 		$scope.toggleFacture = function(id,name){
 			var data = {id: id}
 			if( $('#'+name).is(':checked') ){

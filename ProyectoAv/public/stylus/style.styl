@@ -26,6 +26,37 @@ li
 a
 	text-decoration none
 // OOCSS
+.status
+	float left
+	.icon
+		vertical-align middle
+	.bar-progress
+		background gris-fondo-oscuro
+		border 1px solid gris-borde
+		height 1.5em
+		width 10em
+		overflow hidden
+		border-radius 1em
+		display inline-block
+		position relative
+		vertical-align middle
+		.label
+			opacity 0.5
+			position absolute
+			top 3px
+			right 10px
+			color black
+		.progress
+			transition all 1s
+			background rojo-mac
+			height 1.5em
+			width 33%
+			&.send
+				width 66%
+				background amarillo-mac
+			&.received
+				background verde-mac
+				width 100%
 .bgc-orange
 	background rgba(orange, .5) !important
 .bgc-blue

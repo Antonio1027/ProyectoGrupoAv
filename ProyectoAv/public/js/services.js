@@ -321,6 +321,18 @@
 			return deferred.promise;
 		}
 
+		function updateStatus(data){
+			var deferred = $q.defer();
+			$http.put('updateStatus',data)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
 		return {
 			getCPT: getCPT,
 			postUser: postUser,
@@ -347,7 +359,8 @@
 			comfirmOrder: comfirmOrder,
 			getOrders: getOrders,
 			getOrder: getOrder,
-			putFacture: putFacture
+			putFacture: putFacture,
+			updateStatus: updateStatus
 		};
 
 	}])
