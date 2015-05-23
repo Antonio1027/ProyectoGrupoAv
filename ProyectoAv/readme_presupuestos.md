@@ -239,3 +239,27 @@ Respuesta
 			"msg": ["Error"]
 		}
 	}
+
+###Acutalizar progreso presupuesto
+Solicitud [put] /updateProgress/{idorder}
+
+	Send data
+	{
+		"id":1,
+		"status":2
+	}
+
+	Success
+	{
+		"success":{
+			"msg": ["Correcto"],
+			"status": 3
+		}
+	}
+
+	Error
+	{
+		"errors": {
+			"msg": ["Error"]
+		}
+	}
