@@ -89,7 +89,6 @@
 					date.end = Date.parse($scope.filterdate.dateend) + 86400000;
 				else
 					date.end = Date.parse($scope.filterdate.datestart) + 86400000;
-				console.log(date);
 				$scope.orders = $scope.ordersfilter.filter(function(element){
 					if( Date.parse(element.date_range) >= date.start && Date.parse(element.date_event) < date.end )
 						return element;
@@ -458,12 +457,9 @@
 					})
 				})
 			})
-			$scope.datageneral.subtotal = subtotal;
-
-			// if(	$scope.datageneral.deposit && $scope.datageneral.advanced_payment	&& $scope.datageneral.discount	){
-				$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
-				$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
-			// }
+			$scope.datageneral.subtotal = subtotal - parseInt($scope.datageneral.discount);
+			$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
+			$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
 		}
 
 

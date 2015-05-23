@@ -323,6 +323,7 @@
 
 		function updateStatus(data){
 			var deferred = $q.defer();
+			console.log(data);
 			$http.put('updateStatus',data)
 			.success(function(data){
 				deferred.resolve(data);
