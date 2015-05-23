@@ -297,8 +297,19 @@
 			return deferred.promise;
 		}
 
+		function getOrder(id){
+			var deferred = $q.defer();
+			$http.get('getOrder/'+id)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
 		function putFacture(data){
-			console.log(data);
 			var deferred = $q.defer();
 			$http.put('updateFacture',data)
 			.success(function(data){
@@ -335,6 +346,7 @@
 			deleteEstimation: deleteEstimation,
 			comfirmOrder: comfirmOrder,
 			getOrders: getOrders,
+			getOrder: getOrder,
 			putFacture: putFacture
 		};
 

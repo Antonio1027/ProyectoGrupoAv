@@ -2,16 +2,15 @@
 	angular.module('controllers', [])
 	.controller('ordenServicioCtrl', ['$scope', '$routeParams', 'AVService', function ($scope, $routeParams, AVService) {
 		$scope.order = [];
-		console.log($routeParams.orden_id);
 
 		$scope.toggleFacture = function(id,name){
 			var data = {id: id}
 			if( $('#'+name).is(':checked') ){
-				data.facture = true;
+				data.facture = false;
 				updateFacture(data);
 			}
 			else{
-				data.facture = false;
+				data.facture = true;
 				updateFacture(data);
 			}
 		}
@@ -25,6 +24,14 @@
 					setnotification(error.errors);
 				})
 		}
+
+		AVService.getOrder($routeParams.orden_id)
+			.then(function(data){
+				$scope.order = data.data[0];
+			},
+			function(error){
+				setnotification(error.errors);
+			})
 
 		function setnotification(msg){
 			$scope.msgnoti = msg;
@@ -41,7 +48,6 @@
 		AVService.getOrders()
 			.then(function(data){
 				$scope.orders = data.data;
-				console.log(data.data);
 			},
 			function(error){
 				setnotification(error.errors);
@@ -55,6 +61,7 @@
 			},3000);
 		}
 	}])
+	
 	.controller('AdminProductCtrl', ['$scope', 'AVService', function ($scope, AVService) {
 		//JSON POST
 		$scope.datacategory = {};
@@ -136,7 +143,6 @@
 				setnotification(data.success)				
 			},
 			function(error){
-				console.log(error);
 				setnotification(error.errors)
 			})
 		}
@@ -205,7 +211,7 @@
 						setnotification(data.success)
 					},
 					function(error){
-						console.log(error);
+						
 						setnotification(error.errors)
 					})
 				break;
@@ -387,7 +393,7 @@
 				$scope.CPT = data.CPT;
 			},
 			function(error){
-				console.log(error);
+				
 				setnotification(error.errors);
 			})
 		function converseDate(date){
@@ -465,7 +471,7 @@
 				$scope.CPT = data;
 			},
 			function(error){
-				console.log(error);
+				
 				setnotification(error.errors);
 			})
 
@@ -518,7 +524,7 @@
 			AVService.postEstimation(estimacion)
 				.then(function(data){
 					setnotification(data.success);
-					$location.url('/presupuestos');
+					$location.url('/presupuesto/' + data.success.id);
 				},
 				function(error){
 					setnotification(error.errors);

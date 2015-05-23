@@ -33,7 +33,7 @@
 				<td></td>
 				<th>Acciones</th>
 			</tr>
-			<tr ng-repeat="orden in orders" ng-class="{'bgc-orange': orden.order.status == 'send', 'bgc-blue': orden.order.status == 'initial'}">
+			<tr ng-repeat="orden in orders" ng-class="{'bgc-orange': orden.order.status == '1', 'bgc-blue': orden.order.status == '2'}">
 				<td>{{orden.order.id}}</td>
 				<td>{{orden.date_range | date: 'longDate'}}</td>
 				<td>{{orden.costumer_name}}</td>
@@ -41,11 +41,11 @@
 				<td>{{orden.event_address}}</td>
 				<td>{{orden.order.created_at}}</td>
 				<td>
-					<span ng-if="orden.order.available_facture" class="icon-clipboard"></span>
+					<span ng-if="orden.order.available_facture == 1" class="icon-clipboard"></span>
 				</td>
 				<td>
 					<a href="#/ordenservicio/{{orden.order.id}}"><span class="icon icon-binoculars"></span></a>
-					<a href="#"><span class="icon icon-pencil"></span></a>
+					<!-- <a href="#"><span class="icon icon-pencil"></span></a> -->
 				</td>
 			</tr>
 		</table>

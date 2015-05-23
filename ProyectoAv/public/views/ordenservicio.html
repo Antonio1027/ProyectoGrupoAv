@@ -7,60 +7,60 @@
 
 	<div class="container-content wrap-content">
 		<div class="data-personal">
-				<div class="subtitle">Datos del evento</div>
+				<div class="subtitle">Datos del evento: Folio {{order.id}}</div>
 
 				<div class="input-group">
 					<span>Fecha de evento</span>
-					<input type="text" ng-model="estimation.data.date_event">
+					<input type="text" value="{{order.estimation.date_event | date:'longDate'}}">
 				</div>
 				<div class="input-group">
 					<span>Nombre</span>
-					<input type="text" ng-model="estimation.data.costumer_name">
+					<input type="text" ng-model="order.estimation.costumer_name">
 				</div>
 
 				<div class="input-group">
 					<span>Dom. del evento</span>
-					<input type="text" ng-model="estimation.data.event_address">
+					<input type="text" ng-model="order.estimation.event_address">
 				</div>
 				<div class="input-group">
 					<span>Dom. particular</span>
-					<input type="text" ng-model="estimation.data.home_address">
+					<input type="text" ng-model="order.estimation.home_address">
 				</div>
 				<div class="input-group">
 					<span>Telefono</span>
-					<input type="text" ng-model="estimation.data.phone" ng-pattern="regex_number">
+					<input type="text" ng-model="order.estimation.phone" ng-pattern="regex_number">
 				</div>
 				<div class="input-group">
 					<span>Celular</span>
-					<input type="text" ng-model="estimation.data.movil" ng-pattern="regex_number">
+					<input type="text" ng-model="order.estimation.movil" ng-pattern="regex_number">
 				</div>
 				<div class="input-group">
 					<span>E-Mail</span>
-					<input type="email" ng-model="estimation.data.email">
+					<input type="email" ng-model="order.estimation.email">
 				</div>
 				<div class="input-group">
 					<span>Surtir</span>
-					<input type="text" ng-model="estimation.data.date_range">
+					<input type="text" value="{{order.estimation.date_range | date:'longDate'}}">
 				</div>
 				<div class="input-group">
 					<span>Recoger</span>
-					<input type="text" ng-model="estimation.data.date_collecting">
+					<input type="text" value="{{order.estimation.date_collecting | date:'longDate'}}">
 				</div>
 				<div class="input-group">
 					<span>Tipo de evento</span>
-					<input type="text" ng-model="estimation.data.type">
+					<input type="text" ng-model="order.estimation.type">
 				</div>
 				<div class="input-group">
 					<span>Numero de personas</span>
-					<input type="text" ng-model="estimation.data.number_people" ng-pattern="regex_number">
+					<input type="text" ng-model="order.estimation.number_people" ng-pattern="regex_number">
 				</div>
 				<div class="input-group">
 					<span>Color</span>
-					<input type="text" ng-model="estimation.data.color">
+					<input type="text" ng-model="order.estimation.color">
 				</div>
 				<div class="input-group">
 					<span>Contacto</span>
-					<input type="text" ng-model="estimation.data.contact">
+					<input type="text" ng-model="order.estimation.contact">
 				</div>
 				<!-- <div class="input-group">
 					<span>Subtotal</span>
@@ -94,45 +94,53 @@
 				<th>Concepto</th>
 				<th>Importe</th>
 			</tr>
-			<tr ng-repeat="type in estimation.types">
-				<td>{{type.quantity}}</td>
-				<td>{{type.category}} : {{type.product}} : {{type.name}} </td>
-				<td>{{type.subtotal}}</td>
+			<tr ng-repeat="type in order.estimation.types">
+				<td>{{type.pivot.quantity}}</td>
+				<td>{{type.product.category.name}} : {{type.product.name}} : {{type.name}} </td>
+				<td>{{type.pivot.quantity * type.rental_price | currency}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Subtotal:</td>
-				<td>{{estimation.data.subtotal}}</td>
+				<td>{{order.estimation.subtotal}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Deposito:</td>
-				<td>{{estimation.data.deposit}}</td>
+				<td>{{order.estimation.deposit}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Total:</td>
-				<td>{{estimation.data.total}}</td>
+				<td>{{order.estimation.total}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Anticipo:</td>
-				<td>{{estimation.data.advanced_payment}}</td>
+				<td>{{order.estimation.advanced_payment}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Por cobrar:</td>
-				<td>{{estimation.data.balance}}</td>
+				<td>{{order.estimation.balance}}</td>
 			</tr>			
 		</table>
 		<div class="text-right">
+
+			<div class="status">
+				<div class="bar-progress">
+					<div class="progress"></div>
+				</div>
+				<button>Next</button>
+			</div>
+			
 			<span>Factura</span>
 			<div class="content-checkbox">
-				<input type="checkbox" id="available_facture" class="checkbox">
+				<input type="checkbox" id="available_facture" class="checkbox" ng-checked="order.available_facture == 1">
 				<label for="available_facture" class="label-checkbox" ng-click="toggleFacture(1,'available_facture')"></label>
 			</div>
 
-			<button class="btn">Imprimir</button>
+			<a class="btn" href="printOrder/{{order.id}}">Imprimir</a>
 			<!-- <button class="btn">Agregar producto</button> -->
 		</div>
 	</div>
