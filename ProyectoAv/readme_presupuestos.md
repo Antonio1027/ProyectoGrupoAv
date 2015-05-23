@@ -241,7 +241,7 @@ Respuesta
 	}
 
 ###Acutalizar progreso presupuesto
-Solicitud [put] /updateProgress/{idorder}
+Solicitud [put] /updateStatus
 
 	Send data
 	{

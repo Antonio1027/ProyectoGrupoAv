@@ -9,7 +9,7 @@ class OrderRepo extends \Eloquent
 	public function newOrder($estimation_id){
 		$order = new Order();
 		$order->estimation_id = $estimation_id;
-		$order->status = 1;
+		$order->status = 0;
 		return $order;
 	}
 

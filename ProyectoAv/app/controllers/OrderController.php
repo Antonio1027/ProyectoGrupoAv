@@ -37,6 +37,36 @@ class OrderController extends BaseController
 		}
 		return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
 	}
+
+	public function printOrder($id){
+		$order = $this->orderRepo->findOrder($id);
+		if($order){
+			$html = View::make('emails.formatOrder',compact('order'));
+			return PDF::load($html, 'A4', 'portrait')->show();
+		}
+		else
+			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);		
+	}
+
+	public function updateStatus(){
+		$data = Input::all();
+		$order = $this->orderRepo->findOrder($data['id']);
+
+		if($order){
+
+			if($order->status > 2 || $order->status < 0){
+				return Response::json(array('errors' => array('msg' => 'Error al actualizar')),422);
+			}
+
+			$order->status =  $order->status + 1;
+			if($order->save())
+				return Response::json(array('success' => array('msg' => 'Orden actualizada'),'status' => $order->status),200);	
+			else
+				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);				
+		}
+		else
+			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+	}
 }
 
 ?>

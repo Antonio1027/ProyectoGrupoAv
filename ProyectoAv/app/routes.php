@@ -26,6 +26,7 @@ Route::get('getOrder/{idorder}',array('as'=>'getOrder','uses'=>'OrderController@
 Route::get('getupdateEstimation/{idestimation}',array('as'=>'getupdateEstimation','uses'=>'CategoryController@getupdateEstimation'));
 
 Route::get('printEstimation/{idestimation}',array('as'=>'printEstimation','uses'=>'EstimationController@printEstimation'));
+Route::get('printOrder/{idorder}',array('as'=>'printOrder','uses'=>'OrderController@printOrder'));
 
 
 // create fields
@@ -42,6 +43,7 @@ Route::put('updateProduct',array('as'=>'updateProduct','uses'=>'UpdateController
 Route::put('updateEstimation',array('as'=>'updateEstimation','uses'=>'UpdateController@updateEstimation'));
 Route::put('updateType',array('as'=>'updateType','uses'=>'UpdateController@updateType'));
 Route::put('updateFacture',array('as'=>'updateFacture','uses'=>'OrderController@updateFacture'));
+Route::put('updateStatus',array('as'=>'updateStatus','uses'=>'OrderController@updateStatus'));
 
 //delete fields
 Route::delete('deleteUser/{idUser}',array('as'=>'deleteUser','uses'=>'DeleteController@deleteUser'));
