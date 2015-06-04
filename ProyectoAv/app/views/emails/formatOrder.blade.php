@@ -156,7 +156,7 @@
 	<table class="table-data border">
 		<tr>
 			<td>NOMBRE</td>			
-			<td colspan="3"> <span>{{$order->estimation->costumer_name}}</span></td>			
+			<td colspan="3" style="border-bottom: 1px solid #FFF"><span>{{$order->estimation->costumer_name}}</span></td>			
 		</tr>
 		<tr>
 			<td colspan="2" width="100px">DOM. DEL EVENTO</td>
