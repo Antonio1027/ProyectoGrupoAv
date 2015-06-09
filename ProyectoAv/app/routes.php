@@ -44,6 +44,8 @@ Route::put('updateEstimation',array('as'=>'updateEstimation','uses'=>'UpdateCont
 Route::put('updateType',array('as'=>'updateType','uses'=>'UpdateController@updateType'));
 Route::put('updateFacture',array('as'=>'updateFacture','uses'=>'OrderController@updateFacture'));
 Route::put('updateStatus',array('as'=>'updateStatus','uses'=>'OrderController@updateStatus'));
+Route::put('updatePay',array('as'=>'updatePay','uses'=>'OrderController@updatePay'));
+Route::put('updateObservations',array('as'=>'updateObservations','uses'=>'OrderController@updateObservations'));
 
 //delete fields
 Route::delete('deleteUser/{idUser}',array('as'=>'deleteUser','uses'=>'DeleteController@deleteUser'));

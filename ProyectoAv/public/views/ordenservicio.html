@@ -135,6 +135,8 @@
 				</div>
 				<span class="icon icon-redo2" ng-click="nextStatus()" ng-if="order.status != 2"></span>
 			</div>
+			
+
 			<span>Factura</span>
 			<div class="content-checkbox">
 				<input type="checkbox" id="available_facture" class="checkbox" ng-checked="order.available_facture == 1">
@@ -144,5 +146,26 @@
 			<a class="btn" href="printOrder/{{order.id}}">Imprimir</a>
 			<!-- <button class="btn">Agregar producto</button> -->
 		</div>
+		<div>
+			<div class="status" ng-switch on="order.pay">
+				<div class="bar-progress">
+					<div class="progress" ng-class="{'send': order.pay == 1,'received': order.pay == 2, }"></div>
+					<span class="label" ng-switch-when="0">Por cobrar</span>
+					<span class="label" ng-switch-when="1">Pagado</span>
+					<span class="label" ng-switch-when="2">Depositado</span>
+				</div>
+				<span class="icon icon-redo2" ng-click="nextPay()" ng-if="order.pay != 2"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-content wrap-content text-center">
+		<h3>Observaciones</h3>
+		<textarea name="" id="" cols="50" rows="10" ng-model="order.observations">
+		</textarea>
+		<br>
+		<button type="button" class=" icon icon-save" ng-click="saveObservations()"><span class=" icon-floppy-disk"></span></button>
 	</div>
 </section>
+
+<notifications></notifications>

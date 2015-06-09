@@ -17,6 +17,9 @@ class CreateOrdersTable extends Migration {
 			$table->increments('id');
 			$table->boolean('available_facture');
 			$table->integer('status');
+			$table->integer('pay');
+			$table->text('observations');
+
 			$table->integer('estimation_id')->unsigned()->index();
 			$table->foreign('estimation_id')->references('id')->on('estimations');
 			$table->timestamps();

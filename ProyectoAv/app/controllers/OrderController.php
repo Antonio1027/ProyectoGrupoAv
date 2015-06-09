@@ -65,6 +65,39 @@ class OrderController extends BaseController
 		else
 			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
 	}
+
+	public function updatePay(){
+		$data = Input::all();
+		$order = $this->orderRepo->findOrder((int)$data['id']);		
+		if($order){
+			if($order->pay > 2 || $order->pay < 0){
+				return Response::json(array('errors' => array('msg' => 'Error al actualizar')),422);
+			}
+
+			$order->pay =  $order->pay + 1;
+			if($order->save())
+				return Response::json(array('success' => array('msg' => 'Orden actualizada','pay' => $order->pay)),200);	
+			else
+				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);				
+		}
+		else
+			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+	}
+
+	public function updateObservations(){
+		$data = Input::all();
+		$order = $this->orderRepo->findOrder((int)$data['id']);		
+
+		if($order){
+			$order->observations =  $data['observations'];
+			if($order->save())
+				return Response::json(array('success' => array('msg' => 'Orden actualizada','observations' => $order->observations)),200);	
+			else
+				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);				
+		}
+		else
+			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+	}
 }
 
 ?>

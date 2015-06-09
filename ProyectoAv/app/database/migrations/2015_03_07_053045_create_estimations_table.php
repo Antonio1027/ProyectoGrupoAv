@@ -34,6 +34,8 @@ class CreateEstimationsTable extends Migration {
 			$table->float('advanced_payment');
 			$table->float('balance');
 			$table->integer('discount');
+
+
 			$table->timestamps();
 		});
 	}

@@ -3,12 +3,38 @@
 	.controller('ordenServicioCtrl', ['$scope', '$routeParams', 'AVService', function ($scope, $routeParams, AVService) {
 		$scope.order = [];
 
+		$scope.saveObservations = function(){
+			var data = {id: $routeParams.orden_id, observations:$scope.order.observations}
+			AVService.updateObservations(data)
+				.then(function(data){
+					$scope.order.observations = data.success.observations;
+					setnotification(data.success);
+				},
+				function(error){
+					setnotification(error.errors);
+				})
+		}
+
 		$scope.nextStatus = function(){
 			if( window.confirm('¿Desea avanzar al siguiente status?') ){
 				var data = {id: $routeParams.orden_id, status:$scope.order.status}
 				AVService.updateStatus(data)
 					.then(function(data){
 						$scope.order.status = data.success.status;
+						setnotification(data.success);
+					},
+					function(error){
+						setnotification(error.errors);
+					})
+			}
+		}
+
+		$scope.nextPay = function(){
+			if( window.confirm('¿Desea avanzar al siguiente status?') ){
+				var data = {id: $routeParams.orden_id, status:$scope.order.pay}
+				AVService.updatePay(data)
+					.then(function(data){
+						$scope.order.pay = data.success.pay;
 						setnotification(data.success);
 					},
 					function(error){
@@ -48,6 +74,7 @@
 			})
 
 		function setnotification(msg){
+			console.log(msg);
 			$scope.msgnoti = msg;
 			$scope.noti = true;
 			window.setTimeout(function(){

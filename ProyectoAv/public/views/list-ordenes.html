@@ -52,8 +52,7 @@
 				<th>Acciones</th>
 			</tr>
 			<tr 
-			ng-repeat="orden in orders | filter: filter" 
-			ng-class="{'bgc-orange': orden.order.status == '1', 'bgc-blue': orden.order.status == '2'}">
+			ng-repeat="orden in orders | filter: filter">
 				<td>{{orden.order.id}}</td>
 				<td>{{orden.date_range | date: 'longDate'}}</td>
 				<td>{{orden.costumer_name}}</td>
@@ -61,6 +60,8 @@
 				<td>{{orden.event_address}}</td>
 				<td>{{orden.order.created_at}}</td>
 				<td>
+					<div class="box status" ng-class="{'bgc-yellow': orden.order.status == '1', 'bgc-green': orden.order.status == '2'}"></div>
+					<div class="box pay" ng-class="{'bgc-yellow': orden.order.pay == '1', 'bgc-green': orden.order.pay == '2'}"></div>
 					<span ng-if="orden.order.available_facture" class="icon-clipboard"></span>
 				</td>
 				<td>

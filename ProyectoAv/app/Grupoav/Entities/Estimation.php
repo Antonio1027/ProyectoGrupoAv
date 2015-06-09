@@ -22,7 +22,8 @@ class Estimation extends \Eloquent {
 						   "total",
 						   "advanced_payment",
 						   "balance",
-						   "discount"];
+						   "discount",
+						   ];
 
 	public function types(){
 		return $this->belongsToMany('Grupoav\Entities\Type')->withPivot('quantity')->withTimestamps();

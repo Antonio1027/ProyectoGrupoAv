@@ -323,8 +323,31 @@
 
 		function updateStatus(data){
 			var deferred = $q.defer();
-			console.log(data);
 			$http.put('updateStatus',data)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
+		function updatePay(data){
+			var deferred = $q.defer();
+			$http.put('updatePay',data)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
+		function updateObservations(data){
+			var deferred = $q.defer();
+			$http.put('updateObservations',data)
 			.success(function(data){
 				deferred.resolve(data);
 			})
@@ -361,7 +384,9 @@
 			getOrders: getOrders,
 			getOrder: getOrder,
 			putFacture: putFacture,
-			updateStatus: updateStatus
+			updateStatus: updateStatus,
+			updatePay: updatePay,
+			updateObservations: updateObservations
 		};
 
 	}])

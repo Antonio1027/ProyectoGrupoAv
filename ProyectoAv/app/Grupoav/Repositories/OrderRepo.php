@@ -10,6 +10,7 @@ class OrderRepo extends \Eloquent
 		$order = new Order();
 		$order->estimation_id = $estimation_id;
 		$order->status = 0;
+		$order->pay = 0;
 		return $order;
 	}
 
