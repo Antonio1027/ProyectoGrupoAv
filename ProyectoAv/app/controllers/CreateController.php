@@ -12,6 +12,8 @@ use Grupoav\Managers\NewCategory;
 use Grupoav\Managers\NewProduct;
 use Grupoav\Managers\NewEstimation;
 use Grupoav\Managers\NewType;
+use Grupoav\Managers\NewPayment;
+
 
 class CreateController extends BaseController
 {
@@ -103,7 +105,19 @@ class CreateController extends BaseController
 				return Response::json(array('errors'=>array('msg'=>array('Ya ha sido elaborada una orden con este presupuesto'))),422);
 		}
 		return Response::json(array('errors'=>array('msg'=>array('No se encontraron resultados'))),422);
-	}		
+	}
+
+	public function newPayment(){
+		$data = Input::all();		
+		$payment = $this->orderRepo->newPayment((int)$data['order_id']);
+
+		$manager = new NewPayment($payment,$data);
+
+		if($manager->save())
+			return Response::json(array('success'=>array('msg'=>array('Ha registrsdo un pago correctamente'))),201);
+		else 
+			return Response::json(array('errors' => $manager->getErrors()),422);
+	}
 }
 
 ?>

@@ -36,6 +36,7 @@ Route::post('newProduct',array('as'=>'newProduct','uses'=>'CreateController@newP
 Route::post('newEstimation',array('as'=>'newEstimation','uses'=>'CreateController@newEstimation'));
 Route::post('newType',array('as'=>'newType','uses'=>'CreateController@newType'));
 Route::post('confirmestimation',array('as'=>'confirmestimation','uses'=>'CreateController@confirmEstimation'));
+Route::post('newPayment',array('as'=>'newPayment','uses'=>'CreateController@newPayment'));
 //update fields
 Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
 Route::put('updateCategory',array('as'=>'updateCategory','uses'=>'UpdateController@updateCategory'));
