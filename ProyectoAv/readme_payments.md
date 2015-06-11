@@ -1,7 +1,7 @@
 ## Control de pagos
 
 ### Lista de pagos
-Solicitud [GET] /payments
+Solicitud [GET] /getPayments
 
 Respuesta
 
@@ -27,7 +27,7 @@ Respuesta
 	}
 
 ### Nuevo pago
-Solicitud [POST] /newpayment
+Solicitud [POST] /newPayment
 
 Send data	
 	{
@@ -49,10 +49,7 @@ Respuesta
 	}
 
 ### Obtener un pago
-Solicitud [GET] / getPayment
-	{
-		"id":1
-	}
+Solicitud [GET] /getPayment/{id}
 
 Respuesta
 	
@@ -85,7 +82,6 @@ Respuesta
 
 ###Eliminar pago
 Solicitud [DELETE] /deletePayment/{id}
-
 Respuesta
 	
 	Success
@@ -103,7 +99,7 @@ Respuesta
 	}
 
 ###Actualizar pago
-Solicitud [PUT]	/updatePaymet
+Solicitud [PUT]	/updatePaymet/{id}
 
 Send data
 	{		

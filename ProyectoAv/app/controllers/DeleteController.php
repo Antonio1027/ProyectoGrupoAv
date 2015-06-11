@@ -5,6 +5,7 @@ use Grupoav\Repositories\CategoryRepo;
 use Grupoav\Repositories\ProductRepo;
 use Grupoav\Repositories\EstimationRepo;
 use Grupoav\Repositories\TypeRepo;
+use Grupoav\Repositories\OrderRepo;
 
 class DeleteController extends BaseController
 {
@@ -12,13 +13,14 @@ class DeleteController extends BaseController
 
 	function __construct(UserRepo $userRepo, CategoryRepo $categoryRepo,
 						 ProductRepo $productRepo, EstimationRepo $estimationRepo,
-						 TypeRepo $typeRepo)
+						 TypeRepo $typeRepo, OrderRepo $orderRepo)
 	{
 		$this->userRepo = $userRepo;	
 		$this->categoryRepo = $categoryRepo;	
 		$this->productRepo = $productRepo;	
 		$this->estimationRepo = $estimationRepo;		
 		$this->typeRepo = $typeRepo;	
+		$this->orderRepo = $orderRepo;
 	}
 
 	public function deleteUser($idUser){		
@@ -54,6 +56,12 @@ class DeleteController extends BaseController
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el tipo de producto'))),422);//solicitud no procesada
 	}
 
+	public function deletePayment($id){
+		$payment = $this->orderRepo->findPayment($id);
+		if($payment->delete())
+			return Response::json(array('success' => array('msg'=>array('Has eliminado un pago'))),200);//solicitud procesada			
+		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el pago'))),422);//solicitud no procesada
+	}
 }
 
 ?>

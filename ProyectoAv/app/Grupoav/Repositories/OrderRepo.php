@@ -36,6 +36,14 @@ class OrderRepo extends \Eloquent
 		return $payment;	
 	}
 
+	public function allPayments(){
+		return Payment::with('order')->get();
+	}
+
+	public function findPayment($id){
+		return Payment::find($id);
+	}
+
 }
 
 ?>
