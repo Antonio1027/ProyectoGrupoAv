@@ -55,6 +55,7 @@ class EstimationsTableSeeder extends Seeder {
 					Payment::create([
 						"amount" => $faker->randomFloat($nbMaxDecimals = 2, $min = 1000.00, $max = 12000.00),
 						"description" => $faker->sentence($nbWords = 6),
+						"number" => $key + 1,
 						"order_id" => $order->id
 					]);
 				}

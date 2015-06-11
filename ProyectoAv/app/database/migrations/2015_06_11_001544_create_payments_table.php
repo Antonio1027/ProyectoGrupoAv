@@ -17,6 +17,7 @@ class CreatePaymentsTable extends Migration {
 			$table->increments('id');
 			$table->float('amount')->unsigned();
 			$table->string('description');
+			$table->integer('number')->unsigned();
 			$table->integer('order_id')->unsigned()->index();
 			$table->foreign('order_id')->references('id')->on('orders');
 			
