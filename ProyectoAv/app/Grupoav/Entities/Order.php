@@ -10,4 +10,8 @@ class Order extends \Eloquent {
 	public function estimation(){
 		return $this->belongsTo('Grupoav\Entities\Estimation');
 	}
+
+	public function payments(){
+		return $this->hasMany('Grupoav\Entities\Payment');
+	}
 }
