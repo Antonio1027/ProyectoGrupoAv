@@ -10,6 +10,7 @@
 			<span class="product-name">{{category.name}} - {{product.name}} - {{type.name}}</span>
 			<div class="product-controls">
 				<input type="text" class="product-input" ng-model="type.quantity" ng-required="!product.show">
+				- {{type.reserve}} -
 
 				<span class="product-price">{{product.rental_price | currency}} </span>
 				<span class="product-remove icon icon-minus" ng-click="type.show = !type.show"></span>

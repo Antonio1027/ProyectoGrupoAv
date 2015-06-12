@@ -488,13 +488,16 @@
 
 		$scope.comfirmOrder = function(id){
 			var data = {id: id};
-			AVService.comfirmOrder(data)
-				.then(function(data){
-					setnotification(data.success);
-				},
-				function(error){
-					setnotification(error.errors);
-				})
+			if(window.confirm('¿Esta seguro de generar la orden?')){
+				AVService.comfirmOrder(data)
+					.then(function(data){
+						// setnotification(data.success);
+						$location.url('/ordenservicio/'+data.success.id);
+					},
+					function(error){
+						setnotification(error.errors);
+					})
+			}
 		}
 
 		function setnotification(msg){
