@@ -1,4 +1,4 @@
-<section class="container-main">
+<section class="container-main admin-product">
 		<div class="container-title">
 			<div class="wrap-content">
 				<h1 class="title">Administrar productos</h1>
@@ -54,6 +54,14 @@
 						<input type="text" ng-model="datatype.rental_price" ng-pattern="regex_float" required>
 					</div>
 					<div class="input-group">
+						<span>En existencia</span>
+						<input type="text" ng-model="datatype.reserve" ng-pattern="regex_number" required>
+					</div>
+					<div class="input-group">
+						<span>Total</span>
+						<input type="text" ng-model="datatype.total" ng-pattern="regex_number" required>
+					</div>
+					<div class="input-group">
 						<span>Category</span>
 						<select name="category" ng-model="datatype.category_id" ng-change="searchListProduct()" ng-options="category.name for category in CPT track by category.id" required>
 						</select>
@@ -80,6 +88,14 @@
 					<div class="input-group">
 						<span>Precio</span>
 						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].rental_price" ng-pattern="regex_float" required>
+					</div>
+					<div class="input-group">
+						<span>En existencia</span>
+						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].reserve" ng-pattern="regex_number" required>
+					</div>
+					<div class="input-group">
+						<span>Total</span>
+						<input type="text" ng-model="CPT[indexcategory].listproducts[indexproduct].types[indextype].total" ng-pattern="regex_number" required>
 					</div>
 					<button type="submit" class="icon btn-submit" ng-if="formtypeedit.$valid"><span class="icon icon-floppy-disk"></span></button>
 				</form>
