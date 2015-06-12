@@ -49,6 +49,8 @@
 				<th>Domicilio de evento</th>
 				<th>Fecha de elaboracion</th>
 				<td></td>
+				<td></td>
+				<td></td>
 				<th>Acciones</th>
 			</tr>
 			<tr 
@@ -61,7 +63,11 @@
 				<td>{{orden.order.created_at}}</td>
 				<td>
 					<div class="box status" ng-class="{'bgc-yellow': orden.order.status == '1', 'bgc-green': orden.order.status == '2'}"></div>
+				</td>
+				<td>
 					<div class="box pay" ng-class="{'bgc-yellow': orden.order.pay == '1', 'bgc-green': orden.order.pay == '2'}"></div>
+				</td>
+				<td>
 					<span ng-if="orden.order.available_facture" class="icon-clipboard"></span>
 				</td>
 				<td>
