@@ -108,7 +108,7 @@ class OrderController extends BaseController
 	}
 
 	public function getPayment($id){
-		$payment = $this->orderRepo->findPayment($id);
+		$payment = $this->orderRepo->findPayment($id);						
 		if($payment)
 			return Response::json(array('data' => $payment),200);
 		else

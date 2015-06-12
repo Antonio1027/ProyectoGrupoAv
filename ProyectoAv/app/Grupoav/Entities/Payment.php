@@ -1,6 +1,6 @@
 <?php
-
 namespace Grupoav\Entities;
+use DateTime;
 
 class Payment extends \Eloquent {
 	protected $fillable = ['amount',
@@ -13,5 +13,11 @@ class Payment extends \Eloquent {
 
 	public function countPayments($id){
 		return $this->where('order_id','=',$id)->count();
+	}
+
+	public function getCreatedAtAttribute($createdAt)
+	{						   
+	   $date = new DateTime($createdAt);
+	   return $date->format('Y-m-d');
 	}
 }
