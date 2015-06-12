@@ -15,7 +15,7 @@ class OrderController extends BaseController
 		if($orders->count())
 			return Response::json(array('data' => $orders),200);
 		else
-			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
 	public function getOrder($id){
@@ -23,7 +23,7 @@ class OrderController extends BaseController
 		if($order)
 			return Response::json(array('data' => $order),200);
 		else
-			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
 	public function updateFacture(){
@@ -31,11 +31,11 @@ class OrderController extends BaseController
 		if($order){
 			$order->available_facture = Input::get('facture');
 			if($order->save())
-				return Response::json(array('success' => array('msg' => 'Orden actualizada')),200);	
+				return Response::json(array('success' => array('msg' => array('Orden actualizada'))),200);	
 			else
-				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);	
+				return Response::json(array('errors' => array('msg' => array('Ocurrio un error'))),422);	
 		}
-		return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+		return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
 	public function printOrder($id){
@@ -45,7 +45,7 @@ class OrderController extends BaseController
 			return PDF::load($html, 'A4', 'portrait')->show();
 		}
 		else
-			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);		
+			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);		
 	}
 
 	public function updateStatus(){
@@ -53,17 +53,17 @@ class OrderController extends BaseController
 		$order = $this->orderRepo->findOrder((int)$data['id']);		
 		if($order){
 			if($order->status > 2 || $order->status < 0){
-				return Response::json(array('errors' => array('msg' => 'Error al actualizar')),422);
+				return Response::json(array('errors' => array('msg' => array('Error al actualizar'))),422);
 			}
 
 			$order->status =  $order->status + 1;
 			if($order->save())
-				return Response::json(array('success' => array('msg' => 'Orden actualizada','status' => $order->status)),200);	
+				return Response::json(array('success' => array('msg' => array('Orden actualizada','status' => $order->status))),200);	
 			else
-				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);				
+				return Response::json(array('errors' => array('msg' => array('Ocurrio un error'))),422);				
 		}
 		else
-			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
 	public function updatePay(){
@@ -71,17 +71,17 @@ class OrderController extends BaseController
 		$order = $this->orderRepo->findOrder((int)$data['id']);		
 		if($order){
 			if($order->pay > 2 || $order->pay < 0){
-				return Response::json(array('errors' => array('msg' => 'Error al actualizar')),422);
+				return Response::json(array('errors' => array('msg' => array('Error al actualizar'))),422);
 			}
 
 			$order->pay =  $order->pay + 1;
 			if($order->save())
-				return Response::json(array('success' => array('msg' => 'Orden actualizada','pay' => $order->pay)),200);	
+				return Response::json(array('success' => array('msg' => array('Orden actualizada'),'pay' => $order->pay)),200);	
 			else
-				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);				
+				return Response::json(array('errors' => array('msg' => array('Ocurrio un error'))),422);				
 		}
 		else
-			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
 	public function updateObservations(){
@@ -91,12 +91,12 @@ class OrderController extends BaseController
 		if($order){
 			$order->observations =  $data['observations'];
 			if($order->save())
-				return Response::json(array('success' => array('msg' => 'Orden actualizada','observations' => $order->observations)),200);	
+				return Response::json(array('success' => array('msg' => array('Orden actualizada'),'observations' => $order->observations)),200);	
 			else
-				return Response::json(array('errors' => array('msg' => 'Ocurrio un error')),422);				
+				return Response::json(array('errors' => array('msg' => array('Ocurrio un error'))),422);				
 		}
 		else
-			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
 	public function getPayments(){
@@ -104,7 +104,7 @@ class OrderController extends BaseController
 		if($payments->count())
 			return Response::json(array('data' => $payments),200);
 		else
-			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
 	public function getPayment($id){
@@ -112,7 +112,7 @@ class OrderController extends BaseController
 		if($payment)
 			return Response::json(array('data' => $payment),200);
 		else
-			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);	
+			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);	
 	}	
 }
 

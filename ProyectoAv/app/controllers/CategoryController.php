@@ -14,8 +14,10 @@ class CategoryController extends BaseController
 	}
 
 	public function categories(){
-		$categories = $this->categoryRepo->allCategories();		
-		return Response::json($categories,200);
+		$categories = $this->categoryRepo->allCategories();	
+		if($categories->count())
+			return Response::json($categories,200);
+		return Response::json(array('errors' => array('msg'=>array('No se encotraron resultados'))),422);//solicitud no procesada
 	}		
 	public function getupdateEstimation($id){
 		$categories = $this->categoryRepo->allCategories();
@@ -40,7 +42,7 @@ class CategoryController extends BaseController
 
 			return Response::json($data,200);
 		}
-		return 	Response::json(array('errors'=>array('msg'=>'Presupuesto no encontrado')),422);
+		return Response::json(array('errors'=>array('msg'=>array('Presupuesto no encontrado'))),422);
 	}
 }
 
