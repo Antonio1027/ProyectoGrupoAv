@@ -20,10 +20,12 @@ Route::get('getCPT',array('as'=>'categories','uses'=>'CategoryController@categor
 Route::get('getUsers',array('as'=>'getUsers','uses'=>'UserController@getUsers'));
 Route::get('getEstimations',array('as'=>'getEstimations','uses'=>'EstimationController@getEstimations'));
 Route::get('getOrders',array('as'=>'getOrders','uses'=>'OrderController@getOrders'));
+Route::get('getPayments',array('as'=>'getPayments','uses'=>'OrderController@getPayments'));
 Route::get('getListProduct/{idcategory}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));
 Route::get('getEstimation/{idestimation}',array('as'=>'getEstimation','uses'=>'EstimationController@getEstimation'));
 Route::get('getOrder/{idorder}',array('as'=>'getOrder','uses'=>'OrderController@getOrder'));
 Route::get('getupdateEstimation/{idestimation}',array('as'=>'getupdateEstimation','uses'=>'CategoryController@getupdateEstimation'));
+Route::get('getPayment/{id}',array('as'=>'getPayment','uses'=>'OrderController@getPayment'));
 
 Route::get('printEstimation/{idestimation}',array('as'=>'printEstimation','uses'=>'EstimationController@printEstimation'));
 Route::get('printOrder/{idorder}',array('as'=>'printOrder','uses'=>'OrderController@printOrder'));
@@ -36,6 +38,7 @@ Route::post('newProduct',array('as'=>'newProduct','uses'=>'CreateController@newP
 Route::post('newEstimation',array('as'=>'newEstimation','uses'=>'CreateController@newEstimation'));
 Route::post('newType',array('as'=>'newType','uses'=>'CreateController@newType'));
 Route::post('confirmestimation',array('as'=>'confirmestimation','uses'=>'CreateController@confirmEstimation'));
+Route::post('newPayment',array('as'=>'newPayment','uses'=>'CreateController@newPayment'));
 //update fields
 Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
 Route::put('updateCategory',array('as'=>'updateCategory','uses'=>'UpdateController@updateCategory'));
@@ -46,6 +49,7 @@ Route::put('updateFacture',array('as'=>'updateFacture','uses'=>'OrderController@
 Route::put('updateStatus',array('as'=>'updateStatus','uses'=>'OrderController@updateStatus'));
 Route::put('updatePay',array('as'=>'updatePay','uses'=>'OrderController@updatePay'));
 Route::put('updateObservations',array('as'=>'updateObservations','uses'=>'OrderController@updateObservations'));
+Route::put('updatePayment/{id}',array('as'=>'updatePayment','uses'=>'UpdateController@updatePayment'));
 
 //delete fields
 Route::delete('deleteUser/{idUser}',array('as'=>'deleteUser','uses'=>'DeleteController@deleteUser'));
@@ -53,6 +57,7 @@ Route::delete('deleteCategory/{idCategory}',array('as'=>'deleteCategory','uses'=
 Route::delete('deleteProduct/{idProduct}',array('as'=>'deleteProduct','uses'=>'DeleteController@deleteProduct'));
 Route::delete('deleteEstimation/{idEstimation}',array('as'=>'deleteEstimation','uses'=>'DeleteController@deleteEstimation'));
 Route::delete('deleteType/{idType}',array('as'=>'deleteType','uses'=>'DeleteController@deleteType'));
+Route::delete('deletePayment/{id}',array('as'=>'deletePayment','uses'=>'DeleteController@deletePayment'));
 
 
 // Route::get('getListProduct/{id}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));

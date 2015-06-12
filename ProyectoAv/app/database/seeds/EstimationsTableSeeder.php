@@ -2,6 +2,8 @@
 
 use Grupoav\Entities\Estimation;
 use Grupoav\Entities\Order;
+use Grupoav\Entities\Payment;
+
 use Faker\Factory as Faker;
 
 class EstimationsTableSeeder extends Seeder {
@@ -44,11 +46,19 @@ class EstimationsTableSeeder extends Seeder {
 			}
 
 			if($key % 2){
-				Order::create([
+				$order = Order::create([
 						"available_facture" => $faker->randomElement([1,0]),
 						"status" => $faker->randomElement([0,1,2]),
 						"estimation_id" => $estimation->id
 					]);
+				foreach (range(1, $faker->numberBetween($min = 2, $max = 4)) as $key => $value) {
+					Payment::create([
+						"amount" => $faker->randomFloat($nbMaxDecimals = 2, $min = 1000.00, $max = 12000.00),
+						"description" => $faker->sentence($nbWords = 6),
+						"number" => $key + 1,
+						"order_id" => $order->id
+					]);
+				}
 			}			
 		}
 	}

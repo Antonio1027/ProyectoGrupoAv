@@ -5,28 +5,32 @@ use Grupoav\Repositories\CategoryRepo;
 use Grupoav\Repositories\ProductRepo;
 use Grupoav\Repositories\EstimationRepo;
 use Grupoav\Repositories\TypeRepo;
+use Grupoav\Repositories\OrderRepo;
 
 use Grupoav\Managers\UpdateUser;
 use Grupoav\Managers\NewCategory;
 use Grupoav\Managers\NewProduct;
 use Grupoav\Managers\NewType;
 use Grupoav\Managers\NewEstimation;
+use Grupoav\Managers\NewPayment;
+
 // use Grupoav\Managers\UpdateEstimation;
 
 class UpdateController extends BaseController
 {
 	
-	protected $userRepo,$categoryRepo,$productRepo,$estimationRepo,$typeRepo;
+	protected $userRepo,$categoryRepo,$productRepo,$estimationRepo,$typeRepo,$orderRepo;
 
 	function __construct(UserRepo $userRepo, CategoryRepo $categoryRepo,
 						 ProductRepo $productRepo, EstimationRepo $estimationRepo,
-						 TypeRepo $typeRepo)
+						 TypeRepo $typeRepo, OrderRepo $orderRepo)
 	{
 		$this->userRepo = $userRepo;	
 		$this->categoryRepo = $categoryRepo;	
 		$this->productRepo = $productRepo;	
 		$this->estimationRepo = $estimationRepo;		
 		$this->typeRepo = $typeRepo;	
+		$this->orderRepo = $orderRepo;
 	}
 
 	public function updateUser(){
@@ -121,6 +125,16 @@ class UpdateController extends BaseController
 			return Response::json(array('errors' => array('msg'=>array('Ocurrio un error intente más tarde'))),422);//solicitud no procesada
 		}
 		
+	}
+	public function updatePayment($id){
+		$data = Input::all();
+		$payment = $this->orderRepo->findPayment($id);
+		$data['order_id'] = $payment->order_id;
+		$manager = new NewPayment($payment,$data);
+		if($manager->save())
+			return Response::json(array('success' => array('msg'=>array('Has actualizado el pago correctamente'),'data' => $manager->entity)),201);//recurso creado
+		else
+			return Response::json(array('errors' => $manager->getErrors()),422);//solicitud no procesada		
 	}
 }
 

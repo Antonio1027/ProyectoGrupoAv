@@ -60,7 +60,7 @@
 				<td>{{orden.costumer_name}}</td>
 				<td>{{orden.type}}</td>
 				<td>{{orden.event_address}}</td>
-				<td>{{orden.order.created_at}}</td>
+				<td>{{orden.order.created_at | date: 'longDate'}}</td>
 				<td>
 					<div class="box status" ng-class="{'bgc-yellow': orden.order.status == '1', 'bgc-green': orden.order.status == '2'}"></div>
 				</td>

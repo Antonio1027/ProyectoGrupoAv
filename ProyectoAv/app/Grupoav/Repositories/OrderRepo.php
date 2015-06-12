@@ -3,6 +3,7 @@
 namespace Grupoav\Repositories;
 use Grupoav\Entities\Order;
 use Grupoav\Entities\Estimation;
+use Grupoav\Entities\Payment;
 
 class OrderRepo extends \Eloquent
 {
@@ -27,6 +28,22 @@ class OrderRepo extends \Eloquent
 					->where('id','=',$id)
 					->get();
 	}
+
+	public function newPayment($order_id){
+		$payment = new Payment();	
+		$payment->number = $payment->countPayments($order_id) + 1;
+		$payment->order_id = $order_id;
+		return $payment;	
+	}
+
+	public function allPayments(){
+		return Payment::with('order')->get();
+	}
+
+	public function findPayment($id){
+		return Payment::find($id);
+	}
+
 }
 
 ?>

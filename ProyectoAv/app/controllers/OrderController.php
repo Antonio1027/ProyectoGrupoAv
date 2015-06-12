@@ -98,6 +98,22 @@ class OrderController extends BaseController
 		else
 			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
 	}
+
+	public function getPayments(){
+		$payments = $this->orderRepo->allPayments();
+		if($payments->count())
+			return Response::json(array('data' => $payments),200);
+		else
+			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);
+	}
+
+	public function getPayment($id){
+		$payment = $this->orderRepo->findPayment($id);						
+		if($payment)
+			return Response::json(array('data' => $payment),200);
+		else
+			return Response::json(array('errors' => array('msg' => 'No se encontraron resultados')),422);	
+	}	
 }
 
 ?>

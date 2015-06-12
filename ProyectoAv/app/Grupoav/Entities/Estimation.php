@@ -1,7 +1,7 @@
 <?php
 
 namespace Grupoav\Entities;
-
+use DateTime;
 
 
 class Estimation extends \Eloquent {
@@ -42,4 +42,9 @@ class Estimation extends \Eloquent {
 		return parent::delete();
 	}
 
+	public function getCreatedAtAttribute($createdAt)
+	{						   	   
+	   $date = new DateTime($createdAt);
+	   return $date->format('Y-m-d');
+	}
 }
