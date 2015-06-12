@@ -1,0 +1,46 @@
+<section class="container-main">
+	<div class="container-title">
+		<div class="wrap-content">
+			<h1 class="title">Lista de pagos</h1>
+		</div>
+	</div>
+
+	<div class="container-content wrap-content">
+		<div class="search-controls notprint">
+			<div class="search-input">
+				<span class="icon icon-search"></span>
+				<input type="text" ng-model="filter" placeholder="Buscar">
+			</div>			
+
+			<div class="search-input" title="Fecha de pago">
+				<span class="icon icon-calendar"></span>
+				<input type="date" ng-model="filterdate" ng-change="filterDatePayment()" >
+			</div>
+
+			<button class="btn notprint" onclick="window.print();"> Imprimir</button>
+		</div>
+		<table class="table">
+			<tr>
+				<th>No. Anticipo</th>
+				<th>Cantidad</th>
+				<th>Descripcion</th>
+				<th>Fecha del pago</th>
+				<th class="notprint">Acciones</th>
+			</tr>
+			<tr 
+			ng-repeat="payment in payments | filter: filter">
+				<td>{{payment.number}}</td>
+				<td>{{payment.amount}}</td>
+				<td>{{payment.description}}</td>
+				<td>{{payment.created_at | date:'fullDate'}} </td>
+				
+				<td class="notprint">
+					<a href="#/ordenservicio/{{payment.order.id}}"><span class="icon icon-binoculars"></span></a>
+					<!-- <a href="#"><span class="icon icon-pencil"></span></a> -->
+				</td>
+			</tr>
+		</table>
+	</div>
+</section>
+
+<notifications></notifications>

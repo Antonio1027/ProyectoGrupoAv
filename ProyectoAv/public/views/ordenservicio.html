@@ -157,9 +157,39 @@
 				<span class="icon icon-redo2" ng-click="nextPay()" ng-if="order.pay != 2"></span>
 			</div>
 		</div>
+		<br><br>
+		<div>
+			<div class="input-group">
+				<span>Nuevo pago</span>
+				<input type="text" ng-model="newpayment.amount" ng-pattern="regex_float">
+			</div>
+			<div class="input-group">
+				<span>Descripcion al pago</span>
+				<input type="text" ng-model="newpayment.description" ng-pattern="regex_float">
+			</div>
+			<span class="icon icon-redo2" ng-click="savePayment()"></span>
+		</div>
 	</div>
 
 	<div class="container-content wrap-content text-center">
+		<table class="table-payments">
+			<tr>
+				<th width="150">Numero de anticipo</th>
+				<th width="140">Cantidad</th>
+				<th width="220">Fecha</th>
+				<!-- <th></th> -->
+			</tr>
+			<tr ng-repeat="payment in order.payments" height="30" title="{{payment.description}}">
+				<td> {{$index + 1 }} anticipo</td>
+				<td> {{payment.amount | currency}} </td>
+				<td> {{payment.created_at | date:'fullDate'}} </td>
+				<!-- <td>
+					<span class="icon icon-pencil"></span>
+					<span class="icon icon-minus"></span>
+				</td> -->
+			</tr>
+		</table>
+
 		<h3>Observaciones</h3>
 		<textarea name="" id="" cols="50" rows="10" ng-model="order.observations">
 		</textarea>

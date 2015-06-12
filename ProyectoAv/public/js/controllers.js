@@ -2,11 +2,33 @@
 	angular.module('controllers', [])
 	.controller('ordenServicioCtrl', ['$scope', '$routeParams', 'AVService', function ($scope, $routeParams, AVService) {
 		$scope.order = [];
+		$scope.newpayment = {};
+		getOrder();
+
+		$scope.savePayment = function(){
+			$scope.newpayment.order_id = $scope.order.id;
+			if( ! $scope.newpayment.amount){
+				alert("Necesita introducir un monto para el nuevo pago");
+				return;
+			}
+			if( window.confirm('Esta seguro de agregar un nuevo pago por la cantidad de $' + $scope.newpayment.amount) ){
+				AVService.savePayment($scope.newpayment)
+					.then(function(data){
+						$scope.newpayment = {};
+						getOrder();
+						setnotification(data.success);
+					},
+					function(error){
+						setnotification(error.errors);
+					})
+			}
+		}
 
 		$scope.saveObservations = function(){
 			var data = {id: $routeParams.orden_id, observations:$scope.order.observations}
 			AVService.updateObservations(data)
 				.then(function(data){
+					console.log(data);
 					$scope.order.observations = data.success.observations;
 					setnotification(data.success);
 				},
@@ -65,13 +87,15 @@
 				})
 		}
 
-		AVService.getOrder($routeParams.orden_id)
-			.then(function(data){
-				$scope.order = data.data[0];
-			},
-			function(error){
-				setnotification(error.errors);
-			})
+		function getOrder(){
+			AVService.getOrder($routeParams.orden_id)
+				.then(function(data){
+					$scope.order = data.data[0];
+				},
+				function(error){
+					setnotification(error.errors);
+				})
+		}
 
 		function setnotification(msg){
 			console.log(msg);
@@ -82,6 +106,54 @@
 			},3000);
 		}
 		
+	}])
+	.controller('ListPagosCtrl', ['$scope', '$filter', 'AVService', function ($scope, $filter, AVService) {
+		$scope.payments = [];
+		$scope.paymentsresp = [];
+		getPayments();
+
+		function getPayments(){
+			AVService.getPayments()
+				.then(function(data){
+					$scope.payments = data.data;
+					$scope.paymentsresp = data.data;
+
+				},
+				function(error){
+					setnotification(error.errors);
+				});
+		}
+
+		$scope.filterDatePayment = function(){
+			var date = $filter('date')($scope.filterdate, 'yyyy') + '-' + $filter('date')($scope.filterdate, 'MM') +  '-' + $filter('date')($scope.filterdate, 'dd');
+			$scope.payments = $scope.paymentsresp.filter(function(e, i){
+				if(date === e.created_at)
+					return e;
+			})
+		}
+
+		$scope.filterDate = function(element){
+			var date = [];
+			if($scope.filterdate.datestart){
+				date.start = Date.parse($scope.filterdate.datestart);
+				if($scope.filterdate.dateend)
+					date.end = Date.parse($scope.filterdate.dateend) + 86400000;
+				else
+					date.end = Date.parse($scope.filterdate.datestart) + 86400000;
+				$scope.orders = $scope.ordersfilter.filter(function(element){
+					if( Date.parse(element.date_range) >= date.start && Date.parse(element.date_event) < date.end )
+						return element;
+				});
+			}
+		}
+
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}
 	}])
 	.controller('ListOrdenesCtrl', ['$scope', 'AVService', function ($scope, AVService) {
 		$scope.orders = [];
@@ -97,6 +169,7 @@
 		function getOrders(){
 			AVService.getOrders()
 				.then(function(data){
+					console.log(data.data[0]);
 					angular.forEach(data.data, function(e, i){
 						e.order.available_facture = e.order.available_facture == 1 ? true : false;
 					})

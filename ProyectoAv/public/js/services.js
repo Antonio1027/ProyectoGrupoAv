@@ -357,6 +357,30 @@
 			return deferred.promise;
 		}
 
+		function savePayment(data){
+			var deferred = $q.defer();
+			$http.post('newPayment',data)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
+		function getPayments(){
+			var deferred = $q.defer();
+			$http.get('getPayments')
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
 		return {
 			getCPT: getCPT,
 			postUser: postUser,
@@ -386,7 +410,9 @@
 			putFacture: putFacture,
 			updateStatus: updateStatus,
 			updatePay: updatePay,
-			updateObservations: updateObservations
+			updateObservations: updateObservations,
+			savePayment: savePayment,
+			getPayments: getPayments
 		};
 
 	}])

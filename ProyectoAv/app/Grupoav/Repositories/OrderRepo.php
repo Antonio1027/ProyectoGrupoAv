@@ -24,7 +24,7 @@ class OrderRepo extends \Eloquent
 	}
 
 	public function findOrderWithTypes($id){
-		return Order::with('estimation.types.product.category')
+		return Order::with('estimation.types.product.category','payments')
 					->where('id','=',$id)
 					->get();
 	}

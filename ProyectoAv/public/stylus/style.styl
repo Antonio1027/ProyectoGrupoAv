@@ -133,7 +133,23 @@ a
 	padding 0 0.5em
 	border-radius 5px
 	color white
-	
+.input-group
+		background azul-gris
+		padding-left 0.5em
+		display inline-block
+		color white
+		font-weight 100
+		border-radius 7px
+		overflow hidden
+		height 1.4em
+		line-height 1.4em
+		input
+			width 13em
+			border-left 0
+			border-radius 0 7px 7px 0
+			text-align center
+			color black
+			transition 0.5s background
 .container-main
 	margin-top 3.5em
 	
@@ -307,6 +323,14 @@ select
 			padding 0.5em
 			span
 				font-size 1.5em
+.table-payments
+	margin 0 auto
+	th
+		background azul-gris
+		color white
+	tr
+		&:nth-child(even)
+			background gris-fondo-oscuro
 	
 .rightcol 
 	padding 1em
@@ -427,3 +451,8 @@ select
 	margin 0 auto
 // Animations
 	
+@media print
+	header
+		display none
+	.notprint
+		display none

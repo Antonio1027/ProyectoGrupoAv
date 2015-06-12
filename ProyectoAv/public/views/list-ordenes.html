@@ -12,15 +12,16 @@
 				<input type="text" ng-model="filter.costumer_name" placeholder="Buscar por nombre">
 			</div>			
 
-			<div class="search-input">
+			<div class="search-input" title="Fecha para rango inicial">
 				<span class="icon icon-calendar"></span>
 				<input type="date" ng-model="filterdate.datestart" ng-change="filterDate()" placeholder="Fecha inicial">
 			</div>
 
-			<div class="search-input">
+			<div class="search-input" title="Fecha para rango final">
 				<span class="icon icon-calendar"></span>
 				<input type="date" ng-model="filterdate.dateend" ng-change="filterDate()" placeholder="Fecha final">
 			</div>
+
 
 			<select name="" id="" ng-model="filter.order.status">
 				<option value="">Seleccione una opcion</option>
@@ -29,7 +30,6 @@
 				<option value="2">Recibido</option>
 			</select>
 
-			<br>
 
 			<span>Factura</span>
 			<div class="content-checkbox">

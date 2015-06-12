@@ -23,6 +23,10 @@
 			templateUrl: 'views/list-ordenes.html',
 			controller: 'ListOrdenesCtrl'
 		})
+		.when('/pagos', {
+			templateUrl: 'views/list-pagos.html',
+			controller: 'ListPagosCtrl'
+		})
 		.when('/presupuestos', {
 			templateUrl: 'views/list-presupuestos.html',
 			controller: 'ListPresupuestosCtrl'
