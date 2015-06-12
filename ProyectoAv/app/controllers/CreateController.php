@@ -73,12 +73,52 @@ class CreateController extends BaseController
 			return Response::json(array('errors'=>array('msg'=>array('Debe seleccionar al menos un producto'))),422);
 
 		$estimation = $this->estimationRepo->newEstimation();
-		$manager = new NewEstimation($estimation,$dataEstimation);	
+		$manager = new NewEstimation($estimation,$dataEstimation);			
 
-		if($manager->save() && $manager->entity->types()->sync($this->renameIndex($dataType))){			
-				return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'),'id' => $manager->entity->id)),201);//recurso creado	
+		if($this->validate($dataType))			
+			if($manager->save() && $manager->entity->types()->sync($this->renameIndex($dataType))){					
+				if($this->discountProducts($dataType))
+					return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'),'id' => $manager->entity->id)),201);//recurso creado	
+				else{				
+					return Response::json(array('errors'=>array('msg'=>array('Verfique que no sobrepase la reserva de un artículo'))),422);		
+				}
+			}
+			else		
+				return Response::json(array('errors' => $manager->getErrors()),422);
+		else
+			return Response::json(array('errors'=>array('msg'=>array('Verfique que no sobrepase la reserva de un artículo'))),422);			
+	}
+
+	public function discountProducts($types){
+		$status = true;
+		foreach ($types as $key => $data) {
+			$type = $this->typeRepo->findType($data['id']);			
+			$type->reserve = $type->reserve - (int)$data['quantity'];			
+			if($type->reserve > 0)
+				$type->save();			
+			else{
+				$status = false;
+				break;				
+			}
 		}
-		return Response::json(array('errors' => $manager->getErrors()),422);
+		return $status;
+	}
+
+	public function validate($types){		
+
+		$status = true;
+
+		foreach ($types as $key => $data) {
+			$type = $this->typeRepo->findType($data['id']);
+			$type->reserve = $type->reserve - (int)$data['quantity'];
+			if($type->reserve > 0)
+				$status = true;
+			else{
+				$status = false;
+				break;				
+			}
+		}
+		return $status;
 	}
 
 	public function newType(){
@@ -107,6 +147,7 @@ class CreateController extends BaseController
 		}
 		return Response::json(array('errors'=>array('msg'=>array('No se encontraron resultados'))),422);
 	}
+
 
 	public function newPayment(){
 		$data = Input::all();		
