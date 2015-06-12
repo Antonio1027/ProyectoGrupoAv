@@ -17,6 +17,8 @@ class CreateTypesTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->float('rental_price');
+			$table->integer('reserve')->unsigned();
+			$table->integer('total')->unsigned();
 			$table->integer('product_id')->unsigned()->index();
 			$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 			$table->timestamps();

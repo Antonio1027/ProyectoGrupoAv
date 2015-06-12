@@ -9,7 +9,9 @@ class Type extends \Eloquent {
 	
 	protected $fillable = [ 'name',
 							'rental_price',
-							'product_id'];
+							'product_id',							
+							'reserve',
+							'total'];
 
 	protected $dates = ['deleted_at'];
 	public function estimation(){

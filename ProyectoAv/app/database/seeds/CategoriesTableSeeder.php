@@ -68,7 +68,9 @@ class CategoriesTableSeeder extends Seeder {
 					Type::create([
 						'name'	=> $type,
 						'rental_price'	=> '1200',
-						'product_id'	=> $field_product->id
+						'product_id'	=> $field_product->id,						
+						'reserve' 		=> 300,
+						'total' 		=> 300
 					]);
 				}
 			}
