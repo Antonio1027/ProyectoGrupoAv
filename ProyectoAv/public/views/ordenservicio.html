@@ -157,7 +157,9 @@
 				<span class="icon icon-redo2" ng-click="nextPay()" ng-if="order.pay != 2"></span>
 			</div>
 		</div>
-		<br><br>
+	</div>
+
+	<div class="container-content wrap-content text-center">
 		<div>
 			<div class="input-group">
 				<span>Nuevo pago</span>
@@ -169,16 +171,15 @@
 			</div>
 			<span class="icon icon-redo2" ng-click="savePayment()"></span>
 		</div>
-	</div>
-
-	<div class="container-content wrap-content text-center">
 		<table class="table-payments">
+			<br>
 			<tr>
 				<th width="150">Numero de anticipo</th>
 				<th width="140">Cantidad</th>
 				<th width="220">Fecha</th>
 				<!-- <th></th> -->
 			</tr>
+			<br>
 			<tr ng-repeat="payment in order.payments" height="30" title="{{payment.description}}">
 				<td> {{$index + 1 }} anticipo</td>
 				<td> {{payment.amount | currency}} </td>

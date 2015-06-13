@@ -6,7 +6,7 @@
 		</div>
 
 		<div class="wrap-content container-content">
-			<div class="subtitle">Botonera</div>
+			<div class="subtitle">Acciones</div>
 			<div class="text-center">
 				<button class="btn" ng-click="tab = 1">Nueva categoria</button>
 				<button class="btn" ng-click="tab = 2">Nuevo producto</button>
@@ -126,7 +126,12 @@
 
 		<div class="container-content wrap-content">
 			<div class="subtitle">
-				Arbol de inventario
+				Articulos
+			</div>
+			<div>
+				<span class="title-label-type">(Precio)</span>
+				<span class="title-label-type">(En reserva)</span>
+				<span class="title-label-type">(Total)</span>
 			</div>
 			<ul class="tree-products">
 				<li class="category" ng-repeat="category in CPT">
@@ -145,7 +150,11 @@
 							<ul>
 								<li class="type" ng-repeat="type in product.types">
 									<div class="type-item">
-										{{type.name}}
+										<span class="label-type">{{type.name}}</span>
+										<span class="label-type">{{type.rental_price | currency}}</span>
+										<span class="label-type">{{type.reserve}}</span>
+										<span class="label-type">{{type.total}}</span>
+										
 										<span class="icon icon-minus" ng-click="removetype(category.id, product.id, type.id)"></span>
 										<span class="icon icon-pencil" ng-click="edittype(category.id, product.id, type.id)"></span>
 									</div>

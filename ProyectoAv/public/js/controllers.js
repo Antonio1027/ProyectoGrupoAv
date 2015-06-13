@@ -28,7 +28,6 @@
 			var data = {id: $routeParams.orden_id, observations:$scope.order.observations}
 			AVService.updateObservations(data)
 				.then(function(data){
-					console.log(data);
 					$scope.order.observations = data.success.observations;
 					setnotification(data.success);
 				},
@@ -98,7 +97,6 @@
 		}
 
 		function setnotification(msg){
-			console.log(msg);
 			$scope.msgnoti = msg;
 			$scope.noti = true;
 			window.setTimeout(function(){
@@ -132,21 +130,6 @@
 			})
 		}
 
-		$scope.filterDate = function(element){
-			var date = [];
-			if($scope.filterdate.datestart){
-				date.start = Date.parse($scope.filterdate.datestart);
-				if($scope.filterdate.dateend)
-					date.end = Date.parse($scope.filterdate.dateend) + 86400000;
-				else
-					date.end = Date.parse($scope.filterdate.datestart) + 86400000;
-				$scope.orders = $scope.ordersfilter.filter(function(element){
-					if( Date.parse(element.date_range) >= date.start && Date.parse(element.date_event) < date.end )
-						return element;
-				});
-			}
-		}
-
 		function setnotification(msg){
 			$scope.msgnoti = msg;
 			$scope.noti = true;
@@ -155,6 +138,7 @@
 			},3000);
 		}
 	}])
+
 	.controller('ListOrdenesCtrl', ['$scope', 'AVService', function ($scope, AVService) {
 		$scope.orders = [];
 		$scope.ordersfilter = [];
@@ -169,7 +153,6 @@
 		function getOrders(){
 			AVService.getOrders()
 				.then(function(data){
-					console.log(data.data[0]);
 					angular.forEach(data.data, function(e, i){
 						e.order.available_facture = e.order.available_facture == 1 ? true : false;
 					})
@@ -182,6 +165,7 @@
 		}
 
 		$scope.filterDate = function(element){
+			console.log('hola');
 			var date = [];
 			if($scope.filterdate.datestart){
 				date.start = Date.parse($scope.filterdate.datestart);
@@ -193,6 +177,8 @@
 					if( Date.parse(element.date_range) >= date.start && Date.parse(element.date_event) < date.end )
 						return element;
 				});
+			}else{
+				$scope.orders = $scope.ordersfilter;
 			}
 		}
 
