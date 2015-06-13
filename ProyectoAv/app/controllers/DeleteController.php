@@ -44,11 +44,13 @@ class DeleteController extends BaseController
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el producto'))),422);//solicitud no procesada
 	}
 	public function deleteEstimation($idEstimation){		
-		$estimation = $this->estimationRepo->findEstimation($idEstimation);
-		if($estimation->delete())
-			return Response::json(array('success' => array('msg'=>array('Has eliminado un presupuesto'))),200);//solicitud procesada			
+		$estimation = $this->estimationRepo->findEstimation($idEstimation);		
+		if($this->restoreReserve($estimation->types))
+			if($estimation->delete())
+				return Response::json(array('success' => array('msg'=>array('Has eliminado un presupuesto'))),200);//solicitud procesada			
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el presupuesto'))),422);//solicitud no procesada
-	}
+	}	
+
 	public function deleteType($idType){		
 		$type = $this->typeRepo->findType($idType);
 		if($type->delete())

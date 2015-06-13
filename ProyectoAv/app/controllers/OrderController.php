@@ -50,15 +50,21 @@ class OrderController extends BaseController
 
 	public function updateStatus(){
 		$data = Input::all();
+		$restoreReserve = true;
+
 		$order = $this->orderRepo->findOrder((int)$data['id']);		
 		if($order){
 			if($order->status > 2 || $order->status < 0){
 				return Response::json(array('errors' => array('msg' => array('Error al actualizar'))),422);
 			}
+			elseif($order->status <= 2 || $order->status >= 0)
+				$order->status =  $order->status + 1;
 
-			$order->status =  $order->status + 1;
-			if($order->save())
-				return Response::json(array('success' => array('msg' => array('Orden actualizada','status' => $order->status))),200);	
+			if($order->status == 2)
+				$restoreReserve = $this->restoreReserve($order->estimation->types);				
+
+			if($order->save() && $restoreReserve)
+				return Response::json(array('success' => array('msg' => array('Orden actualizada'),'status' => $order->status)),200);	
 			else
 				return Response::json(array('errors' => array('msg' => array('Ocurrio un error'))),422);				
 		}
