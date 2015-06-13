@@ -156,10 +156,10 @@ class CreateController extends BaseController
 		$manager = new NewPayment($payment,$data);
 
 		if($manager->save())
-			return Response::json(array('success'=>array('msg'=>array('Ha registrsdo un pago correctamente'))),201);
+			return Response::json(array('success'=>array('msg'=>array('Ha registrado un pago correctamente'))),201);
 		else 
 			return Response::json(array('errors' => $manager->getErrors()),422);
-	}
+	}	
 }
 
 ?>

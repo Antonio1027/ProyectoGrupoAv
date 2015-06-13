@@ -25,4 +25,13 @@ class BaseController extends Controller {
 		return $array;
 	}
 
+	public function restoreReserve($types){
+		foreach ($types as $key => $type) {
+			$type->reserve = $type->reserve + $type->pivot->quantity;
+			if( ! $type->save())
+				return false;
+		}
+		return true;					
+	}
+
 }
