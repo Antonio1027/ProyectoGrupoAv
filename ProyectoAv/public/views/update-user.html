@@ -1,0 +1,43 @@
+<section class="container-main">
+	<div class="container-title">
+			<div class="wrap-content">
+				<h1 class="title">Actualizar usuario</h1>
+			</div>
+	</div>
+
+	<div class="wrap-content container-content">
+			<div class="data-personal">				
+				<div class="subtitle">Información</div><br>
+				<form name="form" ng-submit="form.$valid && sendupdateuser()">
+					<div class="input-group">
+						<span>Nombre</span>
+						<input type="text" ng-model="datauser.name" required>
+					</div>
+					<div class="input-group">
+						<span>Nombre de usuario</span>
+						<input type="text" ng-model="datauser.username" required>
+					</div>
+					<div class="input-group">
+						<span>Correo</span>
+						<input type="email" ng-model="datauser.email" required>
+					</div>
+					<div class="input-group">
+						<span>Contraseña</span>
+						<input type="password" ng-model="datauser.password">
+					</div>
+					<div class="input-group">
+						<span>Movil</span>
+						<input type="text" ng-model="datauser.movil" required>
+					</div>
+					<div class="input-group">
+						<span>Confirmar contraseña</span>
+						<input type="password" ng-model="datauser.password_confirmation">
+					</div>			
+					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
+				</form>
+			</div>
+			
+		</div>
+</section>
+
+<notifications></notifications>

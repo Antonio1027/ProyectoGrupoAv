@@ -47,6 +47,10 @@
 			templateUrl: 'views/admin-user.html',
 			controller: 'AdminUserCtrl'
 		})
+		.when('/administrar-usuarios/:user_id', {
+			templateUrl: 'views/update-user.html',
+			controller: 'AdminUserCtrl'
+		})
 		.otherwise({ 
 			redirectTo: '/' 
 		})

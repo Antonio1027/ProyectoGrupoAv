@@ -69,6 +69,18 @@
 			return deferred.promise;
 		}
 
+		function getUser(id){
+			var deferred = $q.defer();
+			$http.get('getUser/' + id)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;
+		}
+
 		function postCategory(category){
 			var deferred = $q.defer();
 			$http.post('newCategory',category)
@@ -387,6 +399,7 @@
 			updateUser: updateUser,
 			deleteUser: deleteUser,
 			getUsers: getUsers,
+			getUser: getUser,
 			postCategory: postCategory,
 			updateCategory: updateCategory,
 			deleteCategory: deleteCategory,

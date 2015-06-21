@@ -4,7 +4,7 @@
 		$scope.order = [];
 		$scope.newpayment = {};
 		getOrder();
-
+		
 		$scope.savePayment = function(){
 			$scope.newpayment.order_id = $scope.order.id;
 			if( ! $scope.newpayment.amount){
@@ -424,12 +424,78 @@
 			})
 	}])
 
-	.controller('AdminUserCtrl', ['$scope', function ($scope) {
+	.controller('AdminUserCtrl', ['$scope','$routeParams','AVService', function ($scope,$routeParams,AVService) {
 		$scope.datauser = {};
+		$scope.users = {};
+		$scope.tab = false;
 
-		$scope.senduser = function(){
-			$scope.datauser = {};
+
+		var init = function(){
+			if($routeParams.user_id){
+				AVService.getUser($routeParams.user_id)
+					.then(function(data){					
+						$scope.datauser = data;						
+					},
+					function(error){					
+						setnotification(error.errors);
+					});			
+			}
+			else{
+				AVService.getUsers().
+					then(function(data){
+						$scope.users = data;				
+					},
+					function(error){										
+					});
+			}	
 		}
+			
+		$scope.senduser = function(){			
+			AVService.postUser($scope.datauser)
+				.then(function(data){
+					$scope.users.push(data.user);					
+					setnotification(data.success);
+					$scope.datauser = {};
+					$scope.tab = false;
+				},
+				function(error){					
+					setnotification(error.errors);
+				});			
+		}
+
+		$scope.deleteUser = function(user){			
+			if( window.confirm('¿Seguro que quieres eliminar este usuario?') ){				
+				element = $scope.users.indexOf(user);								
+				AVService.deleteUser(user)
+					.then(function(data){
+						$scope.users.splice(element,1);
+						setnotification(data.success);
+					},
+					function(error){
+						setnotification(error.errors);
+					})
+			}
+		}
+
+		$scope.sendupdateuser = function(){	
+			AVService.updateUser($scope.datauser)
+				.then(function(data){					
+					setnotification(data.success);										
+				},
+				function(error){					
+					setnotification(error.errors);
+				});			
+		}		
+
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}
+
+		init();
 	}])
 
 	.controller('ListPresupuestosCtrl',['$scope','AVService', function ($scope, AVService){

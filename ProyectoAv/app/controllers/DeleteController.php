@@ -23,10 +23,10 @@ class DeleteController extends BaseController
 		$this->orderRepo = $orderRepo;
 	}
 
-	public function deleteUser($idUser){		
+	public function deleteUser($idUser){	
 		$user = $this->userRepo->findUser($idUser);
 		if($user->delete()){		
-			return Response::json(array('success' => array('msg'=>array('Has eliminado un usuario'))));//solicitud procesad== 1	
+			return Response::json(array('success' => array('msg'=>array('Has eliminado un usuario con éxito'))));//solicitud procesad== 1	
 		}	
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el usuario'))));//solicitud no procesada
 	}

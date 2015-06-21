@@ -5,18 +5,21 @@
 			</div>
 		</div>
 
-		<div class="wrap-content container-content" ng-init="tab = 3">
-			<div class="subtitle">Botonera</div>
+		<div class="wrap-content container-content">
 			<div class="text-center">
-				<button class="btn" ng-click="tab = 1">Nuevo usuario</button>
+				<button class="btn" ng-click="tab =! tab">Nuevo usuario</button>
 			</div>
 
-			<div class="data-personal" ng-if="tab == 1">
-				<div class="subtitle">Agregar usuario</div>
+			<div class="data-personal" ng-show="tab">				
+				<div class="subtitle">Registro de usuario</div><br>
 				<form name="form" ng-submit="form.$valid && senduser()">
 					<div class="input-group">
 						<span>Nombre</span>
 						<input type="text" ng-model="datauser.name" required>
+					</div>
+					<div class="input-group">
+						<span>Nombre de usuario</span>
+						<input type="text" ng-model="datauser.username" required>
 					</div>
 					<div class="input-group">
 						<span>Correo</span>
@@ -27,12 +30,19 @@
 						<input type="password" ng-model="datauser.password" required>
 					</div>
 					<div class="input-group">
-						<span>Confirmar contraseña</span>
-						<input type="password" ng-model="datauser.comfirm_password" required>
-					</div>
-					<div class="input-group">
 						<span>Movil</span>
 						<input type="text" ng-model="datauser.movil" required>
+					</div>
+					<div class="input-group">
+						<span>Confirmar contraseña</span>
+						<input type="password" ng-model="datauser.password_confirmation" required>
+					</div>
+					<div class="input-group">
+						<span>Tipo</span>
+						<select ng-model="datauser.type">
+							<option value="user" selected>Usuario</option>
+  							<option value="admin">Administrador</option>
+						</select>
 					</div>
 					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
 				</form>
@@ -42,34 +52,32 @@
 
 		<div class="container-content wrap-content">
 			<div class="subtitle">
-				Arbol de inventario
+				Usuarios registrados
 			</div>
-			<ul class="tree-products">
-				<li class="category" ng-repeat="product in products">
-					<div class="category-item">
-						{{product.category}}
-						<a href="#" class="icon icon-minus"></a>
-						<a href="#" class="icon icon-pencil"></a>
-					</div>
-					<ul>
-						<li class="product" ng-repeat="list in product.listproducts">
-							<div class="product-item">
-								{{list.name}}
-								<a href="#" class="icon icon-minus"></a>
-								<a href="#" class="icon icon-pencil"></a>
-							</div>
-							<ul>
-								<li class="type" ng-repeat="type in list.type">
-									<div class="type-item">
-										{{type.desc}}
-										<a href="#" class="icon icon-minus"></a>
-										<a href="#" class="icon icon-pencil"></a>
-									</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
+			<table class="table">
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+					<th>Telefono</th>
+					<th>Correo electronico</th>
+					<th>Nombre de usuario</th>
+					<th>Tipo</th>					
+					<th>Acciones</th>
+				</tr>
+				<tr 
+				ng-repeat="user in users">
+					<td>{{$index + 1}}</td>
+					<td>{{user.name}}</td>
+					<td>{{user.movil}}</td>
+					<td>{{user.email}}</td>
+					<td>{{user.username}}</td>
+					<td>{{user.type}}</td>					
+					<td>
+						<a href="#/administrar-usuarios/{{user.id}}" ng-click="getuser(user.id)" class="icon icon-pencil"></a>
+						<button class="icon icon-minus" ng-click="deleteUser(user)"></button>	
+					</td>
+				</tr>
+			</table>
 		</div>
 </section>
+<notifications></notifications>

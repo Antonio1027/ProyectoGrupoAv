@@ -21,11 +21,12 @@ Route::get('getUsers',array('as'=>'getUsers','uses'=>'UserController@getUsers'))
 Route::get('getEstimations',array('as'=>'getEstimations','uses'=>'EstimationController@getEstimations'));
 Route::get('getOrders',array('as'=>'getOrders','uses'=>'OrderController@getOrders'));
 Route::get('getPayments',array('as'=>'getPayments','uses'=>'OrderController@getPayments'));
+Route::get('getUser/{iduser}',array('as'=>'getUser','uses'=>'UserController@getUser'));
 Route::get('getListProduct/{idcategory}',array('as'=>'getListProduct','uses'=>'ProductController@getListProduct'));
 Route::get('getEstimation/{idestimation}',array('as'=>'getEstimation','uses'=>'EstimationController@getEstimation'));
+Route::get('getPayment/{id}',array('as'=>'getPayment','uses'=>'OrderController@getPayment'));
 Route::get('getOrder/{idorder}',array('as'=>'getOrder','uses'=>'OrderController@getOrder'));
 Route::get('getupdateEstimation/{idestimation}',array('as'=>'getupdateEstimation','uses'=>'CategoryController@getupdateEstimation'));
-Route::get('getPayment/{id}',array('as'=>'getPayment','uses'=>'OrderController@getPayment'));
 
 Route::get('printEstimation/{idestimation}',array('as'=>'printEstimation','uses'=>'EstimationController@printEstimation'));
 Route::get('printOrder/{idorder}',array('as'=>'printOrder','uses'=>'OrderController@printOrder'));

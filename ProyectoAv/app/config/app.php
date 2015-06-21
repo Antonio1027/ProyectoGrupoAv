@@ -123,6 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Thujohn\Pdf\PdfServiceProvider',
+		'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider'
 
 	),
 
@@ -191,7 +193,9 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'PDF' 			  => 'Thujohn\Pdf\PdfFacade',
-		'Carbon' => 'Carbon\Carbon',
+		'Carbon' 		  => 'Carbon\Carbon',
+		'JWTAuth' 		  => 'Tymon\JWTAuth\Facades\JWTAuth',
+		'JWTFactory' 	  => 'Tymon\JWTAuth\Facades\JWTFactory'
 	),
 
 );

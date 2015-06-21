@@ -15,7 +15,9 @@ class User extends \Eloquent implements UserInterface{
 	protected $fillable = [ 'name',
 							'email',
 							'password',
-							'movil'];	
+							'movil',
+							'type',
+							'username'];
 
 	public function setPasswordAttribute($value){
 		if( ! empty($value)){			

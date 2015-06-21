@@ -30,7 +30,7 @@
 			<tr 
 			ng-repeat="payment in payments | filter: filter">
 				<td>{{payment.number}}</td>
-				<td>{{payment.amount}}</td>
+				<td>{{payment.amount | currency}}</td>
 				<td>{{payment.description}}</td>
 				<td>{{payment.created_at | date:'fullDate'}} </td>
 				

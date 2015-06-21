@@ -88,3 +88,19 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('jwt-auth',function($event){
+	Event::listen('tymon.jwt.absent',$event);
+
+	// fired when the token has expired
+	Event::listen('tymon.jwt.expired',$event);
+
+	// fired when the token is found to be invalid
+	Event::listen('tymon.jwt.invalid',$event);
+
+	// fired if the user could not be found (shouldn't really happen)
+	Event::listen('tymon.jwt.user_not_found',$event);
+
+	// fired when the token is valid (User is passed along with event)
+	Event::listen('tymon.jwt.valid',$event);	
+});

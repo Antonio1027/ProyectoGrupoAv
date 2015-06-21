@@ -33,10 +33,12 @@ class CreateController extends BaseController
 
 	public function newUser(){
 		$data = Input::all();		
-		$user = $this->userRepo->newUser();
+		$user = $this->userRepo->newUser();		
+
 		$manager = new NewUser($user,$data);
+
 		if($manager->save())
-			return Response::json(array('success' => array('msg'=>array('Has agregado un usuario correctamente'))),201);//recurso creado			
+			return Response::json(array('success' => array('msg'=>array('Has agregado un usuario correctamente')),'user'=>$manager->entity),201);//recurso creado			
 		return Response::json(array('errors' => $manager->getErrors()),422);//solicitud no procesada
 	}
 

@@ -82,7 +82,7 @@ class OrderController extends BaseController
 
 			$order->pay =  $order->pay + 1;
 			if($order->save())
-				return Response::json(array('success' => array('msg' => array('Orden actualizada'),'pay' => $order->pay)),200);	
+				return Response::json(array('success' => array('msg' => array('Orden actualizada')),'pay' => $order->pay),200);	
 			else
 				return Response::json(array('errors' => array('msg' => array('Ocurrio un error'))),422);				
 		}
@@ -97,7 +97,7 @@ class OrderController extends BaseController
 		if($order){
 			$order->observations =  $data['observations'];
 			if($order->save())
-				return Response::json(array('success' => array('msg' => array('Orden actualizada'),'observations' => $order->observations)),200);	
+				return Response::json(array('success' => array('msg' => array('Orden actualizada')), 'observations' => $order->observations),201);	
 			else
 				return Response::json(array('errors' => array('msg' => array('Ocurrio un error'))),422);				
 		}
