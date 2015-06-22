@@ -41,6 +41,11 @@ class EstimationController extends BaseController
 			$user = JWTAuth::toUser($token);			
 
 			$estimation = $this->estimationRepo->findEstimation($id);
+
+			$estimation->date_event = $this->formatDate( $estimation->date_event );
+			$estimation->date_collecting = $this->formatDate( $estimation->date_collecting );
+			$estimation->date_range = $this->formatDate( $estimation->date_range );
+
 			if($estimation){
 				$html = View::make("emails.formatestimation",compact('estimation'));			
 		    	return PDF::load($html, 'A4', 'portrait')->show();				    	
@@ -49,6 +54,13 @@ class EstimationController extends BaseController
 		} catch (Exception $e) {
     		return Redirect::to('/#/presupuestos');
 		}		
+	}
+
+	public function formatDate($date){
+		$date = explode("T", $date)[0];
+		list($año, $mes, $dia) = explode("-", $date);
+		$date = $dia . "-" . $mes . "-" . $año;
+		return $date;
 	}
 }
 

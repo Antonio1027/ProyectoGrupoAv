@@ -31,9 +31,10 @@ Route::group(array('before' => 'jwt-auth'),function(){
 		Route::put('updateUser',array('as'=>'updateUser','uses'=>'UpdateController@updateUser'));
 		Route::put('updatePayment/{id}',array('as'=>'updatePayment','uses'=>'UpdateController@updatePayment'));
 		Route::delete('deleteUser/{idUser}',array('as'=>'deleteUser','uses'=>'DeleteController@deleteUser'));
-		Route::delete('deleteCategory/{idCategory}',array('as'=>'deleteCategory','uses'=>'DeleteController@deleteCategory'));
 		Route::delete('deletePayment/{id}',array('as'=>'deletePayment','uses'=>'DeleteController@deletePayment'));
 	});	
+
+	Route::delete('deleteCategory/{idCategory}',array('as'=>'deleteCategory','uses'=>'DeleteController@deleteCategory'));
 
 	Route::get('getCPT',array('as'=>'categories','uses'=>'CategoryController@categories'));
 	Route::get('getEstimations',array('as'=>'getEstimations','uses'=>'EstimationController@getEstimations'));

@@ -107,7 +107,8 @@
 		}
 
 		$scope.toggleFacture = function(id,name){
-			var data = {id: id}
+			var data = {id: $routeParams.orden_id};
+
 			if( $('#'+name).is(':checked') ){
 				data.facture = false;
 				updateFacture(data);
@@ -166,11 +167,18 @@
 		}
 
 		$scope.filterDatePayment = function(){
-			var date = $filter('date')($scope.filterdate, 'yyyy') + '-' + $filter('date')($scope.filterdate, 'MM') +  '-' + $filter('date')($scope.filterdate, 'dd');
-			$scope.payments = $scope.paymentsresp.filter(function(e, i){
-				if(date === e.created_at)
-					return e;
-			})
+			if($scope.filterdate){
+				var date = $filter('date')($scope.filterdate, 'yyyy') + '-' + $filter('date')($scope.filterdate, 'MM') +  '-' + $filter('date')($scope.filterdate, 'dd');
+				$scope.payments = $scope.paymentsresp.filter(function(e, i){
+					if(date === e.created_at)
+						return e;
+				})
+			}
+			else
+				$scope.payments = $scope.paymentsresp;
+				
+
+
 		}
 
 		function setnotification(msg){
@@ -180,8 +188,6 @@
 				$scope.noti = false;
 			},3000);
 		}
-		
-
 	}])
 
 	.controller('ListOrdenesCtrl', ['$scope', 'AVService','$rootScope','$localStorage', 
@@ -234,7 +240,6 @@
 				$scope.noti = false;
 			},3000);
 		}
-		
 	}])
 	
 	.controller('AdminProductCtrl', ['$scope', 'AVService','$rootScope','$localStorage', 
@@ -312,52 +317,58 @@
 		}
 
 		$scope.removecategory = function(idcategory){
-			AVService.deleteCategory({"id":idcategory})
-			.then(function(data){
-				$scope.CPT = $scope.CPT.filter(function(element){
-					return element.id != idcategory;
+			if( window.confirm("¿Esta seguro que desea eliminar la categoria?") ){
+				AVService.deleteCategory({"id":idcategory})
+				.then(function(data){
+					$scope.CPT = $scope.CPT.filter(function(element){
+						return element.id != idcategory;
+					})
+					setnotification(data.success)				
+				},
+				function(error){
+					setnotification(error.errors)
 				})
-				setnotification(data.success)				
-			},
-			function(error){
-				setnotification(error.errors)
-			})
+			}
 		}
 
 		$scope.removeproduct = function(idcategory, idproduct){
-			AVService.deleteProduct({"id":idproduct})
-			.then(function(data){
-				angular.forEach($scope.CPT, function(element, index){
-					if(element.id == idcategory){
-						element.listproducts = element.listproducts.filter(function(e){
-							return e.id != idproduct;
-						})
-					}
+			if( window.confirm("¿Esta seguro que desea eliminar el producto?") ){
+				AVService.deleteProduct({"id":idproduct})
+				.then(function(data){
+					angular.forEach($scope.CPT, function(element, index){
+						if(element.id == idcategory){
+							element.listproducts = element.listproducts.filter(function(e){
+								return e.id != idproduct;
+							})
+						}
+					})
+					setnotification(data.success)				
+				},
+				function(error){
+					setnotification(error.errors)
 				})
-				setnotification(data.success)				
-			},
-			function(error){
-				setnotification(error.errors)
-			})
+			}
 		}
 
 		$scope.removetype = function(idcategory, idproduct, idtype){
-			AVService.deleteType({"id":idtype})
-			.then(function(data){
-				angular.forEach($scope.CPT, function(element, index){
-					if(element.id == idcategory)
-						angular.forEach(element.listproducts, function(e, i){
-							if(e.id == idproduct)
-								e.types = e.types.filter(function(element){
-									return element.id != idtype;
-								})
-						})
+			if( window.confirm("¿Esta seguro que desea eliminar articulo?") ){
+				AVService.deleteType({"id":idtype})
+				.then(function(data){
+					angular.forEach($scope.CPT, function(element, index){
+						if(element.id == idcategory)
+							angular.forEach(element.listproducts, function(e, i){
+								if(e.id == idproduct)
+									e.types = e.types.filter(function(element){
+										return element.id != idtype;
+									})
+							})
+					})
+					setnotification(data.success)				
+				},
+				function(error){
+					setnotification(error.errors)
 				})
-				setnotification(data.success)				
-			},
-			function(error){
-				setnotification(error.errors)
-			})
+			}
 		}
 
 		$scope.editcategory = function(idcategory){
@@ -470,7 +481,6 @@
 			},
 			function(error){
 			})
-		
 	}])
 
 	.controller('AdminUserCtrl', ['$scope','$routeParams','AVService','$rootScope','$localStorage', 
@@ -581,6 +591,9 @@
 						return element;
 				});
 			}
+			else{
+				$scope.estimations = $scope.estimationsfilter;
+			}
 		}
 
 		function setnotification(msg){
@@ -639,8 +652,6 @@
 					})
 			}
 		}
-		
-
 	}])
 
 	.controller('EditPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService','$rootScope','$localStorage', 
@@ -721,8 +732,6 @@
 					setnotification(error.errors);
 				})
 		}
-		
-
 	}])
 
 	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService','$localStorage' , 
@@ -798,6 +807,5 @@
 					setnotification(error.errors);
 				})
 		}
-		
 	}])
 })()
