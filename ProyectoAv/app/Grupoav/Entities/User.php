@@ -23,5 +23,13 @@ class User extends \Eloquent implements UserInterface{
 		if( ! empty($value)){			
 			$this->attributes['password'] = \Hash::make($value);			
 		}
+	}
+
+	public function getTypeAttribute($type)
+	{						   	   
+	   if($type == 'user')
+	   		return 'usuario';
+	   else if($type == 'admin')
+	   		return 'administrador';
 	}						   	
 }

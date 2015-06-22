@@ -37,7 +37,7 @@ class OrderRepo extends \Eloquent
 	}
 
 	public function allPayments(){
-		return Payment::with('order')->get();
+		return Payment::with('order.estimation')->get();
 	}
 
 	public function findPayment($id){

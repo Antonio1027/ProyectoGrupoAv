@@ -22,17 +22,19 @@
 		</div>
 		<table class="table">
 			<tr>
+				<th>No. Orden</th>
 				<th>No. Anticipo</th>
 				<th>Cantidad</th>
-				<th>Descripcion</th>
+				<th>Cliente</th>				
 				<th>Fecha del pago</th>
 				<th class="notprint">Acciones</th>
 			</tr>
 			<tr 
 			ng-repeat="payment in payments | filter: filter">
+				<td>{{payment.order.id}}</td>
 				<td>{{payment.number}}</td>
 				<td>{{payment.amount | currency}}</td>
-				<td>{{payment.description}}</td>
+				<td>{{payment.order.estimation.costumer_name}}</td>				
 				<td>{{payment.created_at | date:'fullDate'}} </td>
 				
 				<td class="notprint">

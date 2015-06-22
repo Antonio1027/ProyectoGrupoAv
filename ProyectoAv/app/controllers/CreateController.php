@@ -131,13 +131,19 @@ class CreateController extends BaseController
 	}
 
 	public function confirmEstimation(){
-		$estimation = $this->estimationRepo->findEstimation(Input::get('id'));						
-		if($estimation){						
-			if(!$estimation->order){				
+		$estimation = $this->estimationRepo->findEstimation(Input::get('id'));
+		if($estimation){
+			if(!$estimation->order){
 				$order = $this->orderRepo->newOrder(Input::get('id'));
-				if($order->save()){					
-					if($this->discountProducts($estimation->types->toArray()))						
+				if($order->save()){
+					$data = array(	'amount' 		=> $estimation->advanced_payment,
+									'description' 	=> 'Primer anticipo',
+									'order_id'		=> $order->id,
+									'anticipo'		=> true);												
+					if($this->discountProducts($estimation->types->toArray()) && $this->newPayment($data)){
+
 						return Response::json(array('success'=>array('id'=>$order->id)),201);
+					}	
 					else{				
 						return Response::json(array('errors'=>array('msg'=>array('Verfique que no sobrepase la reserva de un artículo'))),422);		
 					}
@@ -149,15 +155,25 @@ class CreateController extends BaseController
 		return Response::json(array('errors'=>array('msg'=>array('No se encontraron resultados'))),422);
 	}
 
+	public function newPayment($values = []){
 
-	public function newPayment(){
-		$data = Input::all();		
+		if(count($values)){
+			$data = $values;
+			$status = $data['anticipo'];
+			unset($data['anticipo']);
+		}
+		else
+			$data = Input::all();		
+
 		$payment = $this->orderRepo->newPayment((int)$data['order_id']);
 
 		$manager = new NewPayment($payment,$data);
 
 		if($manager->save())
-			return Response::json(array('success'=>array('msg'=>array('Ha registrado un pago correctamente'))),201);
+			if(isset($status))
+				return true;
+			else	
+				return Response::json(array('success'=>array('msg'=>array('Ha registrado un pago correctamente'))),201);
 		else 
 			return Response::json(array('errors' => $manager->getErrors()),422);
 	}	

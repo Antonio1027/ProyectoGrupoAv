@@ -158,8 +158,7 @@
 			AVService.getPayments()
 				.then(function(data){
 					$scope.payments = data.data;
-					$scope.paymentsresp = data.data;
-
+					$scope.paymentsresp = data.data;					
 				},
 				function(error){
 					setnotification(error.errors);

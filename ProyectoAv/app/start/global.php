@@ -84,6 +84,6 @@ if(! function_exists('is_admin')){
 	function is_admin(){
 		$token = JWTAuth::getToken();
 		$user = JWTAuth::toUser($token);
-		return $user->type == 'admin';
+		return $user->type == 'administrador';
 	}
 }
