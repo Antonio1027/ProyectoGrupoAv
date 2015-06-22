@@ -78,12 +78,8 @@ class CreateController extends BaseController
 		$manager = new NewEstimation($estimation,$dataEstimation);			
 
 		if($this->validate($dataType))			
-			if($manager->save() && $manager->entity->types()->sync($this->renameIndex($dataType))){					
-				if($this->discountProducts($dataType))
-					return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'),'id' => $manager->entity->id)),201);//recurso creado	
-				else{				
-					return Response::json(array('errors'=>array('msg'=>array('Verfique que no sobrepase la reserva de un artículo'))),422);		
-				}
+			if($manager->save() && $manager->entity->types()->sync($this->renameIndex($dataType))){									
+				return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'),'id' => $manager->entity->id)),201);//recurso creado					
 			}
 			else		
 				return Response::json(array('errors' => $manager->getErrors()),422);
@@ -91,11 +87,11 @@ class CreateController extends BaseController
 			return Response::json(array('errors'=>array('msg'=>array('Verfique que no sobrepase la reserva de un artículo'))),422);			
 	}
 
-	public function discountProducts($types){
-		$status = true;
+	public function discountProducts($types){		
+		$status = true;	
 		foreach ($types as $key => $data) {
 			$type = $this->typeRepo->findType($data['id']);			
-			$type->reserve = $type->reserve - (int)$data['quantity'];			
+			$type->reserve = $type->reserve - (int)$data['pivot']['quantity'];			
 			if($type->reserve > 0)
 				$type->save();			
 			else{
@@ -103,13 +99,12 @@ class CreateController extends BaseController
 				break;				
 			}
 		}
-		return $status;
+		return $status;		
 	}
 
 	public function validate($types){		
 
-		$status = true;
-
+		$status = true;		
 		foreach ($types as $key => $data) {
 			$type = $this->typeRepo->findType($data['id']);
 			$type->reserve = $type->reserve - (int)$data['quantity'];
@@ -136,12 +131,16 @@ class CreateController extends BaseController
 	}
 
 	public function confirmEstimation(){
-		$estimation = $this->estimationRepo->findEstimation(Input::get('id'));			
+		$estimation = $this->estimationRepo->findEstimation(Input::get('id'));						
 		if($estimation){						
 			if(!$estimation->order){				
-				$order = $this->orderRepo->newOrder(Input::get('id'));					
-				if($order->save()){							
-					return Response::json(array('success'=>array('id'=>$order->id)),201);
+				$order = $this->orderRepo->newOrder(Input::get('id'));
+				if($order->save()){					
+					if($this->discountProducts($estimation->types->toArray()))						
+						return Response::json(array('success'=>array('id'=>$order->id)),201);
+					else{				
+						return Response::json(array('errors'=>array('msg'=>array('Verfique que no sobrepase la reserva de un artículo'))),422);		
+					}
 				}	
 			}
 			else

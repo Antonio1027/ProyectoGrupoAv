@@ -15,7 +15,7 @@ class EstimationController extends BaseController
 		$estimations = $this->estimationRepo->allEstimations();
 		if($estimations->count())
 			return Response::json(array('data' => $estimations),200);
-		return Response::json(array('errors' => array('msg'=>array('No se encotraron resultados'))),422);//solicitud no procesada
+		return Response::json(array('errors' => array('msg'=>array('No se encontraron resultados'))),422);//solicitud no procesada
 	}
 
 	public function getEstimation($id){
@@ -36,11 +36,19 @@ class EstimationController extends BaseController
 		return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
-	public function printEstimation($id){
-		$estimation = $this->estimationRepo->findEstimation($id);
-		$html = View::make("emails.formatestimation",compact('estimation'));
-		// return View::make('emails/formatestimation');
-    	return PDF::load($html, 'A4', 'portrait')->show();
+	public function printEstimation($id,$token){		
+		try {
+			$user = JWTAuth::toUser($token);			
+
+			$estimation = $this->estimationRepo->findEstimation($id);
+			if($estimation){
+				$html = View::make("emails.formatestimation",compact('estimation'));			
+		    	return PDF::load($html, 'A4', 'portrait')->show();				    	
+		    }
+		    return Redirect::to('/#/presupuestos');	
+		} catch (Exception $e) {
+    		return Redirect::to('/#/presupuestos');
+		}		
 	}
 }
 

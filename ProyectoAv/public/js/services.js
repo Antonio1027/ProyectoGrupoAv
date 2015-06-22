@@ -1,8 +1,66 @@
 (function(){
 	angular.module('services', [])
-	.factory('AVService',  ['$http', '$q', function ($http, $q) {
+	.factory('Auth',['$http','$q','$localStorage','urls',
+		function ($http,$q,$localStorage,url){
 
-		// Products
+       	var tokenClaims = getClaimsFromToken();      
+
+		function urlBase64Decode(str) {
+           var output = str.replace('-', '+').replace('_', '/');
+           switch (output.length % 4) {
+               case 0:
+                   break;
+               case 2:
+                   output += '==';
+                   break;
+               case 3:
+                   output += '=';
+                   break;
+               default:
+                   throw 'Illegal base64url string!';
+           }
+           return window.atob(output);
+       }
+
+       function getClaimsFromToken() {
+           var token = $localStorage.token;
+           var user = {};
+           if (typeof token !== 'undefined') {
+               var encoded = token.split('.')[1];
+               user = JSON.parse(urlBase64Decode(encoded));
+           }                                       
+           return user;
+       }
+
+
+       function signin(data){       	 
+          var deferred = $q.defer();
+          $http.post('signin',data)
+          .success(function(data){
+              deferred.resolve(data);
+          })
+          .error(function(error){
+              deferred.reject(error);
+          });
+          return deferred.promise;
+       };
+
+       return {                     
+           signin: signin,
+           logout: function (success) {
+               tokenClaims = {};
+               delete $localStorage.$reset();
+               success();
+           },
+           getTokenClaims: function () {
+               return tokenClaims;
+           }
+       };
+
+	}])
+	.factory('AVService',  ['$http', '$q','urls', function ($http, $q, urls) {
+	
+		// Products		
 		function getCPT(){
 			var deferred = $q.defer();
 
@@ -231,7 +289,7 @@
 			.success(function(data){
 				deferred.resolve(data);
 			})
-			.error(function(){
+			.error(function(error){
 				deferred.reject(error)
 			});
 			return deferred.promise;
@@ -425,7 +483,7 @@
 			updatePay: updatePay,
 			updateObservations: updateObservations,
 			savePayment: savePayment,
-			getPayments: getPayments
+			getPayments: getPayments,			
 		};
 
 	}])

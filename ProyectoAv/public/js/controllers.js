@@ -1,9 +1,51 @@
-(function(){
+(function(){	
 	angular.module('controllers', [])
-	.controller('ordenServicioCtrl', ['$scope', '$routeParams', 'AVService', function ($scope, $routeParams, AVService) {
-		$scope.order = [];
-		$scope.newpayment = {};
-		getOrder();
+	.controller('AuthCtrl',['$scope','$rootScope','$location','$localStorage','Auth','$routeParams',
+		function ($scope,$rootScope,$location,$localStorage,Auth,$routeParams){						
+			$scope.userType = {};						
+			if($routeParams.status)
+				Auth.logout(function(res){					
+					$location.path('/');
+				});
+
+
+			function successAuth(res){
+				$localStorage.token = res.token;
+				$localStorage.user = res.userType;				
+				$location.path('/presupuesto');								
+			}
+
+			$scope.signin = function(){
+				var credentials = {
+					username:$scope.username,
+					password: $scope.password
+				}
+				Auth.signin(credentials)
+					.then(function(data){						
+						successAuth(data);						
+					},
+					function(error){						
+						setnotification(error.errors);
+					});					
+			};
+			$scope.tokenClaims = Auth.getTokenClaims();
+			$scope.user = $localStorage.user; 			
+
+			function setnotification(msg){
+				$scope.msgnoti = msg;
+				$scope.noti = true;
+				window.setTimeout(function(){
+					$scope.noti = false;
+				},3000);
+			}		
+	}])
+	.controller('ordenServicioCtrl', ['$scope', '$routeParams', 'AVService','$rootScope','$localStorage', 
+		function ($scope, $routeParams, AVService,$rootScope,$localStorage) {
+		$scope.order = [];			
+		$scope.newpayment = {};			
+		$scope.user = $localStorage.user;		
+		$scope.token = $localStorage.token;		
+		getOrder();		
 		
 		$scope.savePayment = function(){
 			$scope.newpayment.order_id = $scope.order.id;
@@ -28,7 +70,7 @@
 			var data = {id: $routeParams.orden_id, observations:$scope.order.observations}
 			AVService.updateObservations(data)
 				.then(function(data){
-					$scope.order.observations = data.success.observations;
+					$scope.order.observations = data.observations;					
 					setnotification(data.success);
 				},
 				function(error){
@@ -55,7 +97,7 @@
 				var data = {id: $routeParams.orden_id, status:$scope.order.pay}
 				AVService.updatePay(data)
 					.then(function(data){
-						$scope.order.pay = data.success.pay;
+						$scope.order.pay = data.pay;
 						setnotification(data.success);
 					},
 					function(error){
@@ -105,9 +147,11 @@
 		}
 		
 	}])
-	.controller('ListPagosCtrl', ['$scope', '$filter', 'AVService', function ($scope, $filter, AVService) {
+	.controller('ListPagosCtrl', ['$scope', '$filter', 'AVService','$rootScope','$localStorage', 
+		function ($scope, $filter, AVService,$rootScope,$localStorage){
 		$scope.payments = [];
 		$scope.paymentsresp = [];
+		$scope.user = $localStorage.user;		
 		getPayments();
 
 		function getPayments(){
@@ -137,12 +181,15 @@
 				$scope.noti = false;
 			},3000);
 		}
+		
+
 	}])
 
-	.controller('ListOrdenesCtrl', ['$scope', 'AVService', function ($scope, AVService) {
+	.controller('ListOrdenesCtrl', ['$scope', 'AVService','$rootScope','$localStorage', 
+		function ($scope, AVService,$rootScope,$localStorage) {
 		$scope.orders = [];
 		$scope.ordersfilter = [];
-
+		$scope.user = $localStorage.user;		
 		getOrders();
 
 		$scope.showall = function(){
@@ -164,8 +211,7 @@
 				});
 		}
 
-		$scope.filterDate = function(element){
-			console.log('hola');
+		$scope.filterDate = function(element){			
 			var date = [];
 			if($scope.filterdate.datestart){
 				date.start = Date.parse($scope.filterdate.datestart);
@@ -189,10 +235,13 @@
 				$scope.noti = false;
 			},3000);
 		}
+		
 	}])
 	
-	.controller('AdminProductCtrl', ['$scope', 'AVService', function ($scope, AVService) {
-		//JSON POST
+	.controller('AdminProductCtrl', ['$scope', 'AVService','$rootScope','$localStorage', 
+		function ($scope, AVService,$rootScope,$localStorage) {			
+		$scope.user = $localStorage.user;		
+		//JSON POST		
 		$scope.datacategory = {};
 		$scope.dataproduct = {};
 		$scope.datatype = {};
@@ -422,9 +471,14 @@
 			},
 			function(error){
 			})
+		
 	}])
 
-	.controller('AdminUserCtrl', ['$scope','$routeParams','AVService', function ($scope,$routeParams,AVService) {
+	.controller('AdminUserCtrl', ['$scope','$routeParams','AVService','$rootScope','$localStorage', 
+		function ($scope,$routeParams,AVService,$rootScope,$localStorage) {		
+
+		$scope.user = $localStorage.user;		
+			
 		$scope.datauser = {};
 		$scope.users = {};
 		$scope.tab = false;
@@ -494,12 +548,15 @@
 				$scope.noti = false;
 			},3000);
 		}
+		
 
 		init();
 	}])
 
-	.controller('ListPresupuestosCtrl',['$scope','AVService', function ($scope, AVService){
+	.controller('ListPresupuestosCtrl',['$scope','AVService','$rootScope','$localStorage', 
+		function ($scope, AVService,$rootScope,$localStorage){
 
+		$scope.user = $localStorage.user;		
 		$scope.search = {};
 
 		AVService.getEstimations()			
@@ -507,9 +564,9 @@
 				$scope.estimations = data.data;								
 				$scope.estimationsfilter = data.data;
 			},
-			function(error){				
-				setnotification(error.erros);
-			})
+			function(error){							
+				setnotification(error.errors);
+			});
 
 		$scope.filterDate = function(element){
 			var date = [];
@@ -527,9 +584,20 @@
 			}
 		}
 
+		function setnotification(msg){
+			$scope.msgnoti = msg;
+			$scope.noti = true;
+			window.setTimeout(function(){
+				$scope.noti = false;
+			},3000);
+		}	
 	}])
 		
-	.controller('PresupuestoCtrl', ['$scope', '$routeParams', '$location', 'AVService' , function ($scope, $routeParams, $location, AVService) {
+	.controller('PresupuestoCtrl', ['$scope', '$routeParams', '$location', 'AVService','$rootScope','$localStorage', 
+		function ($scope, $routeParams, $location, AVService,$rootScope,$localStorage) {
+		$scope.user = $localStorage.user;
+		$scope.token = $localStorage.token;		
+				
 		AVService.getEstimation($routeParams.estimation_id)
 			.then(function(data){
 				$scope.estimation = data;
@@ -572,9 +640,14 @@
 					})
 			}
 		}
+		
+
 	}])
 
-	.controller('EditPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService' , function ($scope, $routeParams, $location, AVService) {
+	.controller('EditPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService','$rootScope','$localStorage', 
+		function ($scope, $routeParams, $location, AVService,$rootScope,$localStorage) {
+
+		$scope.user = $localStorage.user;		
 		$scope.datageneral = {};
 		$scope.CPT = [];
 		var listproducts = [];
@@ -590,8 +663,7 @@
 				$scope.datageneral.date_collecting = converseDate($scope.datageneral.date_collecting);
 				$scope.CPT = data.CPT;
 			},
-			function(error){
-				
+			function(error){				
 				setnotification(error.errors);
 			})
 		function converseDate(date){
@@ -650,9 +722,13 @@
 					setnotification(error.errors);
 				})
 		}
+		
+
 	}])
 
-	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService' , function ($scope, $routeParams, $location, AVService) {
+	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService','$localStorage' , 
+		function ($scope, $routeParams, $location, AVService,$localStorage) {
+		$scope.user = $localStorage.user;		
 		$scope.datageneral = {};
 		$scope.CPT = [];
 		var listproducts = [];
@@ -723,5 +799,6 @@
 					setnotification(error.errors);
 				})
 		}
+		
 	}])
 })()

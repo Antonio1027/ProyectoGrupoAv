@@ -38,14 +38,19 @@ class OrderController extends BaseController
 		return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 
-	public function printOrder($id){
-		$order = $this->orderRepo->findOrder($id);
-		if($order){
-			$html = View::make('emails.formatOrder',compact('order'));
-			return PDF::load($html, 'A4', 'portrait')->show();
+	public function printOrder($id,$token){
+		try {
+			$user = JWTAuth::toUser($token);
+			$order = $this->orderRepo->findOrder($id);
+			if($order){
+				$html = View::make('emails.formatOrder',compact('order'));
+				return PDF::load($html, 'A4', 'portrait')->show();			
+			}
+			return Redirect::to('/#/ordenes');	
+		} catch (Exception $e) {
+			return Redirect::to('/#/ordenes');					
 		}
-		else
-			return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);		
+				
 	}
 
 	public function updateStatus(){
@@ -97,7 +102,7 @@ class OrderController extends BaseController
 		if($order){
 			$order->observations =  $data['observations'];
 			if($order->save())
-				return Response::json(array('success' => array('msg' => array('Orden actualizada')), 'observations' => $order->observations),201);	
+				return Response::json(array('success' => array('msg' => array('Orden actualizada')),'observations' => $order->observations),200);	
 			else
 				return Response::json(array('errors' => array('msg' => array('Ocurrio un error'))),422);				
 		}

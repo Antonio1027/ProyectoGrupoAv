@@ -6,12 +6,27 @@
 		'filters',
 		'directives',
 		'services',
-		'controllers'
-		]);
+		'controllers',
+		'ngStorage',
+		'angular-loading-bar'
+		])
 
-	app.config(['$routeProvider',function ($routeProvider) {
+	.constant('urls',{
+		BASE:'http://localhost:8080/ProyectoGrupoAv/ProyectoAv/public/',
+		BSE_API: 'http://localhost:8080/ProyectoGrupoAv/ProyectoAv/public/'
+	})
+
+	.config(['$routeProvider','$httpProvider',function ($routeProvider,$httpProvider) {
 		$routeProvider
 		.when('/', {
+           templateUrl: 'views/login.html',
+           controller: 'AuthCtrl'
+         })	
+        .when('/logout/:status', {
+           templateUrl: 'views/login.html',
+           controller: 'AuthCtrl'
+        })		
+		.when('/presupuesto', {
 			templateUrl: 'views/new-presupuestos.html',
 			controller: 'NewPresupuestosCtrl'
 		})
@@ -52,8 +67,29 @@
 			controller: 'AdminUserCtrl'
 		})
 		.otherwise({ 
-			redirectTo: '/' 
-		})
+			redirectTo: '/'
+		});
+
+		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {          			
+	       return {
+	           'request': function (config) {
+	               config.headers = config.headers || {};                   	           	   
+	               if ($localStorage.token) {                      
+	                   config.headers.Authorization = 'Bearer ' + $localStorage.token;
+	               }
+	               else 
+	               		$location.path('/');
+
+	               return config;
+	           },
+	           'responseError': function (response) {	           			               
+	               if (response.status === 401 || response.status === 403 || response.status === 404 || response.status === 500 || response.status === 400) {
+                       $location.path('/logout/true');
+                   }
+	               return $q.reject(response);
+	           }
+	       };
+	    }]);	
 	}]);
 
 	$win = $(window);
@@ -62,6 +98,6 @@
 			$('.header').removeClass('alpha');
 		else
 			$('.header').addClass('alpha');
-	});
+	}); 	
 	
 })()

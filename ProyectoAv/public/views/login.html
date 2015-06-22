@@ -1,0 +1,36 @@
+<header class="header">
+	<div class="wrap-content">
+		<span class="btn-menu">*</span>
+		<a href="#/">
+			<figure class="image">
+				<img src="images/logo.png" class="circle" width="50" alt="">
+			</figure>
+			<h2 class="title">Grupo AV</h2>
+		</a>		
+	</div>					
+</header>		
+<section class="container-main">
+	<div class="container-title">			
+	</div>
+
+	<div class="wrap-content container-content">
+			<div class="data-personal">				
+				<div class="subtitle text-center">Iniciar Sesión</div><br>
+				<form name="form" ng-submit="form.$valid && signin()">	
+					<div style="margin-left:35%">				
+						<div class="input-group" style="float:left">
+							<span>Nombre de usuario</span>
+							<input type="text" ng-model="username" required>
+						</div><br>						
+						<div class="input-group" style="clear:both;display:block;float:left;margin:20px 0 10px 0">
+							<span>Contraseña</span>
+							<input type="password" ng-model="password" required>
+						</div>					
+						<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
+					</div>	
+				</form>
+			</div>
+			
+		</div>
+</section>
+<notifications></notifications>

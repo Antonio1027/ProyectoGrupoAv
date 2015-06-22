@@ -172,6 +172,95 @@ Respuesta
 		}
 	}
 
+###Obtener usuario
+Solicitud [GET] /getUser/id
+
+Respuesta
+
+	Success
+	{
+			"id": 1,
+			"name": "Cristian",
+			"email": "cristian@gmail.com",
+			"username":"jose102",
+			"password": "123",						
+			"movil": "9611787547"			
+	}
+
+	Error
+	{
+		"errors":{
+			"msg": ["Error"]
+		}
+	}
+### Cargar librerias
+
+[
+	ngStorage: para almecenamiento de tokens y datos del usuario,
+	loading-bar: para mostrar una barra en cada peticion http
+]
+
+##Importar librerias a  app.js
+
+###Dependencias
+	[
+	'ngStorage',
+	'angular-loading-bar'
+	]
+
+###Paramentros en la configuracion
+	app.config(['$routeProvider','$httpProvider',function ($routeProvider,$httpProvider){...}
+
+###Crear un interceptor para inyectar el token de authenticacion en cada peticion http
+
+		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {          
+	       return {
+	           'request': function (config) {
+	               config.headers = config.headers || {};                   
+	               if ($localStorage.token) {                      
+	                   config.headers.Authorization = 'Bearer ' + $localStorage.token;                       
+	               }
+	               return config;
+	           },
+	           'responseError': function (response) {
+	               if (response.status === 401 || response.status === 403) {
+	                   $location.path('/login');
+	               }
+	               return $q.reject(response);
+	           }
+	       };
+	    }]);
+
+###Definir controlador para las funciones para control de accesso
+AuthCrtl
+
+functions
+[
+	successAuth,
+	signin,
+	logout
+]
+
+###definir factory para las peticiones http
+
+Auth
+
+functions
+[
+	urlBase64Decode,
+	getClaimsFromToken,
+	signin,
+	logout
+]
+
+##login laravel
+Solicitud [post] /signin
+
+data
+[
+	
+]
+
 
 
 

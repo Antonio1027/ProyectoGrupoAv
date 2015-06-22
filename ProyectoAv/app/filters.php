@@ -12,8 +12,7 @@
 */
 
 App::before(function($request)
-{
-	//
+{		
 });
 
 
@@ -33,7 +32,7 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
+Route::filter('Auth', function()
 {
 	if (Auth::guest())
 	{
@@ -43,7 +42,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('/');
 		}
 	}
 });
@@ -103,4 +102,9 @@ Route::filter('jwt-auth',function($event){
 
 	// fired when the token is valid (User is passed along with event)
 	Event::listen('tymon.jwt.valid',$event);	
+});
+
+Route::filter('is_admin',function()
+{
+	if(! is_admin()) return Response::json(false,400);
 });

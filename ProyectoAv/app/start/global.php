@@ -79,3 +79,11 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+if(! function_exists('is_admin')){
+	function is_admin(){
+		$token = JWTAuth::getToken();
+		$user = JWTAuth::toUser($token);
+		return $user->type == 'admin';
+	}
+}

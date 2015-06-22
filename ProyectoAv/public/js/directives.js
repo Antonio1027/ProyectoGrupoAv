@@ -18,4 +18,9 @@
 			templateUrl: 'partials/notifications.html'
 		};
 	}])
+	.directive('menu', [function () {
+		return {					
+			templateUrl: 'partials/menu.html'
+		};
+	}])
 })();

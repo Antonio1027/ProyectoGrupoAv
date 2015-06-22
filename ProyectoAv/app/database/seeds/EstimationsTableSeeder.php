@@ -12,7 +12,7 @@ class EstimationsTableSeeder extends Seeder {
 	{
 		$faker = Faker::create('es-Es');
 
-		foreach(range(1, 100) as $key => $index)
+		foreach(range(1, 10) as $key => $index)
 		{
 			$estimation = Estimation::create([
 				"costumer_name" => $faker->name,
