@@ -18,7 +18,7 @@
 	<script src="lib/jquery-2.1.3.min.js"></script>
 
 	<script src="lib/ngStorage.js"></script>
-	 <script src="lib/loading-bar.js"></script>
+	<script src="lib/loading-bar.js"></script>
 
 	<script src="js/app.js"></script>
 	<script src="js/filters.js"></script>

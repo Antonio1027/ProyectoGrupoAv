@@ -52,6 +52,108 @@ Route::filter('jwt-auth',function($event){
 	//...
 });
 
+##Configuracion del filtro en el archivo routes.php
+
+Route::group(array('before' => 'jwt-auth'),function(){
+	//routes
+});
+
+##Configuracion del archivo app/config/packages/tymon/jwt-auth/config.php
+
+'user' => 'Notaria\Entities\User',
+
+##Configuracion del archivo app/config/auth.php
+
+'model' => 'Notaria\Entities\User',
+
+##Vista
+###Crear la vista login.html
+###Crear partial menu.html para crear directiva
+
+##Archivos JS
+
+### Crear la directiva menu en el archivo directives.js
+	
+	.directive('menu', [function () {
+		return {					
+			templateUrl: 'partials/menu.html'
+		};
+	}])
+
+### Agregar directiva a cada vista que podra acceder el usuario
+
+<!-- <menu></menu> -->
+
+### Cargar librerias
+
+[
+	<!-- <script src="lib/ngStorage.js"></script> --> : para almecenamiento de tokens y datos del usuario,
+	<!-- <script src="lib/loading-bar.js"></script> --> : para mostrar una barra en cada peticion http	
+]
+
+##Importar librerias a  app.js
+
+###Dependencias
+	[
+	'ngStorage',
+	'angular-loading-bar'
+	]
+
+###Paramentros en la configuracion
+	app.config(['$routeProvider','$httpProvider',function ($routeProvider,$httpProvider){...}
+
+###Crear un interceptor para inyectar el token de authenticacion en cada peticion http
+
+		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {          
+	       return {
+	           'request': function (config) {
+	               config.headers = config.headers || {};                   
+	               if ($localStorage.token) {                      
+	                   config.headers.Authorization = 'Bearer ' + $localStorage.token;                       
+	               }
+	               return config;
+	           },
+	           'responseError': function (response) {
+	               if (response.status === 401 || response.status === 403) {
+	                   $location.path('/login');
+	               }
+	               return $q.reject(response);
+	           }
+	       };
+	    }]);
+
+###Definir controlador para las funciones para control de accesso
+AuthCrtl
+
+functions
+[
+	successAuth,
+	signin,
+	logout
+]
+
+###definir factory para las peticiones http
+
+Auth
+
+functions
+[
+	urlBase64Decode,
+	getClaimsFromToken,
+	signin,
+	logout
+]
+
+##login laravel
+Solicitud [post] /signin
+
+data
+[
+	
+]
+
+-------------------------------------------------------------------
+
 ## Campos para la tabla de usuarios
 ### Campos
 [
@@ -193,73 +295,7 @@ Respuesta
 			"msg": ["Error"]
 		}
 	}
-### Cargar librerias
 
-[
-	ngStorage: para almecenamiento de tokens y datos del usuario,
-	loading-bar: para mostrar una barra en cada peticion http
-]
-
-##Importar librerias a  app.js
-
-###Dependencias
-	[
-	'ngStorage',
-	'angular-loading-bar'
-	]
-
-###Paramentros en la configuracion
-	app.config(['$routeProvider','$httpProvider',function ($routeProvider,$httpProvider){...}
-
-###Crear un interceptor para inyectar el token de authenticacion en cada peticion http
-
-		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {          
-	       return {
-	           'request': function (config) {
-	               config.headers = config.headers || {};                   
-	               if ($localStorage.token) {                      
-	                   config.headers.Authorization = 'Bearer ' + $localStorage.token;                       
-	               }
-	               return config;
-	           },
-	           'responseError': function (response) {
-	               if (response.status === 401 || response.status === 403) {
-	                   $location.path('/login');
-	               }
-	               return $q.reject(response);
-	           }
-	       };
-	    }]);
-
-###Definir controlador para las funciones para control de accesso
-AuthCrtl
-
-functions
-[
-	successAuth,
-	signin,
-	logout
-]
-
-###definir factory para las peticiones http
-
-Auth
-
-functions
-[
-	urlBase64Decode,
-	getClaimsFromToken,
-	signin,
-	logout
-]
-
-##login laravel
-Solicitud [post] /signin
-
-data
-[
-	
-]
 
 
 
