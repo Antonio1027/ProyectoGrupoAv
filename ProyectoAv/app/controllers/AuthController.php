@@ -8,10 +8,8 @@ class AuthController extends BaseController
 		if(! $token = JWTAuth::attempt($credentials))
 			return Response::json(array('errors' => array('msg'=>array('Verifique nombre de usuario y/o contraseña'))),402);
 
-		$user = JWTAuth::toUser($token);
-		$userType = $user->type;
-
-		return Response::json(compact('token','userType'));
+		$user = JWTAuth::toUser($token);		
+		return Response::json(compact('token','user'),200);
 	}
 }
 

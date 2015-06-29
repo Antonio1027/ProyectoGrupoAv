@@ -9,17 +9,26 @@ class UsersTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
-		{
-			User::create([
-				'name'		=> $faker->name,
-				'email'		=> $faker->email,
-				'username'  => $faker->userName,
+		User::create([
+				'name'		=> 'grupoav',
+				'email'		=> 'grupoav@hotmail.com',
+				'username'  => 'grupoav.admin',
 				'password'	=> '123',
-				'movil'		=> $faker->phoneNumber,
-				'type' 		=> $faker->randomElement(['user','admin'])
-			]);
-		}
+				'movil'		=> '961 123 44 32',
+				'type' 		=> 'administrador'
+		]);
+
+		// foreach(range(1, 10) as $index)
+		// {
+		// 	User::create([
+		// 		'name'		=> $faker->name,
+		// 		'email'		=> $faker->email,
+		// 		'username'  => $faker->userName,
+		// 		'password'	=> '123',
+		// 		'movil'		=> $faker->phoneNumber,
+		// 		'type' 		=> $faker->randomElement(['usuario','administrador'])
+		// 	]);
+		// }
 	}
 
 }

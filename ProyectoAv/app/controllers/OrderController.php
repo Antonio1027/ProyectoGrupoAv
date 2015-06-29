@@ -41,7 +41,7 @@ class OrderController extends BaseController
 	public function printOrder($id,$token){
 		try {
 			$user = JWTAuth::toUser($token);
-			$order = $this->orderRepo->findOrder($id);
+			$order = $this->orderRepo->findOrder($id);			
 			if($order){
 				$html = View::make('emails.formatOrder',compact('order'));
 				return PDF::load($html, 'A4', 'portrait')->show();			

@@ -97,32 +97,56 @@
 			<tr ng-repeat="type in estimation.types">
 				<td>{{type.quantity}}</td>
 				<td>{{type.category}} : {{type.product}} : {{type.name}} </td>
-				<td>{{type.subtotal}}</td>
+				<td>{{type.subtotal | number:2}}</td>
+			</tr>
+			<tr class="cuantity" ng-if = "estimation.data.discount > 0">
+				<td></td>
+				<td class="text-right">Subtotal:</td>
+				<td>{{estimation.data.discount + estimation.data.subtotal | number:2}}</td>
+			</tr>
+			<tr class="cuantity" ng-if = "estimation.data.discount > 0">
+				<td></td>
+				<td class="text-right">Descuento:</td>
+				<td>-{{estimation.data.discount | number:2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
-				<td class="text-right">Subtotal:</td>
-				<td>{{estimation.data.subtotal}}</td>
+				<td class="text-right" ng-if="estimation.data.discount > 0"></td>
+				<td class="text-right" ng-if="estimation.data.discount <= 0">Subtotal:</td>
+				<td>{{estimation.data.subtotal | number:2}}</td>
 			</tr>
+
+			<tr class="cuantity" ng-if="estimation.data.iva">
+				<td></td>
+				<td class="text-right">IVA:</td>
+				<td>+{{estimation.data.sub_iva | number:2}}</td>
+			</tr>
+
+			<tr class="cuantity" ng-if="estimation.data.iva">
+				<td></td>
+				<td class="text-right"></td>
+				<td>{{estimation.data.sub_iva + estimation.data.subtotal | number:2}}</td>
+			</tr>
+
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Deposito:</td>
-				<td>{{estimation.data.deposit}}</td>
+				<td><span ng-if="estimation.data.deposit > 0">+</span>{{estimation.data.deposit | number:2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Total:</td>
-				<td>{{estimation.data.total}}</td>
+				<td>{{estimation.data.total | number:2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Anticipo:</td>
-				<td>{{estimation.data.advanced_payment}}</td>
+				<td><span ng-if="estimation.data.advanced_payment">-</span>{{estimation.data.advanced_payment | number:2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Por cobrar:</td>
-				<td>{{estimation.data.balance}}</td>
+				<td>{{estimation.data.balance | number:2}}</td>
 			</tr>			
 		</table>
 		<div class="text-right">

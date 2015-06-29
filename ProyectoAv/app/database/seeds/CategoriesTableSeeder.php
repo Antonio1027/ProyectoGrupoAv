@@ -67,7 +67,7 @@ class CategoriesTableSeeder extends Seeder {
 				foreach ($types[$key2] as $type) {
 					Type::create([
 						'name'	=> $type,
-						'rental_price'	=> '1200',
+						'rental_price'	=> '1200.5',
 						'product_id'	=> $field_product->id,						
 						'reserve' 		=> 300,
 						'total' 		=> 300

@@ -24,13 +24,13 @@ class EstimationController extends BaseController
 		$types = array();		
 		foreach ($estimation->types as $key => $type) {
 			$types[$key]['name'] = $type->name;
-			$types[$key]['subtotal'] = ($type->pivot->quantity * (int)$type->rental_price);
-			$types[$key]['rental_price'] = (int)$type->rental_price;
+			$types[$key]['subtotal'] = ($type->pivot->quantity * $type->rental_price);			
+			$types[$key]['rental_price'] = $type->rental_price;
 			$types[$key]['quantity'] = $type->pivot->quantity;			
 			$types[$key]['product'] = $type->product->name;			
 			$types[$key]['category'] = $type->product->category->name;
-
-		}						
+		}		
+			
 		if($estimation)
 			return Response::json(array('data' => $data,'types'=>$types),200);
 		return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
@@ -42,10 +42,12 @@ class EstimationController extends BaseController
 
 			$estimation = $this->estimationRepo->findEstimation($id);
 
-			$estimation->date_event = $this->formatDate( $estimation->date_event );
-			$estimation->date_collecting = $this->formatDate( $estimation->date_collecting );
-			$estimation->date_range = $this->formatDate( $estimation->date_range );
-
+			$estimation->date_event = $estimation->formatDate( $estimation->date_event );
+			$estimation->date_collecting = $estimation->formatDate( $estimation->date_collecting );
+			$estimation->date_range = $estimation->formatDate( $estimation->date_range );
+			$date = new DateTime($estimation->created_at);
+			$estimation->date_created = $date->format('d-m-Y');
+			
 			if($estimation){
 				$html = View::make("emails.formatestimation",compact('estimation'));			
 		    	return PDF::load($html, 'A4', 'portrait')->show();				    	
@@ -54,14 +56,7 @@ class EstimationController extends BaseController
 		} catch (Exception $e) {
     		return Redirect::to('/#/presupuestos');
 		}		
-	}
-
-	public function formatDate($date){
-		$date = explode("T", $date)[0];
-		list($año, $mes, $dia) = explode("-", $date);
-		$date = $dia . "-" . $mes . "-" . $año;
-		return $date;
-	}
+	}	
 }
 
 ?>

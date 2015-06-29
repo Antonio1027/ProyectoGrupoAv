@@ -11,7 +11,7 @@
 
 			function successAuth(res){
 				$localStorage.token = res.token;
-				$localStorage.user = res.userType;				
+				$localStorage.user = res.user;				
 				$location.path('/presupuesto');								
 			}
 
@@ -664,10 +664,19 @@
 		var estimacion = [];
 		$scope.regex_number = /^[0-9]*$/;
 		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
+		$scope.datageneral.sub_iva = 0;
+		var subtotal = 0;
+
 
 		AVService.getUpdateEstimation($routeParams.estimation_id)
 			.then(function(data){
-				$scope.datageneral = data.datageneral;
+				if(data.datageneral.iva == 1){
+					data.datageneral.subtotal = parseFloat(data.datageneral.subtotal) + parseFloat(data.datageneral.sub_iva);
+					data.datageneral.subtotal = data.datageneral.subtotal.toFixed(2);
+					subtotal = data.datageneral.subtotal;
+					data.datageneral.iva = true;
+				}	
+				$scope.datageneral = data.datageneral;				
 				$scope.datageneral.date_event = converseDate($scope.datageneral.date_event);
 				$scope.datageneral.date_range = converseDate($scope.datageneral.date_range);
 				$scope.datageneral.date_collecting = converseDate($scope.datageneral.date_collecting);
@@ -680,9 +689,9 @@
 			return new Date(date);
 		}
 
-		$scope.calculator = function (){
-			$scope.calculo = true;
-			var subtotal = 0;
+		$scope.calculator = function (){			
+			$scope.calculo = true;				
+			subtotal = 0;
 			var total = 0;
 
 			angular.forEach($scope.CPT, function(element, index){
@@ -694,9 +703,18 @@
 					})
 				})
 			})
-			$scope.datageneral.subtotal = subtotal - parseInt($scope.datageneral.discount);
-			$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
-			$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
+
+			if($scope.datageneral.iva){				
+				$scope.datageneral.sub_iva = (parseFloat(subtotal) - parseFloat($scope.datageneral.discount)) * 0.16;								
+				$scope.datageneral.subtotal = parseFloat($scope.datageneral.sub_iva) + parseFloat(subtotal) - parseFloat($scope.datageneral.discount);						
+			}
+			else{	
+				$scope.datageneral.sub_iva = 0;		
+				$scope.datageneral.subtotal = subtotal - parseFloat($scope.datageneral.discount);
+			}
+
+			$scope.datageneral.total = parseFloat($scope.datageneral.subtotal) + parseFloat($scope.datageneral.deposit);
+			$scope.datageneral.balance = parseFloat($scope.datageneral.total) - parseFloat($scope.datageneral.advanced_payment);
 		}
 
 
@@ -720,6 +738,8 @@
 					})
 				})
 			})
+			$scope.calculator();
+			$scope.datageneral.subtotal = subtotal - $scope.datageneral.discount;
 			estimacion.push($scope.datageneral);
 			estimacion.push(listproducts);
 
@@ -737,13 +757,16 @@
 	.controller('NewPresupuestosCtrl', ['$scope', '$routeParams', '$location', 'AVService','$localStorage' , 
 		function ($scope, $routeParams, $location, AVService,$localStorage) {
 		$scope.user = $localStorage.user;		
-		$scope.datageneral = {};
+		$scope.datageneral = {};		
 		$scope.CPT = [];
 		var listproducts = [];
 		var estimacion = [];
 		$scope.regex_number = /^[0-9]*$/;
 		$scope.regex_float = /^[0-9]*(\.[0-9]+)?$/;
 		$scope.calculo = false;
+		$scope.datageneral.sub_iva = 0;
+		var subtotal = 0;
+
 
 		AVService.getCPT()
 			.then(function(data){
@@ -756,8 +779,8 @@
 
 		$scope.calculator = function (){
 			$scope.calculo = true;
-			var subtotal = 0;
 			var total = 0;
+			subtotal = 0;
 
 			angular.forEach($scope.CPT, function(element, index){
 				angular.forEach(element.listproducts, function(element, index){
@@ -767,13 +790,20 @@
 						}
 					})
 				})
-			})
+			})			
 
-			$scope.datageneral.subtotal = subtotal - parseInt($scope.datageneral.discount);
-			$scope.datageneral.total = parseInt($scope.datageneral.subtotal) + parseInt($scope.datageneral.deposit);
-			$scope.datageneral.balance = parseInt($scope.datageneral.total) - parseInt($scope.datageneral.advanced_payment);
-		}
+			if($scope.datageneral.iva){				
+				$scope.datageneral.sub_iva = (parseFloat(subtotal) - parseFloat($scope.datageneral.discount)) * 0.16;								
+				$scope.datageneral.subtotal = parseFloat($scope.datageneral.sub_iva) + parseFloat(subtotal) - parseFloat($scope.datageneral.discount);						
+			}
+			else{	
+				$scope.datageneral.sub_iva = 0;		
+				$scope.datageneral.subtotal = subtotal - parseFloat($scope.datageneral.discount);
+			}
 
+			$scope.datageneral.total = parseFloat($scope.datageneral.subtotal) + parseFloat($scope.datageneral.deposit);
+			$scope.datageneral.balance = parseFloat($scope.datageneral.total) - parseFloat($scope.datageneral.advanced_payment);
+		}	
 
 		function setnotification(msg){
 			$scope.msgnoti = msg;
@@ -785,7 +815,7 @@
 
 		$scope.sendpresupuesto = function (){
 			listproducts = [];
-			estimacion = [];
+			estimacion = [];			
 
 			angular.forEach($scope.CPT, function(element, index){
 				angular.forEach(element.listproducts, function(element, index){
@@ -795,6 +825,8 @@
 					})
 				})
 			})
+			$scope.calculator();
+			$scope.datageneral.subtotal = subtotal - $scope.datageneral.discount;
 			estimacion.push($scope.datageneral);
 			estimacion.push(listproducts);
 

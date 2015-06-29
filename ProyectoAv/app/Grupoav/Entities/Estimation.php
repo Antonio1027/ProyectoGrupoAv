@@ -16,13 +16,17 @@ class Estimation extends \Eloquent {
 						   "date_collecting",
 						   "type",
 						   "number_people",
-						   "color",					   
+						   "color",
+						   "rfc",
 						   "subtotal",
+						   "sub_iva",
 						   "deposit",
 						   "total",
 						   "advanced_payment",
 						   "balance",
 						   "discount",
+						   "iva",
+						   "buffete"
 						   ];
 
 	public function types(){
@@ -42,9 +46,16 @@ class Estimation extends \Eloquent {
 		return parent::delete();
 	}
 
-	public function getCreatedAtAttribute($createdAt)
-	{						   	   
-	   $date = new DateTime($createdAt);
-	   return $date->format('Y-m-d');
+	// public function getCreatedAtAttribute($createdAt)
+	// {						   	   
+	//    $date = new DateTime($createdAt);
+	//    return $date->format('Y-m-d');
+	// }
+	
+	public function formatDate($date){		
+		$date = explode("T", $date)[0];
+		list($año, $mes, $dia) = explode("-", $date);
+		$date = $dia . "-" . $mes . "-" . $año;				
+		return $date;
 	}
 }

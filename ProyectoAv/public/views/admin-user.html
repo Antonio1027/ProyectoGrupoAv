@@ -41,8 +41,8 @@
 					<div class="input-group">
 						<span>Tipo</span>
 						<select ng-model="datauser.type">
-							<option value="user" selected>Usuario</option>
-  							<option value="admin">Administrador</option>
+							<option value="usuario" selected>Usuario</option>
+  							<option value="administrador">Administrador</option>
 						</select>
 					</div>
 					<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
@@ -66,16 +66,16 @@
 					<th>Acciones</th>
 				</tr>
 				<tr 
-				ng-repeat="user in users">
+				ng-repeat="us in users">
 					<td>{{$index + 1}}</td>
-					<td>{{user.name}}</td>
-					<td>{{user.movil}}</td>
-					<td>{{user.email}}</td>
-					<td>{{user.username}}</td>
-					<td>{{user.type}}</td>					
+					<td>{{us.name}}</td>
+					<td>{{us.movil}}</td>
+					<td>{{us.email}}</td>
+					<td>{{us.username}}</td>
+					<td>{{us.type}}</td>					
 					<td>
-						<a href="#/administrar-usuarios/{{user.id}}" ng-click="getuser(user.id)" class="icon icon-pencil"></a>
-						<button class="icon icon-minus" ng-click="deleteUser(user)"></button>	
+						<a href="#/administrar-usuarios/{{us.id}}" ng-click="getuser(us.id)" class="icon icon-pencil"></a>
+						<button class="icon icon-minus" ng-if="user.id != us.id" ng-click="deleteUser(us)"></button>	
 					</td>
 				</tr>
 			</table>

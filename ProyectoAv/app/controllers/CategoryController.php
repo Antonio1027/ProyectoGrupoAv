@@ -37,6 +37,14 @@ class CategoryController extends BaseController
 				}			
 			}
 			$datageneral = $estimation->toArray();					
+
+			$datageneral['subtotal'] = number_format($datageneral['subtotal'], 2, '.', '');
+			$datageneral['total'] = number_format($datageneral['total'], 2, '.', '');
+			$datageneral['balance'] = number_format($datageneral['balance'], 2, '.', '');
+			$datageneral['deposit'] = number_format($datageneral['deposit'], 2, '.', '');
+			$datageneral['discount'] = number_format($datageneral['discount'], 2, '.', '');
+			$datageneral['advanced_payment'] = number_format($datageneral['advanced_payment'], 2, '.', '');
+			
 			unset($datageneral['types']);
 			$data = array('CPT'=>$categories,'datageneral'=>$datageneral);	
 

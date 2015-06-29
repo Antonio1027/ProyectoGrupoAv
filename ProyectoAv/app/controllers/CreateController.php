@@ -65,11 +65,10 @@ class CreateController extends BaseController
 		return Response::json(array('errors' => $manager->getErrors()),422);
 	}	
 
-	public function newEstimation(){
-
+	public function newEstimation(){		
 		$data = Input::all();
 		$dataEstimation = $data[0];
-		$dataType = $data[1];		
+		$dataType = $data[1];				
 
 		if(! isset($data[1]) || empty($data[1]))
 			return Response::json(array('errors'=>array('msg'=>array('Debe seleccionar al menos un producto'))),422);
@@ -156,6 +155,9 @@ class CreateController extends BaseController
 	}
 
 	public function newPayment($values = []){
+
+		if((int)$values['amount'] <= 0)
+			return true;
 
 		if(count($values)){
 			$data = $values;

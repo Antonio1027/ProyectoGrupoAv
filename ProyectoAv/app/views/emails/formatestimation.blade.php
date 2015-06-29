@@ -109,7 +109,7 @@
 				<p>RENTA Y BANQUETES</p>
 			</td>
 			<td>
-				<p class="text-center" style="margin-bottom:15px; background:1px solid #EEE">Fecha {{$estimation->created_at}}</p>
+				<p class="text-center" style="margin-bottom:15px; background:1px solid #EEE"><span>Fecha: </span>{{$estimation->date_created}}</p>
 				<div class="nums">
 					<span class="capital">61</span>
 					<div class="phones">
@@ -120,7 +120,7 @@
 				</div>				
 			</td>
 			<td class="text-center">
-				<p style="margin-bottom:10px; background:1px solid #EEE">00000{{$estimation->id}}</p>
+				<p style="margin-bottom:10px; background:1px solid #EEE"><span>Folio: </span>{{$estimation->id}}</p>
 				<div>
 					<p>3A. SUR PONIENTE No. 1041</p>					
 					<p>TUXTLA GUTIERREZ CHIAPAS</p>
@@ -183,18 +183,56 @@
 	</table>	
 	<table class="table-section border">
 		<tr>
-			<td rowspan="5" width="57%" class="text-center">
-				<p>EL EQUIPO SE RENTA POR DIA EVITE RECARGOS</p>
-				<p>NOTA: ESTOS PRECIOS NO INCLUYEN I.V.A.</p>
+		@if($estimation->iva && $estimation->discount > 0)								
+			<td rowspan="9" width="57%" class="text-center">
+		@elseif($estimation->iva)				
+			<td rowspan="7" width="57%" class="text-center">
+		@else	
+			<td rowspan="5" width="57%" class="text-center">			
+		@endif	
+			<p>EL EQUIPO SE RENTA POR DIA EVITE RECARGOS</p>
+		@if(! $estimation->iva)	
+			<p>NOTA: ESTOS PRECIOS NO INCLUYEN I.V.A.</p>
+		@endif	
 			</td>
-			<td>SUBTOTAL</td>
+			@if($estimation->discount > 0)
+				<td>SUBTOTAL</td>
+				<td width="10%" class="text-right">$</td>			
+				<td>{{number_format($estimation->subtotal + $estimation->discount,2,'.',',')}}</td>
+			@else
+				<td>SUBTOTAL</td>
+				<td width="10%" class="text-right">$</td>			
+				<td>{{number_format($estimation->subtotal,2,'.',',')}}</td>
+			@endif
+		</tr>
+		@if($estimation->discount > 0)
+		<tr>
+			<td>DESCUENTO</td>
+			<td width="10%" class="text-right">$</td>			
+			<td>- {{number_format($estimation->discount,2,'.',',')}}</td>
+		</tr>
+		<tr>
+			<td></td>
 			<td width="10%" class="text-right">$</td>			
 			<td>{{number_format($estimation->subtotal,2,'.',',')}}</td>
 		</tr>
+		@endif
+		@if($estimation->iva)
+			<tr>
+				<td>IVA</td>
+				<td width="10%" class="text-right">$</td>			
+				<td>+ {{number_format($estimation->sub_iva,2,'.',',')}}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td width="10%" class="text-right">$</td>			
+				<td>{{number_format($estimation->sub_iva + $estimation->subtotal,2,'.',',')}}</td>
+			</tr>				
+		@endif
 		<tr>
 			<td>DEPOSITO</td>
 			<td width="10%" class="text-right">$</td>
-			<td>{{number_format($estimation->deposit,2,'.',',')}}</td>
+			<td>+ {{number_format($estimation->deposit,2,'.',',')}}</td>
 		</tr>
 		<tr>
 			<td>TOTAL</td>
@@ -204,13 +242,13 @@
 		<tr>
 			<td>ANTICIPO</td>
 			<td width="10%" class="text-right">$</td>
-			<td>{{number_format($estimation->advanced_payment,2,'.',',')}}</td>
+			<td>- {{number_format($estimation->advanced_payment,2,'.',',')}}</td>
 		</tr>
 		<tr>
 			<td>SALDO</td>
 			<td width="10%" class="text-right">$</td>			
 			<td>{{number_format($estimation->balance,2,'.',',')}}</td>
-		</tr>				
+		</tr>		
 	</table>	
 	<table class="border" style="border-top: 1px solid #FFF;padding:7px 5px;">
 		<tr>

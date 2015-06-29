@@ -60,8 +60,8 @@
 					<input type="text" ng-model="order.estimation.color">
 				</div>
 				<div class="input-group">
-					<span>Contacto</span>
-					<input type="text" ng-model="order.estimation.contact">
+					<span>RFC</span>
+					<input type="text" ng-model="order.estimation.rfc">
 				</div>
 				<!-- <div class="input-group">
 					<span>Subtotal</span>
@@ -100,31 +100,51 @@
 				<td>{{type.product.category.name}} : {{type.product.name}} : {{type.name}} </td>
 				<td>{{type.pivot.quantity * type.rental_price | currency}}</td>
 			</tr>
+			<tr class="cuantity" ng-if="order.estimation.discount > 0">
+				<td></td>
+				<td class="text-right">Subtotal:</td>
+				<td>{{order.estimation.subtotal + order.estimation.discount | number: 2}}</td>
+			</tr>
+			<tr class="cuantity" ng-if = "order.estimation.discount > 0">
+				<td></td>
+				<td class="text-right">Descuento:</td>
+				<td>- {{order.estimation.discount | number: 2}}</td>
+			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Subtotal:</td>
-				<td>{{order.estimation.subtotal}}</td>
+				<td>{{order.estimation.subtotal | number: 2}}</td>
+			</tr>
+			<tr class="cuantity" ng-if="order.estimation.iva">
+				<td></td>
+				<td class="text-right">IVA:</td>
+				<td>{{order.estimation.sub_iva | number: 2}}</td>
+			</tr>
+			<tr class="cuantity" ng-if="order.estimation.iva">
+				<td></td>
+				<td class="text-right"></td>
+				<td>{{order.estimation.sub_iva + order.estimation.subtotal | number: 2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Deposito:</td>
-				<td>{{order.estimation.deposit}}</td>
+				<td><span ng-if="order.estimation.deposit > 0">+</span>{{order.estimation.deposit | number:2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Total:</td>
-				<td>{{order.estimation.total}}</td>
+				<td>{{order.estimation.total | number: 2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Anticipo:</td>
-				<td>{{order.estimation.advanced_payment}}</td>
+				<td><span ng-if="order.estimation.advanced_payment">-</span>{{order.estimation.advanced_payment | number: 2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Por cobrar:</td>
-				<td>{{order.estimation.balance}}</td>
-			</tr>			
+				<td>{{order.estimation.balance | number:2}}</td>
+			</tr>					
 		</table>
 		<div class="text-right">
 			<div class="status" ng-switch on="order.status">
@@ -134,7 +154,8 @@
 					<span class="label" ng-switch-when="1">Enviado</span>
 					<span class="label" ng-switch-when="2">Recibido</span>
 				</div>
-				<span class="icon icon-redo2" ng-click="nextStatus()" ng-if="order.status != 2"></span>
+				<span class="icon icon-redo2" ng-click="nextStatus()" ng-if="order.status != 2"></span>				
+				<span>Control de renta (CR)</span>
 			</div>
 			
 
@@ -156,6 +177,7 @@
 					<span class="label" ng-switch-when="2">Depositado</span>
 				</div>
 				<span class="icon icon-redo2" ng-click="nextPay()" ng-if="order.pay != 2"></span>
+				<span>Control de cobranza (CC)</span>
 			</div>
 		</div>
 	</div>
@@ -184,11 +206,7 @@
 			<tr ng-repeat="payment in order.payments" height="30" title="{{payment.description}}">
 				<td> {{$index + 1 }} anticipo</td>
 				<td> {{payment.amount | currency}} </td>
-				<td> {{payment.created_at | date:'fullDate'}} </td>
-				<!-- <td>
-					<span class="icon icon-pencil"></span>
-					<span class="icon icon-minus"></span>
-				</td> -->
+				<td> {{payment.created_at | date:'fullDate'}}</td>
 			</tr>
 		</table>
 

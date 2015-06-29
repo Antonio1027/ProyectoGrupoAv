@@ -26,15 +26,19 @@ class CreateEstimationsTable extends Migration {
 			$table->string('date_collecting');
 			$table->string('type');
 			$table->integer('number_people');
-			$table->string('color');			
+			$table->string('color');
+			$table->string('rfc');
 
 			$table->float('subtotal');
+			$table->float('sub_iva');
 			$table->float('deposit');
 			$table->float('total');
 			$table->float('advanced_payment');
 			$table->float('balance');
 			$table->integer('discount');
 
+			$table->boolean('iva')->default(false);
+			$table->boolean('buffete')->default(false);
 
 			$table->timestamps();
 		});

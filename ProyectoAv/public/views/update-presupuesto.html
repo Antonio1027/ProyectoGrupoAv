@@ -58,6 +58,10 @@
 					<span>Color</span>
 					<input type="text" ng-model="datageneral.color" required>
 				</div>
+				<div class="input-group">
+					<span>RFC</span>
+					<input type="text" ng-model="datageneral.rfc">
+				</div>
 			</div>
 			<hr/>
 			<div class="data-personal margin-top">
@@ -85,8 +89,9 @@
 					<span>Saldo</span>
 					<input type="text" ng-model="datageneral.balance" ng-pattern="regex_float" required>
 				</div>
-				<div>
-					<spans class="pointer calculo" ng-click="calculator()"> Realizar calculo</span>
+				<div style="margin-top:15px;">
+					<span class="pointer calculo" style="padding:5px;margin-right:5px;" ng-click="calculator()"> Realizar calculo</span>
+					<span ng-show="datageneral.subtotal > 0">Incluir IVA<input type="checkbox" ng-model="datageneral.iva" ng-click="calculator()"/></span>
 				</div> 
 			</div>
 		</div>
