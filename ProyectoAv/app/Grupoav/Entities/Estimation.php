@@ -44,6 +44,10 @@ class Estimation extends \Eloquent {
 		}
 
 		return parent::delete();
+	}	
+
+	public function extratypes(){
+		return $this->hasMany('Grupoav\Entities\Extratype');
 	}
 
 	// public function getCreatedAtAttribute($createdAt)

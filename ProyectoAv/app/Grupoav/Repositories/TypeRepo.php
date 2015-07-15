@@ -2,6 +2,7 @@
 
 namespace Grupoav\Repositories;
 use Grupoav\Entities\Type;
+use Grupoav\Entities\Extratype;
 
 class TypeRepo extends \Eloquent
 {
@@ -12,6 +13,10 @@ class TypeRepo extends \Eloquent
 
 	public function findType($id){
 		return Type::find($id);
+	}
+
+	public function findExtratype($id){
+		return Extratype::find($id);
 	}
 }
 

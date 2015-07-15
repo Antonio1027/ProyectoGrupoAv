@@ -53,6 +53,7 @@ Route::group(array('before' => 'jwt-auth'),function(){
 	Route::post('newType',array('as'=>'newType','uses'=>'CreateController@newType'));
 	Route::post('confirmestimation',array('as'=>'confirmestimation','uses'=>'CreateController@confirmEstimation'));
 	Route::post('newPayment',array('as'=>'newPayment','uses'=>'CreateController@newPayment'));
+	Route::post('newExtratype',array('as'=>'newExtratype','uses'=>'CreateController@newExtratype'));
 	//update fields
 	Route::put('updateCategory',array('as'=>'updateCategory','uses'=>'UpdateController@updateCategory'));
 	Route::put('updateProduct',array('as'=>'updateProduct','uses'=>'UpdateController@updateProduct'));
@@ -67,5 +68,5 @@ Route::group(array('before' => 'jwt-auth'),function(){
 	Route::delete('deleteProduct/{idProduct}',array('as'=>'deleteProduct','uses'=>'DeleteController@deleteProduct'));
 	Route::delete('deleteEstimation/{idEstimation}',array('as'=>'deleteEstimation','uses'=>'DeleteController@deleteEstimation'));
 	Route::delete('deleteType/{idType}',array('as'=>'deleteType','uses'=>'DeleteController@deleteType'));
-
+	Route::delete('deleteExtratype/{idExtratype}',array('as'=>'deleteExtratype','uses'=>'DeleteController@deleteExtratype'));
 });

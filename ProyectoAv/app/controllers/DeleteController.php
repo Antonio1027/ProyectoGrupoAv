@@ -58,6 +58,16 @@ class DeleteController extends BaseController
 		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el tipo de producto'))),422);//solicitud no procesada
 	}
 
+	public function deleteExtratype($idExtratype){
+		$extratype = $this->typeRepo->findExtratype($idExtratype);
+
+		if($extratype->delete())
+			$estimation = $this->estimationRepo->findEstimation($extratype->estimation_id);
+			$this->calculator($estimation);
+			return Response::json(array('success' => array('msg'=>array('Has eliminado un tipo de producto'))),200);//solicitud procesada			
+		return Response::json(array('errors' => array('msg'=>array('Ocurrio un error al eliminar el tipo de producto'))),422);//solicitud no procesada
+	}
+
 	public function deletePayment($id){
 		$payment = $this->orderRepo->findPayment($id);
 		if($payment->delete())

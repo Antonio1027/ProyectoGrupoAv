@@ -19,7 +19,7 @@ class EstimationController extends BaseController
 	}
 
 	public function getEstimation($id){
-		$estimation = $this->estimationRepo->findEstimation($id);		
+		$estimation = $this->estimationRepo->findEstimation($id);
 		$data = $estimation->toArray();
 		$types = array();		
 		foreach ($estimation->types as $key => $type) {
@@ -29,10 +29,9 @@ class EstimationController extends BaseController
 			$types[$key]['quantity'] = $type->pivot->quantity;			
 			$types[$key]['product'] = $type->product->name;			
 			$types[$key]['category'] = $type->product->category->name;
-		}		
-			
+		}				
 		if($estimation)
-			return Response::json(array('data' => $data,'types'=>$types),200);
+			return Response::json(array('data' => $data,'types'=>$types,'extratypes'=>$estimation->extratypes),200);
 		return Response::json(array('errors' => array('msg' => array('No se encontraron resultados'))),422);
 	}
 

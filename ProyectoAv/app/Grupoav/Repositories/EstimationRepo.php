@@ -3,6 +3,7 @@
 namespace Grupoav\Repositories;
 use Grupoav\Entities\Estimation;
 use Grupoav\Entities\Type;
+use Grupoav\Entities\Extratype;
 
 class EstimationRepo extends \Eloquent
 {
@@ -19,6 +20,11 @@ class EstimationRepo extends \Eloquent
 		$estimation = Estimation::find($id);		
 		return $estimation;
 	}	
+
+	public function newExtratype(){
+		$extratype = new Extratype();
+		return $extratype;
+	}
 }
 
 ?>

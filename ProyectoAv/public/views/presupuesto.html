@@ -93,27 +93,34 @@
 				<th>Cantidad</th>
 				<th>Concepto</th>
 				<th>Importe</th>
+				<th width="2%"></th>
 			</tr>
 			<tr ng-repeat="type in estimation.types">
 				<td>{{type.quantity}}</td>
 				<td>{{type.category}} : {{type.product}} : {{type.name}} </td>
 				<td>{{type.subtotal | number:2}}</td>
+				<td width="2%"></td>
 			</tr>
-			<tr class="cuantity" ng-if = "estimation.data.discount > 0">
+			<tr ng-repeat="extratype in estimation.extratypes">
+				<td>{{extratype.quantity}}</td>
+				<td>{{extratype.name}} </td>
+				<td>{{extratype.total | number:2}}</td>	
+				<td width="2%"><span class="icon icon-minus" ng-click="deleteExtratype(extratype.id)"></span></td>			
+			</tr>
+			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Subtotal:</td>
-				<td>{{estimation.data.discount + estimation.data.subtotal | number:2}}</td>
+				<td>{{estimation.data.subtotal | number:2}}</td>
 			</tr>
 			<tr class="cuantity" ng-if = "estimation.data.discount > 0">
 				<td></td>
 				<td class="text-right">Descuento:</td>
 				<td>-{{estimation.data.discount | number:2}}</td>
 			</tr>
-			<tr class="cuantity">
+			<tr class="cuantity" ng-if="estimation.data.discount > 0">
 				<td></td>
-				<td class="text-right" ng-if="estimation.data.discount > 0"></td>
-				<td class="text-right" ng-if="estimation.data.discount <= 0">Subtotal:</td>
-				<td>{{estimation.data.subtotal | number:2}}</td>
+				<td class="text-right"></td>			
+				<td>{{estimation.data.subtotal - estimation.data.discount | number:2}}</td>
 			</tr>
 
 			<tr class="cuantity" ng-if="estimation.data.iva">
@@ -125,7 +132,7 @@
 			<tr class="cuantity" ng-if="estimation.data.iva">
 				<td></td>
 				<td class="text-right"></td>
-				<td>{{estimation.data.sub_iva + estimation.data.subtotal | number:2}}</td>
+				<td>{{estimation.data.sub_iva - estimation.data.discount + estimation.data.subtotal | number:2}}</td>
 			</tr>
 
 			<tr class="cuantity">
@@ -148,14 +155,31 @@
 				<td class="text-right">Por cobrar:</td>
 				<td>{{estimation.data.balance | number:2}}</td>
 			</tr>			
-		</table>
+		</table>		
 		<div class="text-right">
+			<button class="btn" style="background-color:rgb(103, 123, 195)" ng-click="tab = !tab">Agregar artículo</button>
 			<a href="printEstimation/{{estimation.data.id}}/{{token}}" class="btn icon-printer"> Imprimir</a>
 			<a href="#/update-presupuesto/{{estimation.data.id}}" class="btn icon-pencil"> Editar presupuesto</a>
 			<button class="btn icon-minus" ng-click="deleteEstimation(estimation.data.id)"> Eliminar presupuesto</button>
 			<button class="btn icon-checkmark" ng-click="comfirmOrder(estimation.data.id)"> Generar orden</button>
 		</div>
+		<div class="data-personal" style="margin-top:20px" ng-show="tab">				
+			<div class="subtitle">Agregar nuevo artículo</div><br>
+			<form name="form" ng-submit="form.$valid && sendextratype(estimation.data.id)">
+				<div class="input-group">
+					<span>Descripción</span>
+					<input type="text" ng-model="data.name" required>
+				</div>
+				<div class="input-group">
+					<span>Cantidad</span>
+					<input type="text" ng-model="data.quantity" required>
+				</div>
+				<div class="input-group">
+					<span>Importe Total</span>
+					<input type="number" ng-model="data.total" required>
+				</div>				
+				<button type="submit" class="icon btn-submit" ng-if="form.$valid"><span class="icon icon-floppy-disk"></span></button>
+			</form>
+		</div>
 	</div>
-
-	
 </section>

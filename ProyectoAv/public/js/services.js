@@ -247,6 +247,18 @@
 			return deferred.promise;
 		}
 
+		function postExtratype(extratype){
+			var deferred = $q.defer();
+			$http.post('newExtratype',extratype)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error);
+			});
+			return deferred.promise;
+		}
+
 		function updateType(type){
 			var deferred = $q.defer();
 			$http.put('updateType', type)
@@ -341,6 +353,18 @@
 				deferred.reject(error)
 			});
 			return deferred.promise;
+		}
+
+		function deleteExtratype(id){
+			var deferred = $q.defer();
+			$http.delete('deleteExtratype/' + id)
+			.success(function(data){
+				deferred.resolve(data);
+			})
+			.error(function(error){
+				deferred.reject(error)
+			});
+			return deferred.promise;	
 		}
 
 		function comfirmOrder(data){
@@ -484,6 +508,8 @@
 			updateObservations: updateObservations,
 			savePayment: savePayment,
 			getPayments: getPayments,			
+			postExtratype: postExtratype,
+			deleteExtratype: deleteExtratype
 		};
 
 	}])

@@ -13,6 +13,7 @@ use Grupoav\Managers\NewProduct;
 use Grupoav\Managers\NewEstimation;
 use Grupoav\Managers\NewType;
 use Grupoav\Managers\NewPayment;
+use Grupoav\Managers\NewExtratype;
 
 
 class CreateController extends BaseController
@@ -77,7 +78,8 @@ class CreateController extends BaseController
 		$manager = new NewEstimation($estimation,$dataEstimation);			
 
 		if($this->validate($dataType))			
-			if($manager->save() && $manager->entity->types()->sync($this->renameIndex($dataType))){									
+			if($manager->save() && $manager->entity->types()->sync($this->renameIndex($dataType))){
+				$this->calculator($estimation);									
 				return Response::json(array('success' => array('msg'=>array('Has creado un presupuesto correctamente'),'id' => $manager->entity->id)),201);//recurso creado					
 			}
 			else		
@@ -178,6 +180,21 @@ class CreateController extends BaseController
 				return Response::json(array('success'=>array('msg'=>array('Ha registrado un pago correctamente'))),201);
 		else 
 			return Response::json(array('errors' => $manager->getErrors()),422);
+	}
+
+	public function newExtratype(){		
+		$data = Input::all();
+		$extratype = $this->estimationRepo->newExtratype();
+		$manager = new NewExtratype($extratype,$data);
+		if($manager->save()){
+
+			$estimation = $this->estimationRepo->findEstimation($data['estimation_id']);
+			$this->calculator($estimation);
+
+			// return Response::json(array('success'=>array('msg'=>array('Ha registrado un articulo correctamente'))),201);
+		}	
+		else
+			return Response::json(array('errors' => $manager->getErrors()),422);	
 	}	
 }
 

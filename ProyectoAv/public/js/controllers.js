@@ -608,11 +608,14 @@
 	.controller('PresupuestoCtrl', ['$scope', '$routeParams', '$location', 'AVService','$rootScope','$localStorage', 
 		function ($scope, $routeParams, $location, AVService,$rootScope,$localStorage) {
 		$scope.user = $localStorage.user;
-		$scope.token = $localStorage.token;		
+		$scope.token = $localStorage.token;	
+		$scope.data = {};
+		$scope.tab = false;
 				
 		AVService.getEstimation($routeParams.estimation_id)
 			.then(function(data){
 				$scope.estimation = data;
+				console.log(data);
 			},
 			function(error){
 				setnotification(error.errors);
@@ -646,6 +649,29 @@
 					.then(function(data){
 						setnotification(data.success);
 						$location.url('/presupuestos');
+					},
+					function(error){
+						setnotification(error.errors);
+					})
+			}
+		}
+
+		$scope.sendextratype = function (id){			
+			$scope.data.estimation_id = id;
+			AVService.postExtratype($scope.data)
+			.then(function(data){				
+				location.reload();
+			},function(){
+				setnotification(error.errors);
+			})
+		}
+
+		$scope.deleteExtratype = function(id){
+			if( window.confirm('¿Seguro que quieres eliminar este artículo?') ){
+				AVService.deleteExtratype(id)
+					.then(function(data){
+						setnotification(data.success);
+						location.reload();
 					},
 					function(error){
 						setnotification(error.errors);

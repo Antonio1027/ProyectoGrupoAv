@@ -175,6 +175,13 @@
 				<td>${{number_format($articulo->pivot['quantity'] * $articulo->rental_price,2,'.',',')}}</td>
 			</tr>
 		@endforeach
+		@foreach($estimation->extratypes as $extratype)
+			<tr>
+				<td>{{$extratype->quantity}}</td>
+				<td>{{$extratype->name}}</td>
+				<td>${{number_format($extratype->total,2,'.',',')}}</td>
+			</tr>
+		@endforeach
 	</table>	
 	<table class="message text-center border">
 		<tr>
@@ -185,7 +192,7 @@
 		<tr>
 		@if($estimation->iva && $estimation->discount > 0)								
 			<td rowspan="9" width="57%" class="text-center">
-		@elseif($estimation->iva)				
+		@elseif($estimation->iva || $estimation->discount > 0)				
 			<td rowspan="7" width="57%" class="text-center">
 		@else	
 			<td rowspan="5" width="57%" class="text-center">			
@@ -194,16 +201,10 @@
 		@if(! $estimation->iva)	
 			<p>NOTA: ESTOS PRECIOS NO INCLUYEN I.V.A.</p>
 		@endif	
-			</td>
-			@if($estimation->discount > 0)
-				<td>SUBTOTAL</td>
-				<td width="10%" class="text-right">$</td>			
-				<td>{{number_format($estimation->subtotal + $estimation->discount,2,'.',',')}}</td>
-			@else
-				<td>SUBTOTAL</td>
-				<td width="10%" class="text-right">$</td>			
-				<td>{{number_format($estimation->subtotal,2,'.',',')}}</td>
-			@endif
+			</td>			
+			<td>SUBTOTAL</td>
+			<td width="10%" class="text-right">$</td>			
+			<td>{{number_format($estimation->subtotal,2,'.',',')}}</td>			
 		</tr>
 		@if($estimation->discount > 0)
 		<tr>
@@ -214,7 +215,7 @@
 		<tr>
 			<td></td>
 			<td width="10%" class="text-right">$</td>			
-			<td>{{number_format($estimation->subtotal,2,'.',',')}}</td>
+			<td>{{number_format($estimation->subtotal - $estimation->discount,2,'.',',')}}</td>
 		</tr>
 		@endif
 		@if($estimation->iva)
@@ -226,7 +227,7 @@
 			<tr>
 				<td></td>
 				<td width="10%" class="text-right">$</td>			
-				<td>{{number_format($estimation->sub_iva + $estimation->subtotal,2,'.',',')}}</td>
+				<td>{{number_format($estimation->sub_iva + $estimation->subtotal - $estimation->discount,2,'.',',')}}</td>
 			</tr>				
 		@endif
 		<tr>

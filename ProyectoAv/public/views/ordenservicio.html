@@ -100,20 +100,25 @@
 				<td>{{type.product.category.name}} : {{type.product.name}} : {{type.name}} </td>
 				<td>{{type.pivot.quantity * type.rental_price | currency}}</td>
 			</tr>
-			<tr class="cuantity" ng-if="order.estimation.discount > 0">
+			<tr ng-repeat="extratype in order.estimation.extratypes">
+				<td>{{extratype.quantity}}</td>
+				<td>{{extratype.name}}</td>
+				<td>{{extratype.total | currency}}</td>
+			</tr>
+			<tr class="cuantity">
 				<td></td>
 				<td class="text-right">Subtotal:</td>
-				<td>{{order.estimation.subtotal + order.estimation.discount | number: 2}}</td>
+				<td>{{order.estimation.subtotal | number: 2}}</td>
 			</tr>
 			<tr class="cuantity" ng-if = "order.estimation.discount > 0">
 				<td></td>
 				<td class="text-right">Descuento:</td>
 				<td>- {{order.estimation.discount | number: 2}}</td>
 			</tr>
-			<tr class="cuantity">
+			<tr class="cuantity" ng-if = "order.estimation.discount > 0">
 				<td></td>
 				<td class="text-right">Subtotal:</td>
-				<td>{{order.estimation.subtotal | number: 2}}</td>
+				<td>{{order.estimation.subtotal - order.estimation.discount | number: 2}}</td>
 			</tr>
 			<tr class="cuantity" ng-if="order.estimation.iva">
 				<td></td>
@@ -123,7 +128,7 @@
 			<tr class="cuantity" ng-if="order.estimation.iva">
 				<td></td>
 				<td class="text-right"></td>
-				<td>{{order.estimation.sub_iva + order.estimation.subtotal | number: 2}}</td>
+				<td>{{order.estimation.sub_iva + order.estimation.subtotal - order.estimation.discount | number: 2}}</td>
 			</tr>
 			<tr class="cuantity">
 				<td></td>

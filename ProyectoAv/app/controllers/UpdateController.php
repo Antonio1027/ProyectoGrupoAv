@@ -78,6 +78,7 @@ class UpdateController extends BaseController
 		$estimation = $this->estimationRepo->findEstimation($dataEstimation['id']);
 		$manager = new NewEstimation($estimation,$dataEstimation);
 		if($manager->save())
+			$this->calculator($estimation);
 		try {			
 			$newtypes = array();
 			$status = false;

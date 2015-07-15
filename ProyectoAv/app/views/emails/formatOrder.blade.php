@@ -199,7 +199,7 @@
 		<tr>
 		@if($order->estimation->iva && $order->estimation->discount > 0)
 			<td rowspan="9" width="70%" style="border:1px solid #ccc">
-		@elseif($order->estimation->iva)
+		@elseif($order->estimation->iva || $order->estimation->discount > 0)
 			<td rowspan="7" width="70%" style="border:1px solid #ccc">
 		@else
 			<td rowspan="5" width="70%" style="border:1px solid #ccc">
@@ -214,14 +214,9 @@
 					 <strong>SUGERIMOS</strong> COLOCAR CENICEROS PARA EVITAR QUEMADURAS A LA MANTELERIA; CUALQUIER DAÑO TOTAL O PARCIAL AL
 					 MOBILIARIO O EQUIPO SE CARGARA A LA CUENTA DEL CONTRATANTE.
 				</p> 
-			</td>
-			@if($order->estimation->discount > 0)			
-				<td>SUBTOTAL</td>				
-				<td class="text-left">$ {{number_format($order->estimation->subtotal + $order->estimation->discount,2,'.',',')}}</td>
-			@else
-				<td>SUBTOTAL</td>				
-				<td class="text-left">$ {{number_format($order->estimation->subtotal,2,'.',',')}}</td>
-			@endif
+			</td>					
+			<td>SUBTOTAL</td>				
+			<td class="text-left">$ {{number_format($order->estimation->subtotal + $order->estimation->discount,2,'.',',')}}</td>			
 		</tr>
 		@if($order->estimation->discount > 0)
 		<tr>
@@ -240,7 +235,7 @@
 			</tr>
 			<tr>
 				<td></td>				
-				<td class="text-left">$ {{number_format($order->estimation->sub_iva + $order->estimation->subtotal,2,'.',',')}}</td>
+				<td class="text-left">$ {{number_format($order->estimation->sub_iva + $order->estimation->subtotal - $order->estimation->discount,2,'.',',')}}</td>
 			</tr>				
 		@endif
 		<tr>

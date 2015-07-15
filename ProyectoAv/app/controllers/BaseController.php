@@ -34,4 +34,24 @@ class BaseController extends Controller {
 		return true;					
 	}
 
+	public function calculator($estimation){
+		$subtotal = 0;
+		$subtotal2 = 0;
+		foreach ($estimation->types as $key => $value) {
+			$subtotal = ((float)$value->rental_price * (float)$value->pivot->quantity) + (float)$subtotal;
+		}
+		foreach ($estimation->extratypes as $key => $value) {
+			$subtotal2 = $subtotal2 + (float)$value->total;
+		}
+		$estimation->subtotal = (float)$subtotal + (float)$subtotal2;
+
+		if($estimation->iva){
+			$estimation->sub_iva = ($estimation->subtotal - $estimation->discount) * 0.16;
+		}
+
+		$estimation->total = $estimation->subtotal - $estimation->discount  + $estimation->sub_iva + $estimation->deposit;
+		$estimation->balance = $estimation->total - $estimation->advanced_payment;
+		$estimation->save();		
+	}
+
 }
