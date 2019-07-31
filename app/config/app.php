@@ -80,7 +80,7 @@ return array(
 
 	'key' => 'qMpo37pVW91EwEWAqGILvMKPehARQ0Ds',
 
-	'cipher' => null,
+	'cipher' => MCRYPT_RIJNDAEL_128,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -103,6 +103,7 @@ return array(
 		'Illuminate\Routing\ControllerServiceProvider',
 		'Illuminate\Cookie\CookieServiceProvider',
 		'Illuminate\Database\DatabaseServiceProvider',
+		'Illuminate\Encryption\EncryptionServiceProvider',
 		'Illuminate\Filesystem\FilesystemServiceProvider',
 		'Illuminate\Hashing\HashServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
@@ -120,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
 		'Thujohn\Pdf\PdfServiceProvider',
 		'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider'
