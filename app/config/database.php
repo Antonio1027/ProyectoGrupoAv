@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '127.10.75.2:3306',
-			'database'  => 'grupoav',
-			'username'  => 'admingz6WaZ5',
-			'password'  => 'hDlnDD5hVI_Y',
+			'host'      => 'c584md9egjnm02sk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+			'database'  => 'q6hb31g4i0isc99a',
+			'username'  => 'k252tzcrsjmihnl4',
+			'password'  => 'f5i7n8r87urlb6ak',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
