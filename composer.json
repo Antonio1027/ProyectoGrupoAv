@@ -30,7 +30,9 @@
 			"php artisan clear-compiled",
 			"php artisan dump-autoload",
 			"php artisan optimize",
-			"chmod -R 777 public/"
+			"chmod -R 777 public/",
+			"chmod -R 777 app/storage"
+			
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
