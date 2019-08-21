@@ -12,7 +12,7 @@ class CreateExtratypesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Extratypes', function(Blueprint $table)
+		Schema::create('extratypes', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('quantity');
@@ -32,7 +32,7 @@ class CreateExtratypesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Extratypes');
+		Schema::drop('extratypes');
 	}
 
 }
