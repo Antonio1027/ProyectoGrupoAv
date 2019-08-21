@@ -29,7 +29,8 @@
 		"post-install-cmd": [
 			"php artisan clear-compiled",
 			"php artisan dump-autoload",
-			"php artisan optimize"
+			"php artisan optimize",
+			"chmod -R 777 public/"
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
