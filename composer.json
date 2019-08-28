@@ -11,7 +11,8 @@
 		"laravel/framework": "4.2.*",
 		"thujohn/pdf": "dev-master",
 		"tymon/jwt-auth": "0.4.*",
-		"barryvdh/laravel-cors":"0.2.x"
+        "barryvdh/laravel-cors":"0.2.x",
+        "ext-gd": "*"
 	},
 	"autoload": {
 		"psr-4":{
